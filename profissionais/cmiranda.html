@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<title>Custódio da Piedade - Sócio Fundador | Franceschini e Miranda</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+  :root { 
+    --vinho: #7b0606; 
+    --creme: #fcf8f3; 
+    --ouro: #f3a600; 
+    --cinza-claro: #efecea;
+    --cinza-texto: #555;
+    --branco: #ffffff;
+    --sombra-leve: 0 4px 20px rgba(0,0,0,0.08);
+    --sombra-media: 0 8px 40px rgba(0,0,0,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    font-family: 'Inter', sans-serif; 
+    background: var(--creme); 
+    color: var(--cinza-texto); 
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Header fixo - mesmo do original */
+  .header-fixed { 
+    position: fixed; top: 0; left: 0; right: 0; width: 100vw; z-index: 50; 
+    background: var(--vinho); box-shadow: 0 2px 18px #4b060677;
+  }
+  .topbar { 
+    width: 100%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; 
+    background: var(--vinho); padding: 3px 5vw 1px 5vw; min-height: 78px; box-sizing: border-box;
+  }
+  .topbar-filler { min-width: 280px; visibility: hidden; }
+  .logo-center-projection { 
+    width: 100%; display: flex; justify-content: center; align-items: center; min-height: 76px;
+  }
+  .logo-img-fm { max-width: 96%; width: 350px; min-width: 180px; height: auto; display: block; margin: 0 auto;}
+  .contact-top { text-align: right; min-width: 280px; font-size: 1.1em; align-self: center; justify-self: end;}
+  .contact-top span { vertical-align: middle; margin-right: 3px; font-size: 1.13em; color: #ffe0e0;}
+  .contact-title, .contact-detail { color: var(--creme); font-family: 'Montserrat', Arial, sans-serif;}
+  .social-links { margin: 9px 0 2px; text-align: right;}
+  .social-links a { 
+    color: #fff; background: #630303; border-radius: 50%; padding: 7px 0; margin-left: 7px; 
+    width: 38px; display: inline-block; text-align: center; transition: all 0.2s; 
+    font-size: 1.18em; box-shadow: 0 2px 10px #20020222; vertical-align: middle;
+  }
+  .social-links a:hover { background: #f3a600; color: #7b0606; transform: translateY(-2px); }
+  .header-spacer { height: 190px;}
+  nav { 
+    background: var(--vinho); display: flex; justify-content: center; align-items: center; 
+    gap: 66px; padding: 16px 0; font-size: 1.22em; font-weight: 600; letter-spacing: 0.12em; 
+    box-shadow: 0 7px 16px #551a1a23; width: 100%; margin: 0 auto; position: relative; z-index: 4;
+  }
+  nav a { 
+    text-decoration: none; color: var(--creme); transition: 0.2s; padding-bottom: 3px; 
+    font-size: 1em; font-family: 'Inter', Arial, sans-serif; font-weight: 600; 
+    letter-spacing: 0.05em; display: inline-block;
+  }
+  nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
+
+  /* Banner com imagem real descolorida */
+  .profile-banner {
+    margin-top: 190px;
+    height: 250px;
+    width: 100%;
+    background: linear-gradient(rgba(123, 6, 6, 0.8), rgba(123, 6, 6, 0.85)), 
+                url('https://images.pexels.com/photos/1290141/pexels-photo-1290141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') center/cover;
+    filter: grayscale(80%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .profile-photo-wrapper {
+    position: absolute;
+    bottom: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+  
+  .profile-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 6px solid var(--branco);
+    box-shadow: var(--sombra-media);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-photo:hover {
+    transform: scale(1.05);
+  }
+
+  /* Compact Profile Info */
+  .compact-info {
+    background: var(--branco);
+    margin: 90px auto 40px;
+    max-width: 900px;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--sombra-leve);
+    position: relative;
+    text-align: center;
+  }
+  
+  .profile-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2em;
+    font-weight: 800;
+    color: var(--vinho);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  
+  .profile-role {
+    font-size: 1.1em;
+    color: var(--ouro);
+    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  
+  .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .info-chip {
+    background: var(--creme);
+    padding: 12px 24px;
+    border-radius: 25px;
+    color: var(--cinza-texto);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .info-chip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(243, 166, 0, 0.3), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .info-chip:hover::before {
+    left: 100%;
+  }
+  
+  .info-chip:hover {
+    background: var(--ouro);
+    color: var(--vinho);
+    transform: translateY(-2px);
+  }
+
+  /* Ticket-style labels */
+  .email-label::before {
+    content: 'E-MAIL';
+    background: var(--vinho);
+    color: var(--branco);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7em;
+    font-weight: 700;
+    margin-right: 10px;
+    letter-spacing: 1px;
+  }
+  
+  .area-label::before {
+    content: 'ATUAÇÃO';
+    background: var(--vinho);
+    color: var(--branco);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7em;
+    font-weight: 700;
+    margin-right: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* Elegant Unified Card */
+  .elegant-card {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    background: var(--branco);
+    border-radius: 25px;
+    padding: 50px;
+    box-shadow: var(--sombra-media);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .elegant-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--vinho), var(--ouro), var(--vinho));
+  }
+  
+  .elegant-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--ouro), transparent);
+  }
+  
+  .card-content-elegant {
+    font-size: 1.1em;
+    line-height: 1.9;
+    color: var(--cinza-texto);
+    font-style: italic;
+    text-align: justify;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .card-content-elegant p {
+    margin-bottom: 20px;
+  }
+  
+  .highlight-text {
+    color: var(--vinho);
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  /* Books Section Inside Card */
+  .books-section-elegant {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid var(--cinza-claro);
+  }
+  
+  .books-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--vinho);
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .books-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--ouro);
+    border-radius: 2px;
+  }
+  
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 25px;
+  }
+  
+  .book-item-elegant {
+    background: var(--creme);
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid var(--ouro);
+    font-style: italic;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .book-item-elegant::before {
+    content: '“';
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 40px;
+    color: var(--ouro);
+    opacity: 0.3;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+  }
+  
+  .book-item-elegant:hover {
+    transform: translateX(5px);
+    box-shadow: var(--sombra-leve);
+  }
+
+  /* Footer - Corrigido */
+  .footer { 
+    background: var(--vinho); 
+    color: var(--creme); 
+    width: 100%; 
+    padding: 48px 0 32px 0; 
+    text-align: center; 
+    position: relative;
+    margin-top: 60px;
+  }
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 86px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer-block { min-width: 220px; text-align: left; }
+  .footer-logo { display: block; max-width: 90px; margin-bottom: 7px; }
+  .footer-block-title { 
+    font-family: 'Montserrat', sans-serif; color: #f3a600; 
+    font-weight: bold; font-size: 1.09em; margin-bottom: 13px; letter-spacing: .16em; 
+  }
+  .footer-menu { padding: 0; margin: 0 0 10px 0; list-style: none; }
+  .footer-menu li { margin-bottom: 6px; display: inline-block; margin-right: 11px; }
+  .footer-menu a { 
+    color: var(--creme); text-decoration: none; font-size: 1.05em; 
+    letter-spacing: .015em; border-bottom: 1px dotted #f3a60033; 
+    padding: 0 4px; transition: color .2s; 
+  }
+  .footer-menu a:hover { color: #f3a600; }
+  .footer-contact { font-size: 1em; margin-top: 6px; }
+  .footer-contact i { margin-right: 3px; color: #f3a600; font-size: 1.18em; vertical-align: middle; }
+
+  /* Back Button */
+  .back-button {
+    position: fixed;
+    top: 200px;
+    left: 30px;
+    background: var(--vinho);
+    color: var(--branco);
+    padding: 12px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow: var(--sombra-leve);
+  }
+  .back-button:hover {
+    background: var(--ouro);
+    color: var(--vinho);
+    transform: translateX(-5px);
+  }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .contact-info {
+      flex-direction: column;
+      align-items: center;
+    }
+    .elegant-card {
+      padding: 30px;
+      margin: 0 20px 40px;
+    }
+    .back-button {
+      position: relative;
+      top: auto;
+      left: auto;
+      margin: 20px auto;
+      width: fit-content;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Back Button -->
+<a href="../profissionais.html" class="back-button">
+  <i class="fas fa-arrow-left"></i> Voltar aos Profissionais
+</a>
+
+<!-- Header fixo - caminhos relativos -->
+<div class="header-fixed">
+  <div class="topbar">
+    <div class="topbar-filler"></div>
+    <div class="logo-center-projection">
+      <img src="../logofm2.png" class="logo-img-fm" alt="Franceschini e Miranda Advogados Logo"/>
+    </div>
+    <div class="contact-top">
+      <div class="contact-title">CONTATO</div>
+      <div class="contact-detail"><span>📞</span> +55 (011) 3095-2566</div>
+      <div class="contact-detail"><span>✉️</span> adv-fm@fm-advogados.com.br</div>
+      <div class="social-links">
+        <a href="https://instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/" target="_blank" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../escritorio.html">Escritório</a>
+    <a href="../profissionais.html" class="active">Profissionais</a>
+    <a href="#">Áreas de Atuação</a>
+    <a href="#">Publicações</a>
+    <a href="#">Contato</a>
+  </nav>
+</div>
+
+<!-- Banner com imagem real descolorida -->
+<section class="profile-banner">
+  <div class="profile-photo-wrapper">
+    <img src="custodio.jpg" alt="Custódio da Piedade Ubaldino Miranda" class="profile-photo">
+  </div>
+</section>
+
+<!-- Compact Profile Info -->
+<div class="compact-info">
+  <h1 class="profile-name">Custódio da Piedade Ubaldino Miranda</h1>
+  <p class="profile-role">Sócio Fundador</p>
+  
+  <div class="contact-info">
+    <div class="info-chip email-label">
+      cmiranda@fm-advogados.com.br
+    </div>
+    <div class="info-chip area-label">
+      Direito Civil, Comercial e do Consumidor
+    </div>
+  </div>
+</div>
+
+<!-- Elegant Unified Card -->
+<div class="elegant-card">
+  <div class="card-content-elegant">
+    <p>Nascido em Goa, Índia Portuguesa, em 1935, <span class="highlight-text">Custódio da Piedade Ubaldino Miranda</span> é uma das figuras mais proeminentes do direito civil brasileiro contemporâneo. Formado pela renomada Universidade de Coimbra, Portugal, em 1958, traz em sua formação a tradição jurídica lusitana combinada com a excelência acadêmica europeia.</p>
+    
+    <p>Sua trajetória profissional é marcada por uma contribuição fundamental ao direito brasileiro, tendo exercido as funções de <span class="highlight-text">Promotor de Justiça e Juiz de Direito</span>, experiências que lhe proporcionaram uma visão completa e aprofundada do sistema jurídico nacional. Completou seu Mestrado em Direito em 1979 e obteve o título de Doutor em Direito em 1986, ambos pela Universidade de São Paulo, consolidando sua posição como um dos maiores especialistas em direito civil do país.</p>
+    
+    <p>Professor associado da <span class="highlight-text">Faculdade de Direito da Universidade de São Paulo</span> no Departamento de Direito Civil, contribuiu para a formação de gerações de advogados e juristas. Além de sua atuação no escritório Franceschini e Miranda Advogados, foi Diretor Jurídico da Associação Brasileira dos Anunciantes (ABA) e membro do Conselho de Ótica do CONAR – Conselho Nacional de Auto-Regulamentação Publicitária.
+  </div>
+  
+  <!-- Books Section Inside Card -->
+  <div class="books-section-elegant">
+    <h3 class="books-title">Principais Obras</h3>
+    <div class="books-grid">
+      <div class="book-item-elegant">A Simulação no Direito Civil Brasileiro</div>
+      <div class="book-item-elegant">Interpretação e Integração dos Negócios Jurídicos</div>
+      <div class="book-item-elegant">Teoria Geral do Negócio Jurídico</div>
+      <div class="book-item-elegant">Locação de Imóveis Urbanos</div>
+      <div class="book-item-elegant">Contrato de Adesão</div>
+      <div class="book-item-elegant">Teoria Geral do Direito Privado</div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer - Corrigido -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-block">
+      <img src="../analise.png" alt="Selo Análise Advocacia" class="footer-logo"/>
+    </div>
+    <div class="footer-block">
+      <div class="footer-block-title">ACESSO RÁPIDO</div>
+      <ul class="footer-menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../escritorio.html">Escritório</a></li>
+        <li><a href="../profissionais.html">Profissionais</a></li>
+        <li><a href="#">Áreas de Atuação</a></li>
+        <li><a href="#">Publicações</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+    </div>
+    <div class="footer-block">
+      <div class="footer-block-title">SÃO PAULO</div>
+      <div class="footer-contact">
+        <i class="fas fa-phone-alt"></i>
+        <a href="tel:+551180952566" style="color:#fff;text-decoration:underline;">+55 (011) 3095-2566</a>
+      </div>
+      <div class="footer-contact">
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:adv-fm@fm-advogados.com.br" style="color:#fff;text-decoration:underline;">adv-fm@fm-advogados.com.br</a>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2024 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>

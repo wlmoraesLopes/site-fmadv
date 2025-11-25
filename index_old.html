@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<title>Franceschini e Miranda Advogados</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<style>
+  /*
+  ======================================================
+  ESTILOS GERAIS E VARIÁVEIS
+  ======================================================
+  */
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;600;700&display=swap');
+  :root { 
+    --vinho: #7b0606; 
+    --creme: #fcf8f3; 
+    --texto-principal: #232231; 
+  }
+  
+  body { 
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+    background: var(--creme); 
+    color: var(--texto-principal); 
+    margin:0; 
+    min-height: 100vh;
+  }
+  .site-bg { position: relative; min-height: 100vh; z-index: 0; overflow-x: hidden; }
+
+  /* Removendo as bordas fixas para simplificar o layout e evitar problemas na prévia */
+  /* .site-bg::before, .site-bg::after { content: ''; position: fixed; top: 0; bottom: 0; width: 70px; background: var(--vinho); z-index: 0; pointer-events: none;}
+  .site-bg::before { left: 0; }
+  .site-bg::after { right: 0; } */
+
+  /*
+  ======================================================
+  CABEÇALHO E NAVEGAÇÃO (REVISADO PARA MAIOR ROBUSTEZ)
+  ======================================================
+  */
+  .header-fixed { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    width: 100vw; 
+    z-index: 50; 
+    background: var(--vinho); 
+    box-shadow: 0 2px 18px #4b060677; 
+  }
+
+  .topbar {
+    display: flex; /* Usando Flexbox, mais simples que Grid para este caso */
+    justify-content: space-between; /* Espaço entre os blocos */
+    align-items: center; 
+    background: var(--vinho);
+    padding: 3px 5vw 1px 5vw; 
+    min-height: 78px; 
+    box-sizing: border-box;
+  }
+
+  /* Bloco do Logo */
+  .logo-center-projection {
+    flex-grow: 1; /* Permite que o logo ocupe o espaço central */
+    display: flex;
+    justify-content: center;
+    order: 2; /* Coloca o logo no meio */
+  }
+
+  /* Imagem do Logo (mantida a referência local) */
+  .logo-img-fm { 
+    max-width: 96%; 
+    width: 300px; /* Reduzindo um pouco o tamanho máximo */
+    height: auto; 
+    display: block; 
+    margin: 0; /* Remove margem desnecessária */
+  }
+
+  /* Bloco de Contato (Direita) */
+  .contact-top { 
+    text-align: right; 
+    min-width: 250px; /* Garante que não encolha demais */
+    font-size: 1em; 
+    order: 3; /* Fica à direita */
+    padding-left: 10px;
+  }
+  .contact-top span { vertical-align: middle; margin-right: 3px; font-size: 1.13em; color: #ffe0e0;}
+  .contact-title, .contact-detail { color: var(--creme); font-family: 'Montserrat', Arial, sans-serif; }
+  
+  /* Links de Redes Sociais */
+  .social-links { margin: 5px 0 2px; text-align: right;}
+  .social-links a { color: #fff; background: #630303; border-radius: 50%; padding: 7px 0; margin-left: 7px; width: 34px; display: inline-block; text-align: center; transition: background 0.2s, color 0.2s; font-size: 1.1em; box-shadow: 0 2px 10px #20020222; vertical-align: middle;}
+  .social-links a:hover { background: #f3a600; color: #7b0606; }
+
+  /* Div de preenchimento (Esquerda) */
+  .topbar-filler {
+    min-width: 250px; /* Espaço espelhado para centralizar o logo */
+    order: 1; /* Fica à esquerda */
+    visibility: hidden;
+  }
+  
+  /* Espaçador */
+  .header-spacer { height: 190px; } 
+
+  /* Menu de Navegação */
+  nav {
+    background: var(--vinho);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* Reduzindo o GAP para evitar quebra */
+    padding: 16px 10px;
+    font-size: 1.15em;
+    font-weight: 600;
+    box-shadow: 0 7px 16px #551a1a23;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 4;
+    box-sizing: border-box;
+  }
+  nav a {
+    text-decoration: none;
+    color: var(--creme);
+    transition: 0.2s;
+    padding-bottom: 3px;
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    display: inline-block;
+  }
+  nav a:hover { color: #f3a600; border-bottom: 2px solid #fdeede; }
+
+  /*
+  ======================================================
+  BANNER E NOTÍCIAS
+  ======================================================
+  */
+  .banner-outer { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: transparent; z-index: 1;}
+  
+  .banner-bg {
+    background: url('https://images.pexels.com/photos/831569/pexels-photo-831569.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260') center/cover no-repeat;
+    min-height: 450px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    width: 100vw;
+    justify-content: flex-start;
+  }
+  .banner-bg::before {
+    content: "";
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(255,255,255,0.82); 
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .frase-banner {
+    position: relative;
+    z-index: 55; 
+    color: #000; 
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 2.8em;
+    text-align: center;
+    letter-spacing: .03em;
+    margin: 70px auto 0 auto; 
+    line-height: 1.15;
+    width: 100%;
+    max-width: 1000px; 
+    box-sizing: border-box;
+    padding: 10px 15px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+  }
+  
+  .verified-icon {
+    color: #000;
+    position: relative;
+    font-size: 2.5em; 
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 10px; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); 
+  }
+
+  .banner-content {
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto; 
+    position: relative;
+    z-index: 5;
+    margin-top: -100px; 
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .noticias-box {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px #00000033; 
+    margin: 0 auto; 
+    padding: 33px 38px 30px 38px;
+    max-width: 900px;
+    text-align: left;
+    position: relative;
+    z-index: 40;
+  }
+
+  .noticias-title { color: #8b0000; font-family: 'Montserrat', Arial, sans-serif; font-size: 2em; font-weight: 800; margin-bottom: 24px; letter-spacing: 0.8px; text-transform: uppercase; animation: blink 1.5s infinite ease-in-out; background: linear-gradient(90deg, #fdeede 0%, #f3a600 100%); padding: 8px 18px; border-radius: 11px; display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 0 12px #f3a60055;}
+  .noticias-title::before { content: "📰"; font-size: 1.9em;}
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.74; } }
+  .noticias-list {list-style: none; padding: 0; margin: 0;}
+  .noticias-item { padding: 11px 0; border-bottom: 1px solid #efecea; display: flex; align-items: center; gap: 24px;}
+  .noticias-link {color: #232231; font-weight: bold; text-decoration: none; font-size: 1.13em; flex: 1; word-break: break-word; transition: 0.2s;}
+  .noticias-link:hover { color: #8b0000; }
+  .noticias-actions button { background: none; border: none; color: #8b0000; cursor: pointer; font-size: 1em; margin-left: 8px;}
+
+  /*
+  ======================================================
+  CONTEÚDO PRINCIPAL (Blocos)
+  ======================================================
+  */
+  .main-wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2;}
+  
+  /* Adicionando ID aqui para o link da navegação */
+  .blocos { 
+    display: flex; 
+    flex-wrap: wrap; /* Adicionando wrap para responsividade */
+    gap: 32px; 
+    justify-content: center; 
+    margin: 80px auto 70px auto; 
+    max-width: 1200px;
+    padding: 0 10px;
+  }
+  .bloco { 
+    background: #fdeede; 
+    padding: 30px 18px 34px 18px; 
+    border-radius: 11px; 
+    box-shadow: 0 1px 5px #ececec44; 
+    min-width: 250px; 
+    max-width: 350px; /* Limitando o crescimento para melhor visualização */
+    flex: 1; /* Permite que os blocos cresçam/diminuam de forma flexível */
+    text-align: center;
+  }
+  .bloco h3 {color: #8b0000;font-weight: bold;margin-bottom: 18px;font-family: 'Montserrat', sans-serif; font-size: 1.22em;letter-spacing: .22px;}
+  .bloco p {font-size: 1.09em;color: #3c3c44;margin: 0;line-height: 1.59em;font-style: italic;}
+  
+  /*
+  ======================================================
+  RODAPÉ
+  ======================================================
+  */
+  .footer { background: var(--vinho); color: var(--creme); width: 100vw; margin-left: -50vw; left: 50%; padding: 48px 0 32px 0; text-align: center; position: relative;}
+  .footer-content {display: flex;flex-wrap: wrap;justify-content: center;gap: 86px;align-items: flex-start;margin-bottom: 12px;max-width: 1100px;margin-left: auto;margin-right: auto;}
+  .footer-block {min-width: 220px;text-align: left;}
+  .footer-logo {display: block;max-width: 90px;margin-bottom: 7px;}
+  .footer-block-title {font-family: 'Montserrat', sans-serif;color: #f3a600; font-weight: bold;font-size: 1.09em;margin-bottom: 13px;letter-spacing: .16em;}
+  .footer-menu {padding: 0;margin: 0 0 10px 0;list-style: none;}
+  .footer-menu li {margin-bottom: 6px;display: inline-block;margin-right: 11px;}
+  .footer-menu a {color: var(--creme);text-decoration: none;font-size: 1.05em;letter-spacing: .015em;border-bottom: 1px dotted #f3a60033;padding: 0 4px;transition: color .2s;}
+  .footer-menu a:hover { color: #f3a600; }
+  .footer-contact {font-size: 1em;margin-top: 6px;}
+  .footer-contact i {margin-right: 3px;color: #f3a600;font-size: 1.18em;vertical-align: middle;}
+  
+  /*
+  ======================================================
+  MEDIA QUERIES (RESPONSIVIDADE)
+  ======================================================
+  */
+  @media (max-width:1100px) {
+    .header-spacer {height: 230px;}
+    
+    /* Configuração para o Flexbox do topbar em mobile/tablet */
+    .topbar {
+        flex-direction: column; 
+        align-items:center; 
+        min-height:70px; 
+        padding: 7px 2vw 4px 2vw;
+    }
+    .topbar-filler { display: none; order: 0;} /* Esconde o filler no mobile */
+    .logo-center-projection { order: 1; margin:9px auto 5px auto; flex-grow: 0;}
+    .contact-top {text-align:center; margin: 7px 0 0 0; min-width: 100%; flex-grow: 0; order: 3; padding-left: 0;}
+    
+    .logo-img-fm {max-width:99vw; width:50vw;}
+    
+    nav {gap: 10px; flex-wrap: wrap; justify-content: center; padding: 12px 10px;}
+    nav a {font-size: 0.95em;}
+    
+    /* Ajuste para Mobile */
+    .frase-banner {
+      font-size: 1.8em; 
+      margin-top: 20px; 
+      padding: 10px 15px; 
+      max-width: 95vw;
+    }
+    
+    .verified-icon {
+      font-size: 1.3em; 
+      margin-bottom: 8px;
+    }
+
+    .banner-bg {min-height: 350px;}
+    .banner-content {margin-top: -50px; padding: 0 10px;}
+    .noticias-box {padding: 20px 20px 18px 20px; max-width: 95vw; }
+    .blocos {flex-direction: column; gap: 20px; margin: 40px auto; padding: 0;}
+    .bloco {max-width: 100%;}
+  }
+  @media(max-width:900px) {
+    .main-wrap {padding: 0 2vw;}
+    .footer-content {flex-direction: column; gap: 24px; align-items: center;}
+    .footer-block {min-width: initial; text-align: center;}
+    .footer-logo {margin-left: auto; margin-right: auto;}
+    .frase-banner {font-size: 1.6em;}
+    .noticias-title {font-size: 1.5em;}
+  }
+</style>
+</head>
+<body>
+  <div class="site-bg">
+    <div class="header-fixed">
+      <div class="topbar">
+        <!-- 1. Div de preenchimento (Garante o espaço para o logo centralizar) --><div class="topbar-filler"></div>
+        
+        <!-- 2. Logo (Centralizado pelo Flexbox) --><div class="logo-center-projection">
+          <!-- Nota: A imagem usa um caminho de arquivo local. Recomendo trocar para uma URL web. -->
+          <img src="logofm2.png" class="logo-img-fm" alt="Franceschini e Miranda Advogados Logo"/>
+        </div>
+        
+        <!-- 3. Contato (Posicionado ao lado direito da página) --><div class="contact-top">
+          <div class="contact-title">CONTATO</div>
+          <!-- TELEFONE ATUALIZADO PELO USUÁRIO -->
+          <div class="contact-detail"><span>📞</span> +55 (011) 3095-2566</div>
+          <!-- E-MAIL ATUALIZADO PELO USUÁRIO -->
+          <div class="contact-detail"><span>✉️</span> adv-fm@fm-advogados.com.br</div>
+          <div class="social-links">
+            <a href="https://instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/" target="_blank" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Menu de Navegação -->
+      <nav>
+        <a href="index.html">Home</a>
+        <!-- LINK CORRIGIDO para o arquivo escritorio.html -->
+        <a href="escritorio.html">Escritório</a> 
+        <a href="#">Profissionais</a>
+        <a href="#">Áreas de Atuação</a>
+        <a href="#">Publicações</a>
+        <a href="#">Contato</a>
+      </nav>
+    </div>
+    <div class="header-spacer"></div>
+    
+    <!-- O banner-outer força o 100vw, garantindo que o banner ocupe toda a largura da tela -->
+    <div class="banner-outer">
+      <section class="banner-bg">
+        <!-- Frase de Destaque com o Ícone de Check Simples em linha separada -->
+        <div class="frase-banner">
+          <span class="verified-icon">
+            <i class="fas fa-check"></i>
+          </span> 
+          <b>Excelência e ética na defesa dos seus interesses</b>
+        </div>
+      </section>
+      
+      <!-- Contêiner do bloco de notícias (Efeito Suspenso e Centralizado) -->
+      <div class="banner-content">
+        <div class="noticias-box">
+          <div class="noticias-title">Notícias & Análises Recentes</div>
+          <ul class="noticias-list">
+            <li class="noticias-item">
+              <a href="#" class="noticias-link">Como a Nova Lei Impacta Contratos Empresariais</a>
+              <span class="noticias-actions">
+                <button title="Imprimir" onclick="window.print()">🖨️</button>
+                <button title="Compartilhar" onclick="navigator.share && navigator.share({title:'Nova Lei', url:window.location.href})">🔗</button>
+              </span>
+            </li>
+            <li class="noticias-item">
+              <a href="#" class="noticias-link">Gestão de Riscos no Direito Societário Moderno</a>
+              <span class="noticias-actions">
+                <button title="Imprimir" onclick="window.print()">🖨️</button>
+                <button title="Compartilhar" onclick="navigator.share && navigator.share({title:'Direito Societário', url:window.location.href})">🔗</button>
+              </span>
+            </li>
+            <li class="noticias-item">
+              <a href="#" class="noticias-link">LGPD: O que muda para pequenas empresas?</a>
+              <span class="noticias-actions">
+                <button title="Imprimir" onclick="window.print()">🖨️</button>
+                <button title="Compartilhar" onclick="navigator.share && navigator.share({title:'LGPD', url:window.location.href})">🔗</button>
+              </span>
+            </li>
+            <li class="noticias-item">
+              <a href="#" class="noticias-link">Tendências em Direito do Trabalho Pós-Pandemia</a>
+              <span class="noticias-actions">
+                <button title="Imprimir" onclick="window.print()">🖨️</button>
+                <button title="Compartilhar" onclick="navigator.share && navigator.share({title:'Direito Trabalho', url:window.location.href})">🔗</button>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="main-wrap">
+      <section class="blocos" id="escritorio-section">
+        <div class="bloco">
+          <h3>Nossa Essência</h3>
+          <p>Nossa equipe integra tradição no Direito e práticas contemporâneas para entregar orientação segura, transparente e voltada a resultados duradouros.</p>
+        </div>
+        <div class="bloco">
+          <h3>Fale Conosco</h3>
+          <p>Não deixe sua proteção legal para depois. Nossa equipe está à disposição para recebê-lo e construir a solução mais adequada com total compromisso.</p>
+        </div>
+        <div class="bloco">
+          <h3>Soluções Estratégicas</h3>
+          <p>Desenvolvimento de estratégias jurídicas inovadoras e preventivas, transformando desafios complexos em oportunidades de crescimento e segurança para o seu negócio.</p>
+        </div>
+      </section>
+    </div>
+    
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-block">
+          <!-- Imagem de placeholder, pois o src original está em um link local. -->
+          <img src="https://placehold.co/90x40/7b0606/f3a600?text=LOGO" alt="Análise Advocacia 2019" class="footer-logo"/>
+        </div>
+        <div class="footer-block">
+          <div class="footer-block-title">ACESSO RÁPIDO</div>
+          <ul class="footer-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="escritorio.html">Escritório</a></li>
+            <li><a href="#">Profissionais</a></li>
+            <li><a href="#">Áreas de Atuação</a></li>
+            <li><a href="#">Publicações</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <div class="footer-block-title">SÃO PAULO</div>
+          <div class="footer-contact">
+            <i class="fas fa-phone-alt"></i>
+            <!-- TELEFONE ATUALIZADO PELO USUÁRIO -->
+            <a href="tel:+551180952566" style="color:#fff;text-decoration:underline;">+55 (011) 8095-2566</a>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-envelope"></i>
+            <!-- E-MAIL ATUALIZADO PELO USUÁRIO -->
+            <a href="mailto:adv-fm@fm-advogados.com.br" style="color:#fff;text-decoration:underline;">adv-fm@fm-advogados.com.br</a>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2024 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+No código do Franceschini, substitua os links do menu que estão assim:
+
+xml
+<a href="index.html">Home</a>
+<a href="escritorio.html">Escritório</a>
+<a href="profissionais.html" class="active">Profissionais</a>
+por:
+
+xml
+<a href="../index.html">Home</a>
+<a href="../escritorio.html">Escritório</a>
+<a href="../profissionais.html" class="active">Profissionais</a>
+Essa é a única modificação necessária para o menu do Franceschini ficar exatamente igual ao do Custódio, com links de navegação corretos para arquivos na raiz.
+
+Além disso, no botão "Voltar aos Profissionais" no Franceschini, use:
+
+xml
+<a href="../profissionais.html" class="back-button">
