@@ -1,0 +1,17 @@
+# Arquivos de Sistema Operacional e Editores
+.DS_Store
+Thumbs.db
+*.bak
+*~
+
+# Arquivos de Módulos e Logs Comuns
+node_modules/
+npm-debug.log
+/build
+/dist
+
+# Arquivos de Tokens e Credenciais
+# GARANTIR QUE SEU TOKEN NÃO SEJA ENVIADO
+TOKEN GITHUB - REPOSITORIOS.txt
+*.txt
+*.zip
