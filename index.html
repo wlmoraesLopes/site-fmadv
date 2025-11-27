@@ -55,6 +55,8 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede;}
 .card-noticias { position: fixed; left: 3vw; top: calc(var(--banner-min) + 20px + 190px); z-index:99; background: #fff; border-radius: 16px; box-shadow: 0 13px 44px #7b060646, 0 2px 9px #cabd8c24; width: 295px; max-width:320px; min-width:210px; padding:28px 15px 19px 16px; border-top: 7px solid var(--dourado); align-self: start; }
 @media(max-width:1000px){ .card-noticias{ position:static; left:0; width:97vw; max-width:430px; margin:0 auto 24px auto;} }
 .card-noticias-titulo { font-family: 'Montserrat', sans-serif; font-size: 1.2em; font-weight: 900; color: var(--vinho); background: linear-gradient(90deg, #fdeede 0%, #f3a600 87%); border-radius: 10px; padding: 7px 12px; margin-bottom:13px;}
+
+/* ---------- NOTÍCIAS FIXAS (SEM JSON) ---------- */
 .lista-noticias.noticia-animada { position: relative; min-height: 1.2em; height: auto;}
 .lista-noticias.noticia-animada li { opacity: 0; visibility: hidden; position: absolute; left: 0; right: 0; top: 0; transition: opacity 0.9s cubic-bezier(.6,.2,.3,1);}
 .lista-noticias.noticia-animada li.noticia-active { opacity: 1; visibility: visible; position: relative;}
@@ -63,6 +65,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede;}
 .lista-noticias a:hover { color: #bb8f0a; }
 .noticia-autor { display:block; font-size:0.82em; color:#777; margin-top:4px; font-style:italic; letter-spacing:0.02em; }
 
+/* ---------- CONTEÚDO ---------- */
 .conteudo-principal { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 0 44px 0; display: flex; flex-direction:row; align-items: flex-start; }
 .centralizador-galeria { flex:1; display:flex; flex-direction: column; align-items:center; justify-content:flex-start; margin-top: 20px;}
 .galeria-pares { display: flex; flex-direction: column; gap:40px; width:100%; max-width:1100px; align-items:center;}
@@ -155,11 +158,23 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede;}
   </section>
 
   <div class="conteudo-principal">
-    <!-- Card de Notícias – AGORA DINÂMICO MAS COM CAROUSEL -->
+    <!-- Card de Notícias – FIXO (sem JSON) -->
     <aside class="card-noticias" id="cardNoticias">
       <div class="card-noticias-titulo"><i class="fa fa-bolt"></i> Informes F&amp;M</div>
       <ul class="lista-noticias noticia-animada" id="listaNoticias">
-        <!-- JavaScript insere as notícias aqui -->
+        <!-- NOTÍCIAS FIXAS – edite aqui -->
+        <li class="noticia-active">
+          <a href="noticia1.html">Momentos difíceis para o cultor do direito</a>
+          <span class="noticia-autor">José Inacio Gonzaga Franceschini</span>
+        </li>
+        <li>
+          <a href="noticia2.html">Consolidação de Entendimento no TRF 1ª Região</a>
+          <span class="noticia-autor">Dra. Sandra Gomes Esteves</span>
+        </li>
+        <li>
+          <a href="noticia3.html">TRF-1 Anula Sentença e Reabre Instrução em Caso Contra o CADE</a>
+          <span class="noticia-autor">Dra. Flávia Maria Pelliciari</span>
+        </li>
       </ul>
     </aside>
 
@@ -312,73 +327,54 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede;}
   </footer>
 </div>
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- ================= JAVASCRIPT (CAROUSEL SEM JSON) ================= -->
 <script>
-/* ---------- Notícias dinâmicas COM CAROUSEL ---------- */
-fetch('noticias.json')
-  .then(res => res.json())
-  .then(noticias => {
-    const ul = document.getElementById('listaNoticias');
-    ul.innerHTML = '';
-    noticias.forEach((n, i) => {
-      const li = document.createElement('li');
-      if (i === 0) li.classList.add('noticia-active');
-      li.innerHTML = `
-        <a href="noticia${n.numero}.html">${n.titulo}</a>
-        <span class="noticia-autor">${n.autor}</span>
-      `;
-      ul.appendChild(li);
-    });
-    reiniciarCarousel();
-  })
-  .catch(() => {
-    document.getElementById('listaNoticias').innerHTML = `
-      <li class="noticia-active">
-        <a href="noticia1.html">Momentos difíceis para o cultor do direito</a>
-        <span class="noticia-autor">Dr. José Inacio Gonzaga Franceschini</span>
-      </li>
-      <li>
-        <a href="noticia2.html">Consolidação de Entendimento no TRF 1ª Região</a>
-        <span class="noticia-autor">Dra. Sandra Gomes Esteves</span>
-      </li>
-      <li>
-        <a href="noticia3.html">TRF-1 Anula Sentença e Reabre Instrução em Caso Contra o CADE</a>
-        <span class="noticia-autor">Dra. Flávia Maria Pelliciari</span>
-      </li>
-    `;
-    reiniciarCarousel();
-  });
+/* ---------- Carousel fixo (sem fetch) ---------- */
+const noticias = [
+  { titulo: "Momentos difíceis para o cultor do direito", autor: "José Inacio Gonzaga Franceschini", numero: "1" },
+  { titulo: "Consolidação de Entendimento no TRF 1ª Região", autor: "Dra. Sandra Gomes Esteves", numero: "2" },
+  { titulo: "TRF-1 Anula Sentença e Reabre Instrução em Caso Contra o CADE", autor: "Dra. Flávia Maria Pelliciari", numero: "3" }
+];
 
-function reiniciarCarousel() {
-  const noticias = document.querySelectorAll('#listaNoticias li');
-  let atual = 0;
-  const duracao = 4000;
-  let intervaloId;
+const listaNoticias = document.getElementById('listaNoticias');
+listaNoticias.innerHTML = '';
 
-  function mostrarNoticia(indice) {
-    noticias.forEach((item, i) => {
-      item.classList.toggle('noticia-active', i === indice);
-    });
-  }
-  function proximaNoticia() {
-    atual = (atual + 1) % noticias.length;
-    mostrarNoticia(atual);
-  }
-  function iniciar() {
-    intervaloId = setInterval(proximaNoticia, duracao);
-  }
-  function parar() {
-    clearInterval(intervaloId);
-  }
+noticias.forEach((n, i) => {
+  const li = document.createElement('li');
+  if (i === 0) li.classList.add('noticia-active');
+  li.innerHTML = `
+    <a href="noticia${n.numero}.html">${n.titulo}</a>
+    <span class="noticia-autor">${n.autor}</span>
+  `;
+  listaNoticias.appendChild(li);
+});
 
+/* ---------- efeito carousel ---------- */
+let atual = 0;
+const duracao = 4000;
+const itens = listaNoticias.querySelectorAll('li');
+
+function mostrarNoticia(indice) {
+  itens.forEach((item, i) => item.classList.toggle('noticia-active', i === indice));
+}
+function proximaNoticia() {
+  atual = (atual + 1) % itens.length;
   mostrarNoticia(atual);
-  iniciar();
+}
+function iniciar() {
+  intervaloId = setInterval(proximaNoticia, duracao);
+}
+function parar() {
+  clearInterval(intervaloId);
+}
 
-  const card = document.getElementById('cardNoticias');
-  if (card) {
-    card.addEventListener('mouseenter', parar);
-    card.addEventListener('mouseleave', iniciar);
-  }
+mostrarNoticia(atual);
+iniciar();
+
+const card = document.getElementById('cardNoticias');
+if (card) {
+  card.addEventListener('mouseenter', parar);
+  card.addEventListener('mouseleave', iniciar);
 }
 
 /* ---------- Marca d’água ---------- */
