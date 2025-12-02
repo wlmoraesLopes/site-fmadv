@@ -82,8 +82,7 @@ nav a{{color:var(--creme);text-decoration:none;padding-bottom:3px;transition:col
     <a href="index.html">Home</a>
     <a href="escritorio.html">Escritório</a>
     <a href="profissionais.html">Profissionais</a>
-    <a href="#">Áreas de Atuação</a>
-    <a href="#" class="active">Publicações</a>
+       <a href="#" class="active">Publicações</a>
     <a href="#">Contato</a>
   </nav>
 </div>
@@ -118,7 +117,7 @@ nav a{{color:var(--creme);text-decoration:none;padding-bottom:3px;transition:col
         <li><a href="index.html">Home</a></li>
         <li><a href="escritorio.html">Escritório</a></li>
         <li><a href="profissionais.html">Profissionais</a></li>
-        <li><a href="#">Áreas de Atuação</a></li>
+        <li>
         <li><a href="#">Publicações</a></li>
         <li><a href="#">Contato</a></li>
       </ul>
@@ -129,7 +128,7 @@ nav a{{color:var(--creme);text-decoration:none;padding-bottom:3px;transition:col
       <div class="footer-contact"><i class="fas fa-envelope"></i> <a href="mailto:adv-fm@fm-advogados.com.br" style="color:#fff;text-decoration:underline;">adv-fm@fm-advogados.com.br</a></div>
     </div>
   </div>
-  <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2024 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
+  <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2026 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
 </footer>
 
 <script>

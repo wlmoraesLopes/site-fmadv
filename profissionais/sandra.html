@@ -6,378 +6,401 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
-  :root { 
-    --vinho: #7b0606; 
-    --creme: #fcf8f3; 
-    --ouro: #f3a600; 
-    --cinza-claro: #efecea;
-    --cinza-texto: #555;
-    --branco: #ffffff;
-    --sombra-leve: 0 4px 20px rgba(0,0,0,0.08);
-    --sombra-media: 0 8px 40px rgba(0,0,0,0.12);
-  }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+:root { 
+  --vinho: #7b0606; 
+  --creme: #fcf8f3; 
+  --ouro: #f3a600; 
+  --cinza-claro: #efecea;
+  --cinza-texto: #555;
+  --branco: #ffffff;
+  --sombra-leve: 0 4px 20px rgba(0,0,0,0.08);
+  --sombra-media: 0 8px 40px rgba(0,0,0,0.12);
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { 
-    font-family: 'Inter', sans-serif; 
-    background: var(--creme); 
-    color: var(--cinza-texto); 
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  font-family: 'Inter', sans-serif; 
+  background: var(--creme); 
+  color: var(--cinza-texto); 
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
-  /* Header fixo - mesmo do original */
-  .header-fixed { 
-    position: fixed; top: 0; left: 0; right: 0; width: 100vw; z-index: 50; 
-    background: var(--vinho); box-shadow: 0 2px 18px #4b060677;
-  }
-  .topbar { 
-    width: 100%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; 
-    background: var(--vinho); padding: 3px 5vw 1px 5vw; min-height: 78px; box-sizing: border-box;
-  }
-  .topbar-filler { min-width: 280px; visibility: hidden; }
-  .logo-center-projection { 
-    width: 100%; display: flex; justify-content: center; align-items: center; min-height: 76px;
-  }
-  .logo-img-fm { max-width: 96%; width: 350px; min-width: 180px; height: auto; display: block; margin: 0 auto;}
-  .contact-top { text-align: right; min-width: 280px; font-size: 1.1em; align-self: center; justify-self: end;}
-  .contact-top span { vertical-align: middle; margin-right: 3px; font-size: 1.13em; color: #ffe0e0;}
-  .contact-title, .contact-detail { color: var(--creme); font-family: 'Montserrat', Arial, sans-serif;}
-  .social-links { margin: 9px 0 2px; text-align: right;}
-  .social-links a { 
-    color: #fff; background: #630303; border-radius: 50%; padding: 7px 0; margin-left: 7px; 
-    width: 38px; display: inline-block; text-align: center; transition: all 0.2s; 
-    font-size: 1.18em; box-shadow: 0 2px 10px #20020222; vertical-align: middle;
-  }
-  .social-links a:hover { background: #f3a600; color: #7b0606; transform: translateY(-2px); }
-  .header-spacer { height: 190px;}
-  nav { 
-    background: var(--vinho); display: flex; justify-content: center; align-items: center; 
-    gap: 66px; padding: 16px 0; font-size: 1.22em; font-weight: 600; letter-spacing: 0.12em; 
-    box-shadow: 0 7px 16px #551a1a23; width: 100%; margin: 0 auto; position: relative; z-index: 4;
-  }
-  nav a { 
-    text-decoration: none; color: var(--creme); transition: 0.2s; padding-bottom: 3px; 
-    font-size: 1em; font-family: 'Inter', Arial, sans-serif; font-weight: 600; 
-    letter-spacing: 0.05em; display: inline-block;
-  }
-  nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
+/* ---------- CABEÇALHO ---------- */
+.header-fixed { 
+  position: fixed; top: 0; left: 0; right: 0; width: 100vw; z-index: 50; 
+  background: var(--vinho); box-shadow: 0 2px 18px #4b060677;
+}
+.topbar { 
+  width: 100%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; 
+  background: var(--vinho); padding: 3px 5vw 1px 5vw; min-height: 78px; box-sizing: border-box;
+}
+.topbar-filler { min-width: 280px; visibility: hidden; }
+.logo-center-projection { 
+  width: 100%; display: flex; justify-content: center; align-items: center; min-height: 76px;
+}
+.logo-img-fm { max-width: 96%; width: 350px; min-width: 180px; height: auto; display: block; margin: 0 auto;}
+.contact-top { text-align: right; min-width: 280px; font-size: 1.1em; align-self: center; justify-self: end;}
+.contact-top span { vertical-align: middle; margin-right: 3px; font-size: 1.13em; color: #ffe0e0;}
+.contact-title, .contact-detail { color: var(--creme); font-family: 'Montserrat', Arial, sans-serif;}
+.social-links { margin: 9px 0 2px; text-align: right;}
+.social-links a { 
+  color: #fff; background: #630303; border-radius: 50%; padding: 7px 0; margin-left: 7px; 
+  width: 38px; display: inline-block; text-align: center; transition: all 0.2s; 
+  font-size: 1.18em; box-shadow: 0 2px 10px #20020222; vertical-align: middle;
+}
+.social-links a:hover { background: #f3a600; color: #7b0606; transform: translateY(-2px); }
+.header-spacer { height: 190px;}
+nav { 
+  background: var(--vinho); display: flex; justify-content: center; align-items: center; 
+  gap: 70px; padding: 16px 0; font-size: 1.22em; font-weight: 600; letter-spacing: 0.12em; 
+  box-shadow: 0 7px 16px #551a1a23; width: 100%; margin: 0 auto; position: relative; z-index: 4;
+}
+nav a { 
+  text-decoration: none; color: var(--creme); transition: 0.2s; padding-bottom: 3px; 
+  font-size: 1em; font-family: 'Inter', Arial, sans-serif; font-weight: 600; 
+  letter-spacing: 0.05em; display: inline-block;
+}
+nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
 
-  /* BANNER ESTILO SÓCIOS FUNDADORES - foto na borda */
-  .profile-banner {
-    margin-top: 190px;
-    height: 220px;
-    width: 100%;
-    background: linear-gradient(rgba(80, 80, 80, 0.7), rgba(100, 100, 100, 0.8)), 
-                url('https://images.pexels.com/photos/31376643/pexels-photo-31376643.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') center/cover;
-    filter: grayscale(100%);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .profile-photo-wrapper {
-    position: absolute;
-    bottom: -70px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-  }
-  
-  .profile-photo-large {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    border: 6px solid var(--branco);
-    box-shadow: var(--sombra-media);
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-  
-  .profile-photo-large:hover {
-    transform: scale(1.05);
-  }
+/* ---------- BANNER PERFIL (MODELO ADVOGADOS) ---------- */
+.profile-banner {
+  margin-top: 190px;
+  height: 220px;
+  width: 100%;
+  background: linear-gradient(rgba(80, 80, 80, 0.7), rgba(100, 100, 100, 0.8)), 
+              url('https://images.pexels.com/photos/31376643/pexels-photo-31376643.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') center/cover;
+  filter: grayscale(100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-photo-wrapper {
+  position: absolute;
+  bottom: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+.profile-photo-large {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 6px solid var(--branco);
+  box-shadow: var(--sombra-media);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.profile-photo-large:hover {
+  transform: scale(1.05);
+}
 
-  /* Compact Profile Info - versão ajustada */
-  .compact-info {
-    background: var(--branco);
-    margin: 90px auto 40px;
-    max-width: 900px;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: var(--sombra-leve);
-    position: relative;
-    text-align: center;
-  }
-  
-  .name-header {
-    position: relative;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
-  }
-  
-  .name-header::before {
-    content: '';
-    position: absolute;
-    top: -15px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--ouro), transparent);
-  }
-  
-  .name-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--ouro), transparent);
-  }
-  
-  .profile-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.2em;
-    font-weight: 800;
-    color: var(--vinho);
-    margin-bottom: 5px;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .profile-role {
-    font-size: 1.1em;
-    color: var(--ouro);
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-align: center;
-    margin-top: 10px;
-  }
+/* ---------- INFO COMPACTA ---------- */
+.compact-info {
+  background: var(--branco);
+  margin: 90px auto 40px;
+  max-width: 900px;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: var(--sombra-leve);
+  position: relative;
+  text-align: center;
+}
+.name-header {
+  position: relative;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+.name-header::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ouro), transparent);
+}
+.name-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ouro), transparent);
+}
+.profile-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2em;
+  font-weight: 800;
+  color: var(--vinho);
+  margin-bottom: 5px;
+  position: relative;
+  z-index: 2;
+}
+.profile-role {
+  font-size: 1.1em;
+  color: var(--ouro);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 10px;
+}
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.info-chip {
+  background: var(--creme);
+  padding: 12px 24px;
+  border-radius: 25px;
+  color: var(--cinza-texto);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  font-style: italic;
+}
+.info-chip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(243, 166, 0, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+.info-chip:hover::before {
+  left: 100%;
+}
+.info-chip:hover {
+  background: var(--ouro);
+  color: var(--vinho);
+  transform: translateY(-2px);
+}
+.email-label::before {
+  content: 'E-MAIL';
+  background: var(--vinho);
+  color: var(--branco);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7em;
+  font-weight: 700;
+  margin-right: 10px;
+  letter-spacing: 1px;
+}
+.area-label::before {
+  content: 'ATUAÇÃO';
+  background: var(--vinho);
+  color: var(--branco);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7em;
+  font-weight: 700;
+  margin-right: 10px;
+  letter-spacing: 1px;
+}
+.gold-separator-extra {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ouro), transparent);
+  width: 80%;
+  margin: 30px auto;
+}
 
-  /* Informações em itálico */
-  .contact-info {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-  }
-  
-  .info-chip {
-    background: var(--creme);
-    padding: 12px 24px;
-    border-radius: 25px;
-    color: var(--cinza-texto);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    font-style: italic;
-  }
-  
-  .info-chip::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(243, 166, 0, 0.3), transparent);
-    transition: left 0.5s ease;
-  }
-  
-  .info-chip:hover::before {
-    left: 100%;
-  }
-  
-  .info-chip:hover {
-    background: var(--ouro);
-    color: var(--vinho);
-    transform: translateY(-2px);
-  }
+/* ---------- CARD ELEGANTE ---------- */
+.elegant-card {
+  max-width: 900px;
+  margin: 0 auto 60px;
+  background: var(--branco);
+  border-radius: 25px;
+  padding: 50px;
+  box-shadow: var(--sombra-media);
+  position: relative;
+  overflow: hidden;
+}
+.elegant-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--vinho), var(--ouro), var(--vinho));
+}
+.elegant-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--ouro), transparent);
+}
+.card-content-elegant {
+  font-size: 1.1em;
+  line-height: 1.9;
+  color: var(--cinza-texto);
+  font-style: italic;
+  text-align: justify;
+  position: relative;
+  z-index: 2;
+}
+.card-content-elegant p {
+  margin-bottom: 20px;
+}
+.highlight-text {
+  color: var(--vinho);
+  font-weight: 600;
+  font-style: normal;
+}
 
-  /* Ticket-style labels */
-  .email-label::before {
-    content: 'E-MAIL';
-    background: var(--vinho);
-    color: var(--branco);
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.7em;
-    font-weight: 700;
-    margin-right: 10px;
-    letter-spacing: 1px;
-  }
-  
-  .area-label::before {
-    content: 'ATUAÇÃO';
-    background: var(--vinho);
-    color: var(--branco);
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.7em;
-    font-weight: 700;
-    margin-right: 10px;
-    letter-spacing: 1px;
-  }
+/* ---------- RODAPÉ (SEM IMAGEM) ---------- */
+.footer { 
+  background: var(--vinho); 
+  color: var(--creme); 
+  width: 100%; 
+  padding: 48px 0 32px 0; 
+  text-align: center; 
+  position: relative;
+  margin-top: 60px;
+}
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 86px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer-block { min-width: 220px; text-align: left; }
+.footer-logo { display: none; } /* ← remove o selo */
+.footer-block-title { 
+  font-family: 'Montserrat', sans-serif; color: #f3a600; 
+  font-weight: bold; font-size: 1.09em; margin-bottom: 13px; letter-spacing: .16em; 
+}
+.footer-menu { padding: 0; margin: 0 0 10px 0; list-style: none; }
+.footer-menu li { margin-bottom: 6px; display: inline-block; margin-right: 11px; }
+.footer-menu a { 
+  color: var(--creme); text-decoration: none; font-size: 1.05em; 
+  letter-spacing: .015em; border-bottom: 1px dotted #f3a60033; 
+  padding: 0 4px; transition: color .2s; 
+}
+.footer-menu a:hover { color: #f3a600; }
+.footer-contact { font-size: 1em; margin-top: 6px; }
+.footer-contact i { margin-right: 3px; color: #f3a600; font-size: 1.18em; vertical-align: middle; }
 
-  /* Separador dourado adicional */
-  .gold-separator-extra {
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--ouro), transparent);
-    width: 80%;
-    margin: 30px auto;
-  }
+/* ---------- BOTÃO VOLTAR ---------- */
+.back-button {
+  position: fixed;
+  top: 200px;
+  left: 30px;
+  background: var(--vinho);
+  color: var(--branco);
+  padding: 12px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  z-index: 100;
+  box-shadow: var(--sombra-leve);
+}
+.back-button:hover {
+  background: var(--ouro);
+  color: var(--vinho);
+  transform: translateX(-5px);
+}
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 86px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer-block {
+  min-width: 220px;
+  text-align: left;
+}
 
-  /* Elegant Unified Card */
-  .elegant-card {
-    max-width: 900px;
-    margin: 0 auto 60px;
-    background: var(--branco);
-    border-radius: 25px;
-    padding: 50px;
-    box-shadow: var(--sombra-media);
-    position: relative;
-    overflow: hidden;
+/* ---------- MOBILE FIXES – MESMO DO INDEX ---------- */
+@media (max-width: 768px) {
+  .topbar {
+    grid-template-columns: 1fr auto;
+    padding: 8px 4vw;
+    min-height: 64px;
   }
-  
-  .elegant-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, var(--vinho), var(--ouro), var(--vinho));
+  .topbar-filler {
+    display: none;
   }
-  
-  .elegant-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--ouro), transparent);
+  .logo-center-projection {
+    justify-content: flex-start;
+    padding-left: 10px;
   }
-  
-  .card-content-elegant {
-    font-size: 1.1em;
-    line-height: 1.9;
-    color: var(--cinza-texto);
-    font-style: italic;
-    text-align: justify;
-    position: relative;
-    z-index: 2;
+  .logo-img-fm {
+    width: 140px;
   }
-  
-  .card-content-elegant p {
-    margin-bottom: 20px;
+  .contact-top {
+    display: none;
   }
-  
-  .highlight-text {
-    color: var(--vinho);
-    font-weight: 600;
-    font-style: normal;
+  nav {
+    font-size: 0.9em;
+    gap: 12px;
+    padding: 10px 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: flex-start;
   }
-
-  /* Footer - Corrigido */
-  .footer { 
-    background: var(--vinho); 
-    color: var(--creme); 
-    width: 100%; 
-    padding: 48px 0 32px 0; 
-    text-align: center; 
-    position: relative;
-    margin-top: 60px;
-  }
-  .footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 86px;
-    align-items: flex-start;
-    margin-bottom: 12px;
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .footer-block { min-width: 220px; text-align: left; }
-  .footer-logo { display: block; max-width: 90px; margin-bottom: 7px; }
-  .footer-block-title { 
-    font-family: 'Montserrat', sans-serif; color: #f3a600; 
-    font-weight: bold; font-size: 1.09em; margin-bottom: 13px; letter-spacing: .16em; 
-  }
-  .footer-menu { padding: 0; margin: 0 0 10px 0; list-style: none; }
-  .footer-menu li { margin-bottom: 6px; display: inline-block; margin-right: 11px; }
-  .footer-menu a { 
-    color: var(--creme); text-decoration: none; font-size: 1.05em; 
-    letter-spacing: .015em; border-bottom: 1px dotted #f3a60033; 
-    padding: 0 4px; transition: color .2s; 
-  }
-  .footer-menu a:hover { color: #f3a600; }
-  .footer-contact { font-size: 1em; margin-top: 6px; }
-  .footer-contact i { margin-right: 3px; color: #f3a600; font-size: 1.18em; vertical-align: middle; }
-
-  /* Back Button */
   .back-button {
-    position: fixed;
-    top: 200px;
-    left: 30px;
-    background: var(--vinho);
-    color: var(--branco);
-    padding: 12px 20px;
-    border-radius: 25px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-    z-index: 100;
-    box-shadow: var(--sombra-leve);
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 10px auto 20px;
+    width: fit-content;
   }
-  .back-button:hover {
-    background: var(--ouro);
-    color: var(--vinho);
-    transform: translateX(-5px);
+  .profile-banner {
+    height: 200px;
   }
-
-  /* Responsive */
-  @media (max-width: 968px) {
-    .contact-info {
-      flex-direction: column;
-      align-items: center;
-    }
-    .elegant-card {
-      padding: 30px;
-      margin: 0 20px 40px;
-    }
-    .back-button {
-      position: relative;
-      top: auto;
-      left: auto;
-      margin: 20px auto;
-      width: fit-content;
-    }
+  .profile-photo-large {
+    width: 150px;
+    height: 150px;
   }
+  .profile-name {
+    font-size: 1.8em;
+  }
+  .elegant-card {
+    padding: 30px;
+    margin: 0 20px 40px;
+  }
+}
 </style>
 </head>
 <body>
 
-<!-- Back Button -->
+<!-- Botão Voltar -->
 <a href="../profissionais.html" class="back-button">
   <i class="fas fa-arrow-left"></i> Voltar aos Profissionais
 </a>
 
-<!-- Header fixo - mesmo do original -->
+<!-- Cabeçalho fixo – mesmo do index -->
 <div class="header-fixed">
   <div class="topbar">
     <div class="topbar-filler"></div>
     <div class="logo-center-projection">
-      <img src="logofm2.png" class="logo-img-fm" alt="Franceschini e Miranda Advogados Logo"/>
+      <img src="../logofm2.png" class="logo-img-fm" alt="Franceschini e Miranda Advogados Logo"/>
     </div>
     <div class="contact-top">
       <div class="contact-title">CONTATO</div>
@@ -390,76 +413,69 @@
       </div>
     </div>
   </div>
-  <nav>
+<nav>
     <a href="../index.html">Home</a>
-<a href="../escritorio.html">Escritório</a>
-<a href="../profissionais.html" class="active">Profissionais</a>
-<a href="#">Áreas de Atuação</a>
-    <a href="#">Publicações</a>
+    <a href="../escritorio.html">Escritório</a>
+    <a href="../profissionais.html">Profissionais</a>
+       <a href="../publicacoes.html">Publicações</a>
     <a href="#">Contato</a>
-  </nav>
+</nav>
+
 </div>
 
-<!-- BANNER ESTILO SÓCIOS FUNDADORES - foto na borda -->
+<!-- BANNER PERFIL (MODELO ADVOGADOS) -->
 <section class="profile-banner">
   <div class="profile-photo-wrapper">
     <img src="sandra.jpg" alt="Sandra Gomes Esteves" class="profile-photo-large">
   </div>
 </section>
 
-<!-- Compact Profile Info - versão ajustada -->
+<!-- INFO COMPACTA -->
 <div class="compact-info">
   <div class="name-header">
     <h1 class="profile-name">Sandra Gomes Esteves</h1>
     <p class="profile-role">Sócia</p>
   </div>
-  
+
   <div class="contact-info">
-    <div class="info-chip email-label">
-      sandra@fm-advogados.com.br
-    </div>
-    <div class="info-chip area-label">
-      Direitos Civil, Administrativo, Contencioso Concorrencial e Consumidor; Direito Penal Empresarial
-    </div>
+    <div class="info-chip email-label">sandra@fm-advogados.com.br</div>
+    <div class="info-chip area-label">Direitos Civil, Administrativo, Contencioso Concorrencial e Consumidor; Direito Penal Empresarial</div>
   </div>
 </div>
 
-<!-- Separador dourado adicional -->
+<!-- SEPARADOR DOURADO -->
 <div class="gold-separator-extra"></div>
 
-<!-- Elegant Unified Card -->
+<!-- CARD ELEGANTE -->
 <div class="elegant-card">
   <div class="card-content-elegant">
     <p>Graduada pela <span class="highlight-text">Faculdade de Direito da Pontifícia Universidade Católica de São Paulo</span> onde recebeu o prêmio <span class="highlight-text">"Professor José Frederico Marques"</span> como a melhor aluna na disciplina de Direito Processual Penal da turma de 1994.</p>
-    
+
     <p>Membro da Associação dos Advogados de São Paulo e do <span class="highlight-text">Instituto Brasileiro de Ciências Criminais (IBCCRIM)</span>. Inscrita na OAB-SP em 1995.</p>
-    
+
     <p>Dra Sandra Gomes Esteves é especialista nas áreas de <span class="highlight-text">Direitos Civil, Administrativo, Contencioso Concorrencial e Consumidor</span>, com destacada atuação também em <span class="highlight-text">Direito Penal Empresarial</span>.</p>
   </div>
 </div>
 
-<!-- Footer - Corrigido -->
+<!-- RODAPÉ PADRÃO (SEM IMAGEM, 2 COLUNAS) -->
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-block">
-      <img src="imagens-fmadv/analise.png" alt="Selo Análise Advocacia" class="footer-logo"/>
-    </div>
-    <div class="footer-block">
       <div class="footer-block-title">ACESSO RÁPIDO</div>
-      <ul class="footer-menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="escritorio.html">Escritório</a></li>
-        <li><a href="profissionais.html">Profissionais</a></li>
-        <li><a href="#">Áreas de Atuação</a></li>
-        <li><a href="#">Publicações</a></li>
-        <li><a href="#">Contato</a></li>
-      </ul>
+    <ul class="footer-menu">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../escritorio.html">Escritório</a></li>
+    <li><a href="../profissionais.html">Profissionais</a></li>
+    
+    <li><a href="../publicacoes.html">Publicações</a></li>
+    <li><a href="#">Contato</a></li>
+</ul>
     </div>
     <div class="footer-block">
       <div class="footer-block-title">SÃO PAULO</div>
       <div class="footer-contact">
         <i class="fas fa-phone-alt"></i>
-        <a href="tel:+551180952566" style="color:#fff;text-decoration:underline;">+55 (011) 8095-2566</a>
+        <a href="tel:+551130952566" style="color:#fff;text-decoration:underline;">+55 (011) 3095-2566</a>
       </div>
       <div class="footer-contact">
         <i class="fas fa-envelope"></i>
@@ -467,7 +483,7 @@
       </div>
     </div>
   </div>
-  <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2024 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
+  <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2026 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
 </footer>
 
 </body>

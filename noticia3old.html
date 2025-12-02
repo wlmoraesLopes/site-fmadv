@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TRF-1 Anula Sentença e Reabre Instrução em Caso Contra o CADE | Franceschini e Miranda</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+    :root {
+      --vinho: #7b0606;
+      --dourado: #f3a600;
+      --creme: #fdf6ee;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--creme);
+      color: #232231;
+      line-height: 1.8;
+    }
+    a { color: var(--dourado); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Header fixo (igual ao index) */
+    .header-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: var(--vinho);
+      box-shadow: 0 2px 18px #4b060677;
+    }
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 3px 5vw 1px 5vw;
+      min-height: 78px;
+    }
+    .logo-img-fm {
+      max-width: 350px;
+      width: 96%;
+      min-width: 180px;
+      height: auto;
+    }
+    .contact-top {
+      text-align: right;
+      font-size: 1.1em;
+      color: var(--creme);
+    }
+    .social-links a {
+      background: #630303;
+      color: #fff;
+      border-radius: 50%;
+      padding: 7px 0;
+      margin-left: 7px;
+      width: 38px;
+      display: inline-block;
+      text-align: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .social-links a:hover {
+      background: var(--dourado);
+      color: var(--vinho);
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 70px;
+      padding: 16px 0;
+      font-size: 1.22em;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+    }
+    nav a {
+      color: var(--creme);
+      text-decoration: none;
+      padding-bottom: 3px;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active {
+      color: var(--dourado);
+      border-bottom: 2px solid var(--creme);
+    }
+    .header-spacer { height: 190px; }
+
+    /* Conteúdo da notícia – com card elegante */
+    .noticia-container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 90px 20px 80px;
+    }
+    .noticia-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .noticia-header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.4em;
+      font-weight: 900;
+      color: var(--vinho);
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+    .noticia-autor-destaque {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3em;
+      font-weight: 700;
+      color: var(--dourado);
+      margin-bottom: 6px;
+    }
+    .noticia-cargo {
+      font-size: 1em;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* Card de conteúdo */
+    .noticia-card {
+      background: #fff;
+      border-left: 5px solid var(--dourado);
+      border-radius: 12px;
+      padding: 40px 48px;
+      box-shadow: 0 8px 30px #00000011;
+      margin-top: 40px;
+    }
+    .noticia-texto {
+      font-size: 1.15em;
+      text-align: justify;
+      color: #333;
+    }
+    .noticia-texto p {
+      margin-bottom: 24px;
+    }
+
+    /* Barra dourada final */
+    .noticia-barra-final {
+      height: 8px;
+      background: linear-gradient(90deg, #d1a634bb 10%, #ecd17b 65%, #fff0 100%);
+      border-radius: 4px;
+      margin: 50px 0 30px;
+    }
+
+    /* Área de compartilhamento */
+    .noticia-share {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .noticia-share-text {
+      font-size: 1em;
+      color: #666;
+      margin-bottom: 12px;
+    }
+    .btn-share {
+      background: var(--dourado);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-share:hover {
+      background: #d99500;
+    }
+
+    /* Footer – idêntico ao das demais páginas */
+    .footer {
+      background: var(--vinho);
+      color: var(--creme);
+      width: 100vw;
+      margin-left: -50vw;
+      left: 50%;
+      padding: 48px 0 32px;
+      text-align: center;
+      position: relative;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 86px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .footer-block {
+      min-width: 220px;
+      text-align: left;
+    }
+    .footer-logo {
+      display: block;
+      max-width: 160px;
+      margin-bottom: 7px;
+    }
+    .footer-block-title {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dourado);
+      font-weight: bold;
+      font-size: 1.09em;
+      margin-bottom: 13px;
+      letter-spacing: .16em;
+    }
+    .footer-menu {
+      padding: 0;
+      margin: 0 0 10px 0;
+      list-style: none;
+    }
+    .footer-menu li {
+      margin-bottom: 6px;
+      display: inline-block;
+      margin-right: 11px;
+    }
+    .footer-menu a {
+      color: var(--creme);
+      text-decoration: none;
+      font-size: 1.05em;
+      letter-spacing: .015em;
+      border-bottom: 1px dotted #f3a60033;
+      padding: 0 4px;
+      transition: color .2s;
+    }
+    .footer-menu a:hover {
+      color: var(--dourado);
+    }
+    .footer-contact {
+      font-size: 1em;
+      margin-top: 6px;
+    }
+    .footer-contact i {
+      margin-right: 3px;
+      color: var(--dourado);
+      font-size: 1.18em;
+      vertical-align: middle;
+    }
+
+    @media (max-width: 768px) {
+      .topbar {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .contact-top {
+        text-align: center;
+        margin-top: 10px;
+      }
+      nav {
+        flex-wrap: wrap;
+        gap: 20px;
+        font-size: 1em;
+      }
+      .noticia-header h1 {
+        font-size: 1.8em;
+      }
+      .noticia-card {
+        padding: 28px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER (igual ao index) ================= -->
+  <div class="header-fixed">
+    <div class="topbar">
+      <div></div>
+      <div>
+        <img src="logofm2.png" class="logo-img-fm" alt="Franceschini e Miranda Advogados Logo"/>
+      </div>
+      <div class="contact-top">
+        <div>CONTATO</div>
+        <div><span>📞</span> +55 (011) 3095-2566</div>
+        <div><span>✉️</span> adv-fm@fm-advogados.com.br</div>
+        <div class="social-links">
+          <a href="https://instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="escritorio.html">Escritório</a>
+      <a href="profissionais.html">Profissionais</a>
+      <a href="#">
+      <a href="#" class="active">Publicações</a>
+      <a href="#">Contato</a>
+    </nav>
+  </div>
+  <div class="header-spacer"></div>
+
+  <!-- ================= CONTEÚDO DA NOTÍCIA ================= -->
+  <div class="noticia-container">
+    <div class="noticia-header">
+      <h1>TRF-1 Anula Sentença e Reabre Instrução em Caso Contra o CADE</h1>
+      <div class="noticia-autor-destaque">Dra. Flávia Maria Pelliciari</div>
+      <div class="noticia-cargo">Sócia do Escritório Franceschini e Miranda Advogados</div>
+    </div>
+
+    <!-- Card de conteúdo -->
+    <div class="noticia-card">
+      <div class="noticia-texto">
+        <p>
+          O Tribunal Regional Federal da 1ª Região (TRF-1) proferiu uma decisão de grande relevância, anulando uma decisão administrativa do Conselho Administrativo de Defesa Econômica (CADE) para que a instrução fosse reaberta e discutida perante o Judiciário.
+        </p>
+        <p>
+          A sentença de primeira instância, que mantinha a multa aplicada pelo CADE com fundamento em suposta infração à ordem econômica (Art. 26 da Lei n. 8.884/94), foi anulada.
+        </p>
+        <p>
+          A 5ª Turma do TRF-1, ao julgar a Apelação Cível (Processo n. 0039905-90.2004.4.01.3400), deu provimento ao recurso. Em síntese, o Tribunal reconheceu que houve cerceamento de defesa devido ao indeferimento do pedido de prova pericial contábil.
+        </p>
+        <p>
+          O Acórdão determinou o retorno dos autos à origem para que a prova pericial seja realizada, garantindo a plena instrução processual.
+        </p>
+        <p>
+          Essa decisão reafirma a importância do contraditório e da ampla defesa em processos administrativos sancionatórios, permitindo a produção de elementos técnicos indispensáveis para contestar o parecer que embasou a penalidade.
+        </p>
+      </div>
+
+      <!-- Barra dourada final -->
+      <div class="noticia-barra-final"></div>
+
+      <!-- Compartilhamento -->
+      <div class="noticia-share">
+        <div class="noticia-share-text">Compartilhe o artigo</div>
+        <button class="btn-share" onclick="compartilharNoticia('TRF-1 Anula Sentença e Reabre Instrução em Caso Contra o CADE', window.location.href)">
+          <i class="fas fa-share-alt"></i> Compartilhar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER (igual ao index) ================= -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-block">
+        <img src="imagens-fmadv/analise.png" alt="Selo Análise Advocacia" class="footer-logo"/>
+      </div>
+      <div class="footer-block">
+        <div class="footer-block-title">ACESSO RÁPIDO</div>
+        <ul class="footer-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="escritorio.html">Escritório</a></li>
+          <li><a href="profissionais.html">Profissionais</a></li>
+          <li>
+          <li><a href="#">Publicações</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-block">
+        <div class="footer-block-title">SÃO PAULO</div>
+        <div class="footer-contact">
+          <i class="fas fa-phone-alt"></i>
+          <a href="tel:+551130952566" style="color:#fff;text-decoration:underline;">+55 (011) 3095-2566</a>
+        </div>
+        <div class="footer-contact">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:adv-fm@fm-advogados.com.br" style="color:#fff;text-decoration:underline;">adv-fm@fm-advogados.com.br</a>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2026 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Script de compartilhamento -->
+  <script>
+    function compartilharNoticia(titulo, url) {
+      if (navigator.share) {
+        navigator.share({ title: titulo, url: url });
+      } else {
+        window.open('https://wa.me/?text=' + encodeURIComponent(titulo + ' - ' + url), '_blank');
+      }
+    }
+  </script>
+
+</body>
+</html>

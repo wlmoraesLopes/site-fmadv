@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Franceschini e Miranda Advogados</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@600;700&display=swap');
+:root {
+  --vinho: #7b0606;
+  --dourado: #f3a600;
+  --creme: #fdf6ee;
+  --banner-min: 330px;
+}
+body { font-family: 'Inter', Arial, sans-serif; background: var(--creme); color: #232231; margin: 0; }
+
+/* ---------- MARCA D'ÁGUA ---------- */
+.marca-dagua {
+  position: fixed;
+  right: 30%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45vw;
+  max-width: 400px;
+  height: 45vw;
+  max-height: 400px;
+  opacity: .03;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 22vw;
+  line-height: 1;
+  color: var(--vinho);
+  pointer-events: none;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: nowrap;
+}
+.marca-dagua::before { content: "F M"; letter-spacing: -0.03em; }
+
+/* ---------- CABEÇALHO ---------- */
+.header-fixed { position: fixed; top: 0; left: 0; right: 0; width: 100vw; z-index: 50; background: var(--vinho); box-shadow: 0 2px 18px #4b060677; }
+.topbar { width: 100%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 3px 5vw 1px 5vw; min-height: 78px; box-sizing: border-box; }
+.topbar-filler { min-width: 280px; visibility: hidden; }
+.logo-center-projection { grid-column: 2 / 3; display: flex; justify-content: center; align-items: center; min-height: 76px; }
+.logo-img-fm { max-width: 96%; width: 350px; min-width: 180px; height: auto; display: block; margin: 0 auto; }
+.contact-top { grid-column: 3 / 4; justify-self: end; text-align: right; min-width: 280px; font-size: 1.1em; align-self: center; }
+.contact-top span { vertical-align: middle; margin-right: 3px; font-size: 1.13em; color: #ffe0e0; }
+.contact-title, .contact-detail { color: var(--creme); font-family: 'Montserrat', Arial, sans-serif; }
+.social-links { margin: 9px 0 2px; text-align: right; }
+.social-links a { color: #fff; background: #630303; border-radius: 50%; padding: 7px 0; margin-left: 7px; width: 38px; display: inline-block; text-align: center; transition: background 0.2s, color 0.2s; font-size: 1.18em; box-shadow: 0 2px 10px #20020222; vertical-align: middle; }
+.social-links a:hover { background: #f3a600; color: #7b0606; }
+.header-spacer { height: 190px; }
+nav { background: var(--vinho); display: flex; justify-content: center; align-items: center; gap: 70px; padding: 16px 0; font-size: 1.22em; font-weight: 600; letter-spacing: 0.12em; box-shadow: 0 7px 16px #551a1a23; width: 100%; margin: 0 auto; position: relative; z-index: 4; }
+nav a { text-decoration: none; color: var(--creme); transition: 0.2s; padding-bottom: 3px; font-size: 1em; font-family: 'Inter', Arial, sans-serif; font-weight: 600; letter-spacing: 0.05em; display: inline-block; }
+nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
+
+/* ---------- BANNER ---------- */
+.banner-bg {
+  background: url('https://images.pexels.com/photos/831569/pexels-photo-831569.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260') center/cover no-repeat;
+  min-height: var(--banner-min);
+  width: 100vw;
+  border-bottom: 4px solid var(--dourado);
+}
+
+/* ---------- CARD NOTÍCIAS ---------- */
+.card-noticias {
+  width: 90%; max-width: 600px; margin: -60px auto 40px auto;
+  background: #fff; border-radius: 16px; box-shadow: 0 13px 44px #7b060646;
+  padding: 28px 24px; border-top: 7px solid var(--dourado); position: relative; z-index: 10;
+}
+@media (min-width: 769px) { .card-noticias { margin: -80px auto 50px auto; } }
+@media (max-width: 768px) { .card-noticias { margin: 0 auto 30px auto; } }
+
+.card-noticias-titulo {
+  font-family: 'Montserrat', sans-serif; font-size: 1.3em; font-weight: 900;
+  color: var(--vinho); background: linear-gradient(90deg, #fdeede 0%, #f3a600 87%);
+  border-radius: 10px; padding: 8px 14px; margin-bottom: 16px;
+}
+
+/* ---------- NOTÍCIAS (CAROUSEL) ---------- */
+.lista-noticias.noticia-animada { position: relative; min-height: 1.2em; }
+.lista-noticias.noticia-animada li {
+  opacity: 0; visibility: hidden; position: absolute; left: 0; right: 0; top: 0;
+  transition: opacity 0.9s cubic-bezier(.6,.2,.3,1);
+}
+.lista-noticias.noticia-animada li.noticia-active { opacity: 1; visibility: visible; position: relative; }
+.lista-noticias { list-style: none; margin: 0; padding: 0; width: 100%; }
+.lista-noticias a {
+  font-family: 'Montserrat', sans-serif; padding: 10px 0 4px 0; font-weight: 800;
+  color: #642a0c; font-size: 1em; text-decoration: underline dotted #eca70029;
+  letter-spacing: 0.01em; display: block; line-height: 1.23; cursor: pointer;
+}
+.lista-noticias a:hover { color: #bb8f0a; }
+.noticia-autor { display: block; font-size: 0.82em; color: #777; margin-top: 4px; font-style: italic; letter-spacing: 0.02em; }
+
+/* ---------- CONTEÚDO ---------- */
+.conteudo-principal { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 0 44px 0; display: flex; flex-direction: row; align-items: flex-start; }
+.centralizador-galeria { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; margin-top: 20px; }
+.galeria-pares { display: flex; flex-direction: column; gap: 40px; width: 100%; max-width: 1100px; align-items: center; }
+.linha-par { display: flex; flex-direction: row; align-items: stretch; justify-content: center; gap: 36px; width: 100%; position: relative; }
+.galeria-img-card { flex: none; background: #fff; border-radius: 17px; box-shadow: 0 7px 22px #bcb48233; border: 3px solid #f3a600; overflow: hidden; width: 370px; min-width: 220px; max-width: 450px; aspect-ratio: 16/9; }
+.galeria-img-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; display: block; background: #e6e3dc; }
+.separator-vertical { width: 13px; min-width: 13px; background: linear-gradient(to bottom, #e2ab11 6%, #ffeec5 88%); border-radius: 11px; margin: 0 18px; align-self: stretch; }
+.galeria-text { flex: 1 1 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 22px 0 22px 10px; }
+.galeria-titulo { font-family: 'Montserrat', sans-serif; color: #7b0606; font-weight: 900; font-size: 1.25em; font-style: italic; margin-bottom: .8em; }
+.galeria-lista li { font-size: 1em; color: #362604; margin-bottom: 3px; line-height: 1.49; font-style: italic; }
+.linha-par:not(:last-child)::after { content: ''; display: block; position: absolute; left: 3%; right: 3%; bottom: -18px; height: 8px; border-radius: 9px; background: linear-gradient(90deg, #d1a634bb 10%, #ecd17b 65%, #fff0 100%); z-index: 2; }
+
+/* ---------- RODAPÉ ---------- */
+.footer { background: var(--vinho); color: var(--creme); width: 100vw; margin-left: -50vw; left: 50%; padding: 48px 0 32px 0; text-align: center; position: relative; }
+.footer-content { display: flex; flex-wrap: wrap; justify-content: center; gap: 86px; align-items: flex-start; margin-bottom: 12px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+.footer-block { min-width: 220px; text-align: left; }
+.footer-block-title { font-family: 'Montserrat', sans-serif; color: #f3a600; font-weight: bold; font-size: 1.09em; margin-bottom: 13px; letter-spacing: .16em; }
+.footer-menu { padding: 0; margin: 0 0 10px 0; list-style: none; }
+.footer-menu li { margin-bottom: 6px; display: inline-block; margin-right: 11px; }
+.footer-menu a { color: var(--creme); text-decoration: none; font-size: 1.05em; letter-spacing: .015em; border-bottom: 1px dotted #f3a60033; padding: 0 4px; transition: color .2s; }
+.footer-menu a:hover { color: #f3a600; }
+.footer-contact { font-size: 1em; margin-top: 6px; }
+.footer-contact i { margin-right: 3px; color: #f3a600; font-size: 1.18em; vertical-align: middle; }
+.footer-contact a { color: var(--creme) !important; }
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+  .topbar { grid-template-columns: 1fr; padding: 8px 4vw 6px; min-height: auto; gap: 8px; }
+  .topbar-filler { display: none; }
+  .logo-center-projection { grid-column: 1 / 2; justify-self: center; margin: 6px 0 4px; }
+  .contact-top { grid-column: 1 / 2; justify-self: center; text-align: center; min-width: 100%; margin-top: 6px; }
+  .contact-detail { display: inline-block; margin: 0 8px; }
+  .social-links { margin-top: 6px; }
+  nav { gap: 3vw; font-size: 1.05em; padding: 12px 2vw; flex-wrap: wrap; }
+}
+@media (max-width: 360px) {
+  .contact-top { font-size: 0.9em; }
+  nav { font-size: 0.98em; gap: 2vw; }
+}
+@media (max-width: 1000px) {
+  .conteudo-principal { flex-direction: column; }
+  .centralizador-galeria { margin-top: 10vw; }
+  .galeria-pares { max-width: 99vw; }
+  .linha-par { flex-direction: column; gap: 0; }
+  .galeria-img-card { width: 97vw; max-width: 99vw; }
+  .separator-vertical { display: none; }
+  .galeria-text { width: 97vw; min-width: 0; padding: 12px 0 12px 2vw; }
+}
+</style>
+</head>
+<body>
+
+<!-- MARCA D'ÁGUA -->
+<div class="marca-dagua" id="marcaDagua"></div>
+
+<div class="site-bg">
+  <!-- CABEÇALHO -->
+  <div class="header-fixed">
+    <div class="topbar">
+      <div class="topbar-filler"></div>
+      <div class="logo-center-projection">
+        <img src="logofm2.png" class="logo-img-fm" alt="Franceschini e Miranda Advogados"/>
+      </div>
+      <div class="contact-top">
+        <div class="contact-title">CONTATO</div>
+        <div class="contact-detail"><span>📞</span> +55 (011) 3095-2566</div>
+        <div class="contact-detail"><span>✉️</span> adv-fm@fm-advogados.com.br</div>
+        <div class="social-links">
+          <a href="https://instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/" target="_blank" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <nav>
+    <a href="javascript:void(0)" onclick="window.location.href='index.html'" class="active">Home</a>
+    <a href="javascript:void(0)" onclick="window.location.href='escritorio.html'">Escritório</a>
+    <a href="javascript:void(0)" onclick="window.location.href='profissionais.html'">Profissionais</a>
+    <a href="javascript:void(0)" onclick="window.location.href='publicacoes.html'">Publicações</a>
+    <a href="#">Contato</a>
+</nav>
+  </div>
+  <div class="header-spacer"></div>
+
+  <!-- BANNER -->
+  <section class="banner-bg"></section>
+
+  <!-- CARD NOTÍCIAS -->
+  <aside class="card-noticias" id="cardNoticias">
+    <div class="card-noticias-titulo"><i class="fa fa-bolt"></i> Informes F&amp;M</div>
+    <ul class="lista-noticias noticia-animada" id="listaNoticias"></ul>
+  </aside>
+
+  <!-- CONTEÚDO -->
+  <div class="conteudo-principal">
+    <div class="centralizador-galeria">
+      <section class="galeria-pares">
+
+        <!-- BLOCO 1 -->
+        <div class="linha-par">
+          <div class="galeria-img-card"><img src="imagens-fmadv/amb15.png" alt="ambiente 5 do escritório"></div>
+          <div class="separator-vertical"></div>
+          <div class="galeria-text">
+            <div class="galeria-titulo">Direito da Concorrência</div>
+            <ul class="galeria-lista">
+              <li>Notificação de atos de concentração.</li>
+              <li>Defesa em processos administrativos e judiciais por práticas anticompetitivas.</li>
+              <li>Elaboração e estruturação de programas de compliance e treinamento em matérias concorrenciais para empresas.</li>
+              <li>Negociação de acordos de leniência e termos de compromisso de cessação com autoridades de defesa da concorrência.</li>
+              <li>Avaliação de risco de práticas comerciai.</li>
+              <li>Defesa em processos antidumping.</li>
+              <li>Ações judiciais de reparação de dano concorrencial.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- BLOCO 2 -->
+        <div class="linha-par">
+          <div class="galeria-img-card"><img src="imagens-fmadv/amb16.png" alt="ambiente 3 do escritório"></div>
+          <div class="separator-vertical"></div>
+          <div class="galeria-text">
+            <div class="galeria-titulo">Direito Societário</div>
+            <ul class="galeria-lista">
+              <li>Constituição de sociedades e Joint Ventures.</li>
+              <li>Negociação e elaboração de acordos de acionistas.</li>
+              <li>Reestruturações societárias, incluindo fusões, incorporações e cisões.</li>
+              <li>Representação legal de sócios estrangeiros.</li>
+              <li>Participação em assembleias de acionistas ou sócios e reuniões de Conselhos de Administração e Fiscal.</li>
+              <li>Representação de clientes em reuniões de sócios e acionistas.</li>
+              <li>Realização de auditoria legal (due diligence).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- BLOCO 3 -->
+        <div class="linha-par">
+          <div class="galeria-img-card"><img src="imagens-fmadv/amb12.png" alt="ambiente 7 do escritório"></div>
+          <div class="separator-vertical"></div>
+          <div class="galeria-text">
+            <div class="galeria-titulo">Direitos Civil, Comercial e do Consumidor</div>
+            <ul class="galeria-lista">
+              <li>Lití­gios empresariais e cíveis com atuação nos Tribunais Superiores.</li>
+              <li>Consultoria sobre incidência e implantação da lei geral de proteção de dados, (LGPD).</li>
+              <li>Ações de responsabilidade civil e Ajuizamento de ações, elaboração de defesas e acompanhamento de ações civis públicas e coletivas.</li>
+              <li>Disputas societárias.</li>
+              <li>Ajuizamento de ações e elaboração de defesas e recursos perante o PROCON, Delegacias do Consumidor, Ministério Público, Juizados Especiais Cí­veis e Justiça Comum.</li>
+              <li>Elaboração de pareceres legais.</li>
+              <li>Contratos nacionais e internacionais.</li>
+              <li>Assessoria e atuação na execução e acompanhamento de processos judiciais.</li>
+              <li>Ajuizamento de ações judiciais oriundas de Atos de Concentração e processos Administrativos em trâmite nos órgãos de Defesa da Concorrência.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- BLOCO 4 -->
+        <div class="linha-par">
+          <div class="galeria-img-card"><img src="imagens-fmadv/livro.png" alt="ambiente 5 do escritório"></div>
+          <div class="separator-vertical"></div>
+          <div class="galeria-text">
+            <div class="galeria-titulo">Direito Trabalhista</div>
+            <ul class="galeria-lista">
+              <li>Aconselhamento para Empresas no âmbito trabalhista, compreendendo, exemplificativamente, soluções preventivas, pareceres no âmbito da esfera da lei geral de proteção de dados, políticas internas, consultoria versando sobre plataformas digitais de prestação de serviços, contratações, demissões, auditoria trabalhista e compliance (abrangendo treinamento sobre temas específicos).</li>
+              <li>Defesa e condução de negociações em procedimentos administrativos e judiciais no seu mais amplo espectro.</li>
+              <li>Dispomos de parcerias, sob nossa direta supervisão, para necessidades específicas de nossa clientela, porventura não compreendidas no âmbito de atuação direta do Escritório.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- BLOCO 5 -->
+        <div class="linha-par">
+          <div class="galeria-img-card"><img src="imagens-fmadv/amb17.png" alt="ambiente 3 do escritório"></div>
+          <div class="separator-vertical"></div>
+          <div class="galeria-text">
+            <div class="galeria-titulo">Direito Penal Empresarial</div>
+            <ul class="galeria-lista">
+              <li>Assessoria consultiva e preventiva a empresas</li>
+              <li>Assistência em Inquéritos policiais, processos criminais e administrativos</li>
+              <li>Defesa e representação de empresas e das pessoas físicas a elas ligadas</li>
+              <li>Assistência legal em casos que investiguem crimes de empresas</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- BLOCO 6 -->
+        <div class="linha-par">
+          <div class="galeria-img-card"><img src="imagens-fmadv/amb14.png" alt="ambiente 7 do escritório"></div>
+          <div class="separator-vertical"></div>
+          <div class="galeria-text">
+            <div class="galeria-titulo">Direito Administrativo</div>
+            <ul class="galeria-lista">
+              <li>Assessoria consultiva e jurídica e atuação em inquéritos, averiguações e processos administrativos perante órgãos públicos em todas as esferas (municipais, estaduais e federais), bem como em Agências Reguladoras e Tribunais de Contas.</li>
+              <li>Assessoria Jurídica em licitações e concorrências públicas e contratos administrativos</li>
+            </ul>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+
+  <!-- RODAPÉ -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-block">
+        <div class="footer-block-title">ACESSO RÁPIDO</div>
+        <ul class="footer-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="escritorio.html">Escritório</a></li>
+          <li><a href="profissionais.html">Profissionais</a></li>
+          <li>
+          <li><a href="javascript:void(0)" onclick="window.location.href='publicacoes.html'">Publicações</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-block">
+        <div class="footer-block-title">SÃO PAULO</div>
+        <div class="footer-contact">
+          <i class="fas fa-phone-alt"></i>
+          <a href="tel:+551130952566">+55 (011) 3095-2566</a>
+        </div>
+        <div class="footer-contact">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:adv-fm@fm-advogados.com.br">adv-fm@fm-advogados.com.br</a>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2026 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
+  </footer>
+</div>
+
+<script>
+/* ---------- notícias fixas ---------- */
+const noticias = [
+  { titulo: "Momentos difíceis para o cultor do direito", autor: "José Inacio Gonzaga Franceschini", numero: "1" },
+  { titulo: "Consolidação de Entendimento no TRF 1ª Região", autor: "Dra. Sandra Gomes Esteves", numero: "2" },
+  { titulo: "TRF-1 Anula Sentença e Reabre Instrução em Caso Contra o CADE", autor: "Dra. Flávia Maria Pelliciari", numero: "3" }
+];
+const listaNoticias = document.getElementById('listaNoticias');
+listaNoticias.innerHTML = '';
+noticias.forEach((n, i) => {
+  const li = document.createElement('li');
+  if (i === 0) li.classList.add('noticia-active');
+  li.innerHTML = `<a href="noticia${n.numero}.html">${n.titulo}</a><span class="noticia-autor">${n.autor}</span>`;
+  listaNoticias.appendChild(li);
+});
+/* ---------- carousel ---------- */
+let atual = 0, duracao = 4000, intervaloId;
+const itens = listaNoticias.querySelectorAll('li');
+function mostrarNoticia(indice) { itens.forEach((item, i) => item.classList.toggle('noticia-active', i === indice)); }
+function proximaNoticia() { atual = (atual + 1) % itens.length; mostrarNoticia(atual); }
+function iniciar() { intervaloId = setInterval(proximaNoticia, duracao); }
+function parar() { clearInterval(intervaloId); }
+mostrarNoticia(atual); iniciar();
+const card = document.getElementById('cardNoticias');
+if (card) { card.addEventListener('mouseenter', parar); card.addEventListener('mouseleave', iniciar); }
+</script>
+</body>
+</html>
