@@ -653,9 +653,9 @@
             <nav>
     <a href="javascript:void(0)" onclick="window.location.href='index.html'">Home</a>
     <a href="javascript:void(0)" onclick="window.location.href='escritorio.html'">Escritório</a>
-    <a href="javascript:void(0)" onclick="window.location.href='profissionais.html'">Profissionais</a>
-    <a href="javascript:void(0)" onclick="window.location.href='publicacoes.html'" class="active">Publicações</a>
-    <a href="contato.html">Contato</a>
+    <a href="javascript:void(0)" onclick="window.location.href='profissionais.html'" class="active">Profissionais</a>
+    <a href="javascript:void(0)" onclick="window.location.href='publicacoes.html'">Publicações</a>
+    <a href="#">Contato</a>
 </nav>
         </div>
         <div class="header-spacer"></div>
@@ -709,8 +709,8 @@
                         <li><a href="escritorio.html">Escritório</a></li>
                         <li><a href="profissionais.html">Profissionais</a></li>
                         <li>
-                        <li><a href="publicacoes.html" class="active">Publicações</a></li>
-                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="publicacoes.html">Publicações</a></li>
+                        <li><a href="#">Contato</a></li>
                     </ul>
                 </div>
                 <div class="footer-block">
@@ -726,6 +726,13 @@
                 </div>
             </div>
                 <!-- Desenvolvimento WLTI -->
+    <div style="margin: 25px 0 15px 0; padding-top: 20px; border-top: 1px solid rgba(243, 166, 0, 0.2); text-align: center; font-size: 0.85em; opacity: 0.8;">
+        <div style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 6px; background: rgba(123, 6, 6, 0.3);">
+            <span style="color: #f3a600;">Desenvolvido por</span>
+            <img src="wlti.png" alt="WLTI" style="height: 24px; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(300deg); opacity: 0.9;">
+            <span style="color: #fdf6ee;">WLTI Soluções em TI</span>
+        </div>
+    </div>
     <div style="margin: 25px 0 15px 0; padding-top: 20px; border-top: 1px solid rgba(243, 166, 0, 0.2); text-align: center; font-size: 0.85em; opacity: 0.8;">
         <div style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 6px; background: rgba(123, 6, 6, 0.3);">
             <span style="color: #f3a600;">Desenvolvido por</span>
@@ -952,7 +959,5 @@
     </script>
 </body>
 </html>
-
-
 
 
