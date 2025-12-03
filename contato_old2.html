@@ -1,0 +1,728 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Contato - Franceschini e Miranda Advogados</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@600;700&display=swap');
+:root {
+  --vinho: #7b0606;
+  --dourado: #f3a600;
+  --creme: #fdf6ee;
+  --banner-min: 330px;
+}
+body { font-family: 'Inter', Arial, sans-serif; background: var(--creme); color: #232231; margin: 0; }
+
+/* ---------- MARCA D'ÁGUA ---------- */
+.marca-dagua {
+  position: fixed;
+  right: 30%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45vw;
+  max-width: 400px;
+  height: 45vw;
+  max-height: 400px;
+  opacity: .03;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 22vw;
+  line-height: 1;
+  color: var(--vinho);
+  pointer-events: none;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: nowrap;
+}
+.marca-dagua::before { content: "F M"; letter-spacing: -0.03em; }
+
+/* ---------- CABEÇALHO ---------- */
+.header-fixed { position: fixed; top: 0; left: 0; right: 0; width: 100vw; z-index: 50; background: var(--vinho); box-shadow: 0 2px 18px #4b060677; }
+.topbar { width: 100%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 3px 5vw 1px 5vw; min-height: 78px; box-sizing: border-box; }
+.topbar-filler { min-width: 280px; visibility: hidden; }
+.logo-center-projection { grid-column: 2 / 3; display: flex; justify-content: center; align-items: center; min-height: 76px; }
+.logo-img-fm { max-width: 96%; width: 350px; min-width: 180px; height: auto; display: block; margin: 0 auto; }
+.contact-top { grid-column: 3 / 4; justify-self: end; text-align: right; min-width: 280px; font-size: 1.1em; align-self: center; }
+.contact-top span { vertical-align: middle; margin-right: 3px; font-size: 1.13em; color: #ffe0e0; }
+.contact-title, .contact-detail { color: var(--creme); font-family: 'Montserrat', Arial, sans-serif; }
+.social-links { margin: 9px 0 2px; text-align: right; }
+.social-links a { color: #fff; background: #630303; border-radius: 50%; padding: 7px 0; margin-left: 7px; width: 38px; display: inline-block; text-align: center; transition: background 0.2s, color 0.2s; font-size: 1.18em; box-shadow: 0 2px 10px #20020222; vertical-align: middle; }
+.social-links a:hover { background: #f3a600; color: #7b0606; }
+.header-spacer { height: 190px; }
+nav { background: var(--vinho); display: flex; justify-content: center; align-items: center; gap: 70px; padding: 16px 0; font-size: 1.22em; font-weight: 600; letter-spacing: 0.12em; box-shadow: 0 7px 16px #551a1a23; width: 100%; margin: 0 auto; position: relative; z-index: 4; }
+nav a { text-decoration: none; color: var(--creme); transition: 0.2s; padding-bottom: 3px; font-size: 1em; font-family: 'Inter', Arial, sans-serif; font-weight: 600; letter-spacing: 0.05em; display: inline-block; }
+nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
+
+/* ---------- BANNER CONTATO ---------- */
+.banner-contato {
+  min-height: var(--banner-min);
+  width: 100vw;
+  border-bottom: 4px solid var(--dourado);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Imagem em preto e branco atrás */
+.banner-contato::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('contato.png') center/cover no-repeat;
+  filter: grayscale(100%);
+  z-index: 1;
+}
+
+.titulo-contato {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--creme);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin: 0;
+  padding: 2rem;
+  border: 3px solid var(--dourado);
+  border-radius: 16px;
+  background: rgba(123, 6, 6, 0.7);
+  backdrop-filter: blur(10px);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  margin: 0 auto;
+}
+
+/* ---------- SEÇÃO ESCRITÓRIO ---------- */
+.escritorio-section {
+  padding: 80px 0;
+  background: #f8f9fa;
+  width: 100%;
+}
+
+.escritorio-section h2 {
+  text-align: center;
+  margin-bottom: 4rem;
+  color: var(--vinho);
+  font-size: 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
+
+.info-contato-linhas {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+}
+
+.linha-contato {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(123, 6, 6, 0.1);
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.linha-contato::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--vinho), var(--dourado), var(--vinho));
+  border-radius: 14px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.linha-contato:hover::before {
+  opacity: 1;
+}
+
+.linha-contato:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(123, 6, 6, 0.15);
+}
+
+.linha-contato i {
+  font-size: 2.5rem;
+  color: var(--dourado);
+  min-width: 60px;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.linha-contato .conteudo {
+  flex: 1;
+}
+
+.linha-contato strong {
+  display: block;
+  color: var(--vinho);
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.linha-contato address,
+.linha-contato a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.linha-contato a:hover {
+  color: var(--vinho);
+}
+
+/* ---------- MAPA E NAVEGAÇÃO ---------- */
+.divisor-elegante {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--dourado), transparent);
+  margin: 4rem auto;
+  max-width: 60%;
+}
+
+.mapa-navegacao {
+  margin-top: 3rem;
+}
+
+.mapa-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  border: 3px solid var(--dourado);
+  margin-bottom: 2rem;
+}
+
+.botoes-navegacao {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-map, .btn-waze {
+  padding: 12px 24px;
+  border: 2px solid var(--dourado);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--vinho);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.btn-map:hover, .btn-waze:hover {
+  background: var(--dourado);
+  color: var(--vinho);
+  transform: translateY(-2px);
+}
+
+/* ---------- FORMULÁRIO ---------- */
+.formulario-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  width: 100%;
+}
+
+.formulario-section h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--vinho);
+  font-size: 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
+
+.form-desc {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #666;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-container {
+  background: white;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(123, 6, 6, 0.1);
+  border: 2px solid #e9ecef;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.form-container::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, var(--vinho), var(--dourado), var(--vinho));
+  border-radius: 18px;
+  z-index: -1;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--vinho);
+  margin-bottom: 0.5rem;
+  display: block;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.form-control {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-family: 'Inter', Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  border-color: var(--dourado);
+  box-shadow: 0 0 0 3px rgba(243, 166, 0, 0.2);
+  outline: none;
+}
+
+textarea.form-control {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--vinho), #5a0102);
+  border: none;
+  padding: 15px 50px;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-family: 'Inter', Arial, sans-serif;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(123, 6, 6, 0.4);
+}
+
+/* ---------- RODAPÉ ---------- */
+.footer { 
+  background: var(--vinho); 
+  color: var(--creme); 
+  width: 100%; 
+  padding: 48px 0 32px 0; 
+  text-align: center; 
+  position: relative; 
+}
+
+.footer-content { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 86px; 
+  align-items: flex-start; 
+  margin-bottom: 12px; 
+  max-width: 1100px; 
+  margin-left: auto; 
+  margin-right: auto; 
+}
+
+.footer-block { 
+  min-width: 220px; 
+  text-align: left; 
+}
+
+.footer-block-title { 
+  font-family: 'Montserrat', sans-serif; 
+  color: #f3a600; 
+  font-weight: bold; 
+  font-size: 1.09em; 
+  margin-bottom: 13px; 
+  letter-spacing: .16em; 
+}
+
+.footer-menu { 
+  padding: 0; 
+  margin: 0 0 10px 0; 
+  list-style: none; 
+}
+
+.footer-menu li { 
+  margin-bottom: 6px; 
+  display: inline-block; 
+  margin-right: 11px; 
+}
+
+.footer-menu a { 
+  color: var(--creme); 
+  text-decoration: none; 
+  font-size: 1.05em; 
+  letter-spacing: .015em; 
+  border-bottom: 1px dotted #f3a60033; 
+  padding: 0 4px; 
+  transition: color .2s; 
+}
+
+.footer-menu a:hover { 
+  color: #f3a600; 
+}
+
+.footer-contact { 
+  font-size: 1em; 
+  margin-top: 6px; 
+}
+
+.footer-contact i { 
+  margin-right: 3px; 
+  color: #f3a600; 
+  font-size: 1.18em; 
+  vertical-align: middle; 
+}
+
+.footer-contact a { 
+  color: var(--creme) !important; 
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+  .topbar { 
+    grid-template-columns: 1fr; 
+    padding: 8px 4vw 6px; 
+    min-height: auto; 
+    gap: 8px; 
+  }
+  .topbar-filler { display: none; }
+  .logo-center-projection { 
+    grid-column: 1 / 2; 
+    justify-self: center; 
+    margin: 6px 0 4px; 
+  }
+  .contact-top { 
+    grid-column: 1 / 2; 
+    justify-self: center; 
+    text-align: center; 
+    min-width: 100%; 
+    margin-top: 6px; 
+  }
+  .contact-detail { display: inline-block; margin: 0 8px; }
+  .social-links { margin-top: 6px; }
+  nav { gap: 3vw; font-size: 1.05em; padding: 12px 2vw; flex-wrap: wrap; }
+  
+  .titulo-contato { font-size: 2rem; padding: 1.5rem; }
+  .linha-contato { flex-direction: column; text-align: center; gap: 1rem; }
+  .linha-contato i { margin-top: 0; }
+  .form-container { padding: 2rem; margin: 0 1rem; }
+  .botoes-navegacao { flex-direction: column; align-items: center; }
+  .footer-content { gap: 40px; }
+}
+
+@media (max-width: 360px) {
+  .contact-top { font-size: 0.9em; }
+  nav { font-size: 0.98em; gap: 2vw; }
+}
+</style>
+</head>
+<body>
+
+<!-- MARCA D'ÁGUA -->
+<div class="marca-dagua" id="marcaDagua"></div>
+
+<div class="site-bg">
+  <!-- CABEÇALHO -->
+  <div class="header-fixed">
+    <div class="topbar">
+      <div class="topbar-filler"></div>
+      <div class="logo-center-projection">
+       <img src="logofm2.png" class="logo-img-fm" alt="Franceschini e Miranda Advogados">
+      </div>
+      <div class="contact-top">
+        <div class="contact-title">CONTATO</div>
+        <div class="contact-detail"><span>📞</span> +55 (011) 3095-2566</div>
+        <div class="contact-detail"><span>✉️</span> adv-fm@fm-advogados.com.br</div>
+        <div class="social-links">
+          <a href="https://instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/" target="_blank" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <nav>
+    <a href="index.html">Home</a>
+    <a href="escritorio.html">Escritório</a>
+    <a href="profissionais.html">Profissionais</a>
+    <a href="publicacoes.html">Publicações</a>
+    <a href="contato.html" class="active">Contato</a>
+</nav>
+  </div>
+  <div class="header-spacer"></div>
+
+  <!-- BANNER CONTATO -->
+  <section class="banner-contato">
+    <h1 class="titulo-contato">Fale com Nossos Especialistas</h1>
+  </section>
+
+  <!-- SEÇÃO ESCRITÓRIO -->
+  <section class="escritorio-section">
+    <div class="container">
+      <h2>Nosso Escritório</h2>
+      
+      <div class="info-contato-linhas">
+        <!-- Endereço -->
+        <div class="linha-contato">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="conteudo">
+            <strong>Endereço</strong>
+            <address>
+              Rua Henri Dunant, nº 792, 1º andar<br>
+              Conjunto 104, Edifício Office<br>
+              Santo Amaro, São Paulo - SP<br>
+              CEP: 04709-110
+            </address>
+          </div>
+        </div>
+        
+        <!-- Telefone -->
+        <div class="linha-contato">
+          <i class="fas fa-phone-alt"></i>
+          <div class="conteudo">
+            <strong>Telefone</strong>
+            <a href="tel:+551130952566">+55 (11) 3095-2566</a>
+          </div>
+        </div>
+        
+        <!-- E-mails -->
+        <div class="linha-contato">
+          <i class="fas fa-envelope"></i>
+          <div class="conteudo">
+            <strong>E-mail</strong>
+            <div>
+              <a href="mailto:adv-fm@fm-advogados.com.br">adv-fm@fm-advogados.com.br</a><br>
+              <a href="mailto:administrativo@fm-advogados.com.br">administrativo@fm-advogados.com.br</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divisor-elegante"></div>
+
+      <!-- MAPA E NAVEGAÇÃO -->
+      <div class="mapa-navegacao">
+        <div class="mapa-container">
+          <iframe src="https://maps.google.com/?q=-23.6274191,-46.6975563&output=svembed" 
+                  width="100%" height="400" style="border:0;" allowfullscreen></iframe>
+        </div>
+        
+        <div class="botoes-navegacao">
+          <a href="https://maps.google.com/?q=-23.6274191,-46.6975563" target="_blank" class="btn-map">
+            <i class="fas fa-map"></i> Ver no Google Maps
+          </a>
+          <a href="https://waze.com/ul?ll=-23.6274191,-46.6975563" target="_blank" class="btn-waze">
+            <i class="fas fa-car"></i> Waze
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO QUE FUNCIONA 100% -->
+  <section class="formulario-section" id="formulario">
+    <div class="container">
+      <h2>Envie sua Mensagem</h2>
+      <p class="form-desc">Preencha o formulário abaixo e entraremos em contato em breve</p>
+      
+      <div class="form-container">
+        <!-- FORMULÁRIO SIMPLES QUE ENVIA DIRETO PARA O GOOGLE FORMS -->
+        <form id="formContato" 
+              action="https://docs.google.com/forms/d/e/1FAIpQLSc7V0xSHL4Jc-AGJoNagsipb3FSIpvCEIglEtDGKd-_rogKVw/formResponse"
+              method="POST"
+              target="_blank">
+          
+          <!-- Campo 1: Nome Completo -->
+          <div class="form-group">
+            <label for="nome">Nome Completo*</label>
+            <input type="text" 
+                   id="nome" 
+                   name="entry.1282271088"
+                   class="form-control" 
+                   required 
+                   placeholder="Seu nome completo">
+          </div>
+          
+          <!-- Campo 2: E-mail -->
+          <div class="form-group">
+            <label for="email">E-mail*</label>
+            <input type="email" 
+                   id="email" 
+                   name="entry.1066741631"
+                   class="form-control" 
+                   required 
+                   placeholder="seu@email.com">
+          </div>
+          
+          <!-- Campo 3: Telefone -->
+          <div class="form-group">
+            <label for="telefone">Telefone*</label>
+            <input type="tel" 
+                   id="telefone" 
+                   name="entry.58920916"
+                   class="form-control" 
+                   required 
+                   placeholder="(11) 99999-9999">
+          </div>
+          
+          <!-- Campo 4: Empresa -->
+          <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <input type="text" 
+                   id="empresa" 
+                   name="entry.1394236058"
+                   class="form-control" 
+                   placeholder="Nome da sua empresa">
+          </div>
+          
+          <!-- Campo 5: Assunto -->
+          <div class="form-group">
+            <label for="assunto">Assunto</label>
+            <select id="assunto" 
+                    name="entry.1008846380"
+                    class="form-control">
+              <option value="">Selecione o assunto...</option>
+              <option value="Direito da Concorrência">Direito da Concorrência</option>
+              <option value="Direito Societário">Direito Societário</option>
+              <option value="Direito Trabalhista">Direito Trabalhista</option>
+              <option value="Direito Penal Empresarial">Direito Penal Empresarial</option>
+              <option value="Direito Administrativo">Direito Administrativo</option>
+              <option value="Outro assunto">Outro assunto</option>
+            </select>
+          </div>
+          
+          <!-- Campo 6: Mensagem -->
+          <div class="form-group">
+            <label for="mensagem">Mensagem*</label>
+            <textarea id="mensagem" 
+                      name="entry.1966855385"
+                      class="form-control" 
+                      required 
+                      placeholder="Descreva brevemente sua necessidade..." 
+                      rows="6"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <button type="submit" class="btn-primary">
+              Enviar Mensagem
+            </button>
+          </div>
+          
+          <div style="text-align: center; margin-top: 20px; font-size: 0.9em; color: #666;">
+            <p><i class="fas fa-info-circle"></i> Você será redirecionado para a página de confirmação do Google Forms.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-block">
+        <div class="footer-block-title">ACESSO RÁPIDO</div>
+        <ul class="footer-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="escritorio.html">Escritório</a></li>
+          <li><a href="profissionais.html">Profissionais</a></li>
+          <li><a href="publicacoes.html">Publicações</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-block">
+        <div class="footer-block-title">SÃO PAULO</div>
+        <div class="footer-contact">
+          <i class="fas fa-phone-alt"></i>
+          <a href="tel:+551130952566">+55 (011) 3095-2566</a>
+        </div>
+        <div class="footer-contact">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:adv-fm@fm-advogados.com.br">adv-fm@fm-advogados.com.br</a>
+        </div>
+      </div>
+    </div>
+        <!-- Desenvolvimento WLTI -->
+    <div style="margin: 25px 0 15px 0; padding-top: 20px; border-top: 1px solid rgba(243, 166, 0, 0.2); text-align: center; font-size: 0.85em; opacity: 0.8;">
+        <div style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 6px; background: rgba(123, 6, 6, 0.3);">
+            <span style="color: #f3a600;">Desenvolvido por</span>
+            <img src="wlti.png" alt="WLTI" style="height: 24px; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(300deg); opacity: 0.9;">
+            <span style="color: #fdf6ee;">WLTI Soluções em TI</span>
+        </div>
+    
+    <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2025 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
+  </footer>
+</div>
+
+<!-- SCRIPT SIMPLES APENAS PARA MÁSCARA DE TELEFONE -->
+<script>
+// Máscara para telefone (opcional, não bloqueia envio)
+document.addEventListener('DOMContentLoaded', function() {
+  const telefoneInput = document.getElementById('telefone');
+  if (telefoneInput) {
+    telefoneInput.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 11) value = value.substring(0, 11);
+      
+      if (value.length > 10) {
+        value = value.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+      } else if (value.length > 6) {
+        value = value.replace(/^(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+      } else if (value.length > 2) {
+        value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+      } else if (value.length > 0) {
+        value = value.replace(/^(\d{0,2})/, '($1');
+      }
+      
+      e.target.value = value;
+    });
+  }
+});
+</script>
+
+</body>
+</html>
+
+
+

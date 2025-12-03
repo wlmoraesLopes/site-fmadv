@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
@@ -136,6 +136,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   position: relative;
 }
 
+/* AQUI ESTÁ A ÚNICA ALTERAÇÃO REAL - GRADIENTE MAIS SUAVE/CLARO */
 .linha-contato::before {
   content: '';
   position: absolute;
@@ -143,7 +144,10 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, var(--vinho), var(--dourado), var(--vinho));
+  background: linear-gradient(45deg, 
+    #d4af37 0%,      /* Dourado mais suave/claro */
+    #f4d03f 40%,     /* Dourado ainda mais claro */
+    transparent 100%);
   border-radius: 14px;
   z-index: -1;
   opacity: 0;
@@ -723,6 +727,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
-
-
-
