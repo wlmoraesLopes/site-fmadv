@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>INJETOR DE DIAGNÓSTICO</title>
+    <style>
+        #diagnostic-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        #diagnostic-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+        
+        .diagnostic-btn {
+            background: #7b0606;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .diagnostic-btn:hover {
+            background: #9a0808;
+        }
+        
+        .log-entry {
+            padding: 5px;
+            margin: 3px 0;
+            border-left: 3px solid #ccc;
+            font-size: 12px;
+            font-family: monospace;
+        }
+        
+        .log-error { border-left-color: #dc3545; }
+        .log-success { border-left-color: #28a745; }
+        .log-warning { border-left-color: #ffc107; }
+    </style>
+</head>
+<body>
+    <h1> INJETOR DE DIAGNÓSTICO PARA SEU SITE</h1>
+    <p><strong>Instruções:</strong></p>
+    <ol>
+        <li>Abra SUA página que tem o problema (ex: publicacoes.html)</li>
+        <li>Cole este código no Console (F12  Console)</li>
+        <li>O injetor vai aparecer e diagnosticar os links</li>
+    </ol>
+    
+    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 20px;">
+        <h3>Código para colar no Console:</h3>
+        <textarea id="codeToCopy" rows="15" style="width: 100%; font-family: monospace; padding: 10px;">
+// ========== INJETOR DE DIAGNÓSTICO ==========
+(function() {
+    console.log(' INJETOR ATIVADO - Diagnosticando links...');
+    
+    // Criar overlay de diagnóstico
+    const overlay = document.createElement('div');
+    overlay.id = 'diagnostic-overlay';
+    overlay.innerHTML = \
+        <div id="diagnostic-box">
+            <h2 style="color: #7b0606; margin-top: 0;"> DIAGNÓSTICO DE LINKS</h2>
+            <p><strong>Página:</strong> \</p>
+            
+            <div style="margin: 20px 0;">
+                <button class="diagnostic-btn" onclick="window.diagnostic.scanLinks()">
+                     Verificar Todos os Links
+                </button>
+                <button class="diagnostic-btn" onclick="window.diagnostic.testFooterLinks()">
+                     Testar Links do Rodapé
+                </button>
+                <button class="diagnostic-btn" onclick="window.diagnostic.removeAllListeners()">
+                     Remover Event Listeners
+                </button>
+                <button class="diagnostic-btn" onclick="document.getElementById('diagnostic-overlay').remove()">
+                     Fechar
+                </button>
+            </div>
+            
+            <div id="diagnostic-log" style="max-height: 300px; overflow-y: auto; background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 20px;">
+                <h4>Log de Diagnóstico:</h4>
+                <div id="log-entries"></div>
+            </div>
+        </div>
+    \;
+    
+    document.body.appendChild(overlay);
+    
+    // Funções de diagnóstico
+    window.diagnostic = {
+        log: function(message, type = '') {
+            const logDiv = document.getElementById('log-entries');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry ' + type;
+            entry.textContent = '[' + new Date().toLocaleTimeString() + '] ' + message;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log('DIAGNOSTIC:', message);
+        },
+        
+        scanLinks: function() {
+            this.log('=== ESCANEANDO TODOS OS LINKS ===', 'log-warning');
+            
+            const allLinks = document.querySelectorAll('a');
+            this.log('Total de links na página: ' + allLinks.length);
+            
+            allLinks.forEach((link, index) => {
+                const info = \
+Link \: "\"
+Href: \
+Onclick: \
+Href tem "javascript:": \
+Classe: \
+ID: \
+                \;
+                this.log(info);
+            });
+            
+            this.log('=== FIM DA VERIFICAÇÃO ===', 'log-warning');
+        },
+        
+        testFooterLinks: function() {
+            this.log('=== TESTANDO LINKS DO RODAPÉ ===', 'log-warning');
+            
+            // Encontrar links do rodapé
+            const footerLinks = document.querySelectorAll('.footer-menu a, footer a');
+            
+            if (footerLinks.length === 0) {
+                this.log('Nenhum link encontrado no rodapé!', 'log-error');
+                return;
+            }
+            
+            this.log('Links encontrados no rodapé: ' + footerLinks.length, 'log-success');
+            
+            footerLinks.forEach((link, index) => {
+                // Remover event listeners existentes
+                const newLink = link.cloneNode(true);
+                link.parentNode.replaceChild(newLink, link);
+                
+                // Adicionar nosso listener de teste
+                newLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.diagnostic.log(\CLIQUE NO RODAPÉ: "\" -> \\, 'log-success');
+                    
+                    // Perguntar se quer navegar
+                    if (confirm(\Navegar para "\"?\\n\\nURL: \\)) {
+                        window.location.href = this.href;
+                    }
+                });
+                
+                this.log(\Rodapé link \: "\" -> \\);
+            });
+            
+            this.log('=== Links do rodapé PRONTOS para teste ===', 'log-success');
+            this.log('Clique em qualquer link do rodapé para testar (perguntará antes de navegar)');
+        },
+        
+        removeAllListeners: function() {
+            this.log('=== REMOVENDO EVENT LISTENERS ===', 'log-warning');
+            
+            const allLinks = document.querySelectorAll('a');
+            let removedCount = 0;
+            
+            allLinks.forEach(link => {
+                // Clonar o link (remove event listeners)
+                const newLink = link.cloneNode(true);
+                link.parentNode.replaceChild(newLink, link);
+                removedCount++;
+                
+                // Restaurar comportamento normal
+                newLink.addEventListener('click', function(e) {
+                    window.diagnostic.log(\Link clicado (comportamento normal): "\"\, 'log-success');
+                    // Não prevenir - deixar navegar normalmente
+                });
+            });
+            
+            this.log('Removidos listeners de ' + removedCount + ' links', 'log-success');
+            this.log('Agora tente clicar nos links do rodapé novamente');
+        }
+    };
+    
+    // Iniciar verificação automática
+    setTimeout(() => {
+        window.diagnostic.scanLinks();
+        window.diagnostic.testFooterLinks();
+    }, 500);
+    
+    console.log(' Injetor de diagnóstico carregado. Use window.diagnostic para acessar funções.');
+})();
+// ========== FIM DO INJETOR ==========
+        </textarea>
+        <button onclick="copyCode()" style="margin-top: 10px; padding: 10px 20px; background: #7b0606; color: white; border: none; border-radius: 5px; cursor: pointer;">
+             Copiar Código
+        </button>
+    </div>
+    
+    <script>
+        function copyCode() {
+            const textarea = document.getElementById('codeToCopy');
+            textarea.select();
+            document.execCommand('copy');
+            alert('Código copiado! Agora cole no Console do seu site.');
+        }
+    </script>
+</body>
+</html>

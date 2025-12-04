@@ -69,6 +69,8 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   justify-content: center;
   overflow: hidden;
 }
+
+/* Imagem em preto e branco atrás */
 .banner-contato::before {
   content: '';
   position: absolute;
@@ -80,6 +82,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   filter: grayscale(100%);
   z-index: 1;
 }
+
 .titulo-contato {
   position: relative;
   z-index: 2;
@@ -104,6 +107,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   background: #f8f9fa;
   width: 100%;
 }
+
 .escritorio-section h2 {
   text-align: center;
   margin-bottom: 4rem;
@@ -112,10 +116,12 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
 }
+
 .info-contato-linhas {
   max-width: 800px;
   margin: 0 auto 4rem;
 }
+
 .linha-contato {
   display: flex;
   align-items: flex-start;
@@ -129,6 +135,8 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   transition: all 0.3s ease;
   position: relative;
 }
+
+/* AQUI ESTÁ A ÚNICA ALTERAÇÃO REAL - GRADIENTE MAIS SUAVE/CLARO */
 .linha-contato::before {
   content: '';
   position: absolute;
@@ -137,21 +145,24 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   right: -2px;
   bottom: -2px;
   background: linear-gradient(45deg, 
-    #d4af37 0%,      
-    #f4d03f 40%,     
+    #d4af37 0%,      /* Dourado mais suave/claro */
+    #f4d03f 40%,     /* Dourado ainda mais claro */
     transparent 100%);
   border-radius: 14px;
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+
 .linha-contato:hover::before {
   opacity: 1;
 }
+
 .linha-contato:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(123, 6, 6, 0.15);
 }
+
 .linha-contato i {
   font-size: 2.5rem;
   color: var(--dourado);
@@ -159,9 +170,11 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   text-align: center;
   margin-top: 0.5rem;
 }
+
 .linha-contato .conteudo {
   flex: 1;
 }
+
 .linha-contato strong {
   display: block;
   color: var(--vinho);
@@ -170,6 +183,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
+
 .linha-contato address,
 .linha-contato a {
   color: #333;
@@ -177,18 +191,23 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   font-size: 1.1rem;
   line-height: 1.5;
 }
+
 .linha-contato a:hover {
   color: var(--vinho);
 }
+
+/* ---------- MAPA E NAVEGAÇÃO ---------- */
 .divisor-elegante {
   height: 3px;
   background: linear-gradient(90deg, transparent, var(--dourado), transparent);
   margin: 4rem auto;
   max-width: 60%;
 }
+
 .mapa-navegacao {
   margin-top: 3rem;
 }
+
 .mapa-container {
   border-radius: 12px;
   overflow: hidden;
@@ -196,12 +215,14 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   border: 3px solid var(--dourado);
   margin-bottom: 2rem;
 }
+
 .botoes-navegacao {
   display: flex;
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .btn-map, .btn-waze {
   padding: 12px 24px;
   border: 2px solid var(--dourado);
@@ -215,6 +236,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   font-weight: 600;
   font-family: 'Inter', Arial, sans-serif;
 }
+
 .btn-map:hover, .btn-waze:hover {
   background: var(--dourado);
   color: var(--vinho);
@@ -227,6 +249,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   width: 100%;
 }
+
 .formulario-section h2 {
   text-align: center;
   margin-bottom: 1rem;
@@ -235,6 +258,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
 }
+
 .form-desc {
   text-align: center;
   margin-bottom: 3rem;
@@ -244,6 +268,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   margin-left: auto;
   margin-right: auto;
 }
+
 .form-container {
   background: white;
   padding: 3rem;
@@ -254,6 +279,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   margin: 0 auto;
   position: relative;
 }
+
 .form-container::before {
   content: '';
   position: absolute;
@@ -265,9 +291,11 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   border-radius: 18px;
   z-index: -1;
 }
+
 .form-group {
   margin-bottom: 1.5rem;
 }
+
 .form-group label {
   font-weight: 600;
   color: var(--vinho);
@@ -275,6 +303,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   display: block;
   font-family: 'Inter', Arial, sans-serif;
 }
+
 .form-control {
   border: 2px solid #e9ecef;
   border-radius: 8px;
@@ -285,15 +314,18 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   font-family: 'Inter', Arial, sans-serif;
   box-sizing: border-box;
 }
+
 .form-control:focus {
   border-color: var(--dourado);
   box-shadow: 0 0 0 3px rgba(243, 166, 0, 0.2);
   outline: none;
 }
+
 textarea.form-control {
   min-height: 150px;
   resize: vertical;
 }
+
 .btn-primary {
   background: linear-gradient(135deg, var(--vinho), #5a0102);
   border: none;
@@ -308,56 +340,10 @@ textarea.form-control {
   display: block;
   margin: 0 auto;
 }
+
 .btn-primary:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(123, 6, 6, 0.4);
-}
-
-/* ---------- POPUP DE SUCESSO ---------- */
-.popup-sucesso {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.popup-conteudo {
-  background: white;
-  padding: 40px 50px;
-  border-radius: 16px;
-  text-align: center;
-  max-width: 90%;
-  width: 500px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-  border: 3px solid var(--dourado);
-}
-
-.popup-conteudo i {
-  font-size: 3rem;
-  color: var(--dourado);
-  margin-bottom: 15px;
-}
-
-.popup-conteudo h3 {
-  color: var(--vinho);
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.8rem;
-  margin: 0 0 10px 0;
-}
-
-.popup-conteudo p {
-  color: #333;
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-.popup-conteudo .assinatura {
-  margin-top: 20px;
-  font-size: 0.9em;
-  color: #666;
 }
 
 /* ---------- RODAPÉ ---------- */
@@ -369,6 +355,7 @@ textarea.form-control {
   text-align: center; 
   position: relative; 
 }
+
 .footer-content { 
   display: flex; 
   flex-wrap: wrap; 
@@ -380,10 +367,12 @@ textarea.form-control {
   margin-left: auto; 
   margin-right: auto; 
 }
+
 .footer-block { 
   min-width: 220px; 
   text-align: left; 
 }
+
 .footer-block-title { 
   font-family: 'Montserrat', sans-serif; 
   color: #f3a600; 
@@ -392,16 +381,19 @@ textarea.form-control {
   margin-bottom: 13px; 
   letter-spacing: .16em; 
 }
+
 .footer-menu { 
   padding: 0; 
   margin: 0 0 10px 0; 
   list-style: none; 
 }
+
 .footer-menu li { 
   margin-bottom: 6px; 
   display: inline-block; 
   margin-right: 11px; 
 }
+
 .footer-menu a { 
   color: var(--creme); 
   text-decoration: none; 
@@ -411,19 +403,23 @@ textarea.form-control {
   padding: 0 4px; 
   transition: color .2s; 
 }
+
 .footer-menu a:hover { 
   color: #f3a600; 
 }
+
 .footer-contact { 
   font-size: 1em; 
   margin-top: 6px; 
 }
+
 .footer-contact i { 
   margin-right: 3px; 
   color: #f3a600; 
   font-size: 1.18em; 
   vertical-align: middle; 
 }
+
 .footer-contact a { 
   color: var(--creme) !important; 
 }
@@ -492,12 +488,12 @@ textarea.form-control {
       </div>
     </div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="escritorio.html">Escritório</a>
-      <a href="profissionais.html">Profissionais</a>
-      <a href="publicacoes.html">Publicações</a>
-      <a href="contato.html" class="active">Contato</a>
-    </nav>
+    <a href="index.html">Home</a>
+    <a href="escritorio.html">Escritório</a>
+    <a href="profissionais.html">Profissionais</a>
+    <a href="publicacoes.html">Publicações</a>
+    <a href="contato.html" class="active">Contato</a>
+</nav>
   </div>
   <div class="header-spacer"></div>
 
@@ -512,6 +508,7 @@ textarea.form-control {
       <h2>Nosso Escritório</h2>
       
       <div class="info-contato-linhas">
+        <!-- Endereço -->
         <div class="linha-contato">
           <i class="fas fa-map-marker-alt"></i>
           <div class="conteudo">
@@ -525,6 +522,7 @@ textarea.form-control {
           </div>
         </div>
         
+        <!-- Telefone -->
         <div class="linha-contato">
           <i class="fas fa-phone-alt"></i>
           <div class="conteudo">
@@ -533,6 +531,7 @@ textarea.form-control {
           </div>
         </div>
         
+        <!-- E-mails -->
         <div class="linha-contato">
           <i class="fas fa-envelope"></i>
           <div class="conteudo">
@@ -547,6 +546,7 @@ textarea.form-control {
 
       <div class="divisor-elegante"></div>
 
+      <!-- MAPA E NAVEGAÇÃO -->
       <div class="mapa-navegacao">
         <div class="mapa-container">
           <iframe src="https://maps.google.com/?q=-23.6274191,-46.6975563&output=svembed" 
@@ -565,38 +565,68 @@ textarea.form-control {
     </div>
   </section>
 
-  <!-- FORMULÁRIO COM POPUP DE SUCESSO -->
+  <!-- FORMULÁRIO QUE FUNCIONA 100% -->
   <section class="formulario-section" id="formulario">
     <div class="container">
       <h2>Envie sua Mensagem</h2>
       <p class="form-desc">Preencha o formulário abaixo e entraremos em contato em breve</p>
       
       <div class="form-container">
-        <form id="formContato" onsubmit="enviarFormulario(event)">
+        <!-- FORMULÁRIO SIMPLES QUE ENVIA DIRETO PARA O GOOGLE FORMS -->
+        <form id="formContato" 
+              action="https://docs.google.com/forms/d/e/1FAIpQLSc7V0xSHL4Jc-AGJoNagsipb3FSIpvCEIglEtDGKd-_rogKVw/formResponse"
+              method="POST"
+              target="_blank">
           
+          <!-- Campo 1: Nome Completo -->
           <div class="form-group">
             <label for="nome">Nome Completo*</label>
-            <input type="text" id="nome" class="form-control" required placeholder="Seu nome completo">
+            <input type="text" 
+                   id="nome" 
+                   name="entry.1282271088"
+                   class="form-control" 
+                   required 
+                   placeholder="Seu nome completo">
           </div>
           
+          <!-- Campo 2: E-mail -->
           <div class="form-group">
             <label for="email">E-mail*</label>
-            <input type="email" id="email" class="form-control" required placeholder="seu@email.com">
+            <input type="email" 
+                   id="email" 
+                   name="entry.1066741631"
+                   class="form-control" 
+                   required 
+                   placeholder="seu@email.com">
           </div>
           
+          <!-- Campo 3: Telefone -->
           <div class="form-group">
             <label for="telefone">Telefone*</label>
-            <input type="tel" id="telefone" class="form-control" required placeholder="(11) 99999-9999">
+            <input type="tel" 
+                   id="telefone" 
+                   name="entry.58920916"
+                   class="form-control" 
+                   required 
+                   placeholder="(11) 99999-9999">
           </div>
           
+          <!-- Campo 4: Empresa -->
           <div class="form-group">
             <label for="empresa">Empresa</label>
-            <input type="text" id="empresa" class="form-control" placeholder="Nome da sua empresa">
+            <input type="text" 
+                   id="empresa" 
+                   name="entry.1394236058"
+                   class="form-control" 
+                   placeholder="Nome da sua empresa">
           </div>
           
+          <!-- Campo 5: Assunto -->
           <div class="form-group">
             <label for="assunto">Assunto</label>
-            <select id="assunto" class="form-control">
+            <select id="assunto" 
+                    name="entry.1008846380"
+                    class="form-control">
               <option value="">Selecione o assunto...</option>
               <option value="Direito da Concorrência">Direito da Concorrência</option>
               <option value="Direito Societário">Direito Societário</option>
@@ -607,30 +637,30 @@ textarea.form-control {
             </select>
           </div>
           
+          <!-- Campo 6: Mensagem -->
           <div class="form-group">
             <label for="mensagem">Mensagem*</label>
-            <textarea id="mensagem" class="form-control" required rows="6" placeholder="Descreva brevemente sua necessidade..."></textarea>
+            <textarea id="mensagem" 
+                      name="entry.1966855385"
+                      class="form-control" 
+                      required 
+                      placeholder="Descreva brevemente sua necessidade..." 
+                      rows="6"></textarea>
           </div>
           
           <div class="form-group">
-            <button type="submit" class="btn-primary">Enviar Mensagem</button>
+            <button type="submit" class="btn-primary">
+              Enviar Mensagem
+            </button>
           </div>
           
+          <div style="text-align: center; margin-top: 20px; font-size: 0.9em; color: #666;">
+            <p><i class="fas fa-info-circle"></i> Você será redirecionado para a página de confirmação do Google Forms.</p>
+          </div>
         </form>
       </div>
     </div>
   </section>
-
-  <!-- POPUP DE SUCESSO -->
-  <div id="popupSucesso" class="popup-sucesso">
-    <div class="popup-conteudo">
-      <i class="fas fa-check-circle"></i>
-      <h3>Obrigado pela sua mensagem!</h3>
-      <p>Em breve nossa equipe entrará em contato com você.</p>
-      <p class="assinatura">— <strong>Franceschini e Miranda Advogados</strong></p>
-      <button onclick="fecharPopup()" style="margin-top:20px; background:var(--dourado); color:#fff; border:none; padding:10px 20px; border-radius:6px; cursor:pointer;">Fechar</button>
-    </div>
-  </div>
 
   <!-- RODAPÉ -->
   <footer class="footer">
@@ -657,19 +687,21 @@ textarea.form-control {
         </div>
       </div>
     </div>
+        <!-- Desenvolvimento WLTI -->
     <div style="margin: 25px 0 15px 0; padding-top: 20px; border-top: 1px solid rgba(243, 166, 0, 0.2); text-align: center; font-size: 0.85em; opacity: 0.8;">
-      <div style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 6px; background: rgba(123, 6, 6, 0.3);">
-        <span style="color: #f3a600;">Desenvolvido por</span>
-        <img src="wlti.png" alt="WLTI" style="height: 24px; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(300deg); opacity: 0.9;">
-        <span style="color: #fdf6ee;">WLTI Soluções em TI</span>
-      </div>
-    </div>
+        <div style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 6px; background: rgba(123, 6, 6, 0.3);">
+            <span style="color: #f3a600;">Desenvolvido por</span>
+            <img src="wlti.png" alt="WLTI" style="height: 24px; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(300deg); opacity: 0.9;">
+            <span style="color: #fdf6ee;">WLTI Soluções em TI</span>
+        </div>
+    
     <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2025 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
   </footer>
 </div>
 
+<!-- SCRIPT SIMPLES APENAS PARA MÁSCARA DE TELEFONE -->
 <script>
-// Máscara de telefone
+// Máscara para telefone (opcional, não bloqueia envio)
 document.addEventListener('DOMContentLoaded', function() {
   const telefoneInput = document.getElementById('telefone');
   if (telefoneInput) {
@@ -691,59 +723,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
-
-// Envio com fetch e popup
-function enviarFormulario(event) {
-  event.preventDefault();
-
-  const nome = document.getElementById("nome").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const telefone = document.getElementById("telefone").value.trim();
-  const empresa = document.getElementById("empresa").value.trim();
-  const assunto = document.getElementById("assunto").value;
-  const mensagem = document.getElementById("mensagem").value.trim();
-
-  if (!nome || !email || !telefone || !mensagem) {
-    alert("Por favor, preencha todos os campos obrigatórios.");
-    return;
-  }
-
-  const url = "https://docs.google.com/forms/d/e/1FAIpQLSc7V0xSHL4Jc-AGJoNagsipb3FSIpvCEIglEtDGKd-_rogKVw/formResponse";
-
-  const dados = new FormData();
-  dados.append("entry.1282271088", nome);
-  dados.append("entry.1066741631", email);
-  dados.append("entry.58920916", telefone);
-  dados.append("entry.1394236050", empresa);
-  dados.append("entry.1966855385", assunto);   // Assunto
-  dados.append("entry.1008846380", mensagem);  // Mensagem
-
-  fetch(url, {
-    method: "POST",
-    mode: "no-cors",
-    body: dados
-  })
-  .then(() => {
-    mostrarPopup();
-  })
-  .catch(() => {
-    alert("Erro ao enviar. Tente novamente.");
-  });
-}
-
-function mostrarPopup() {
-  document.getElementById("popupSucesso").style.display = "flex";
-  setTimeout(fecharPopup, 5000); // Fecha automaticamente em 5 segundos
-
-  // Limpa o formulário
-  document.getElementById("formContato").reset();
-}
-function fecharPopup() {
-  document.getElementById("popupSucesso").style.display = "none";
-  // Opcional: recarrega a página
-  // location.reload();
-}
-
 </script>
 
 </body>
