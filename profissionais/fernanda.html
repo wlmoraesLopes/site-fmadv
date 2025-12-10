@@ -64,7 +64,7 @@ nav a {
 }
 nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
 
-/* ---------- BANNER PERFIL (MODELO ADVOGADOS) ---------- */
+/* ---------- BANNER PERFIL ---------- */
 .profile-banner {
   margin-top: 190px;
   height: 220px;
@@ -176,9 +176,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   background: linear-gradient(90deg, transparent, rgba(243, 166, 0, 0.3), transparent);
   transition: left 0.5s ease;
 }
-.info-chip:hover::before {
-  left: 100%;
-}
+.info-chip:hover::before { left: 100%; }
 .info-chip:hover {
   background: var(--ouro);
   color: var(--vinho);
@@ -260,7 +258,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   font-style: normal;
 }
 
-/* ---------- RODAPÉ PADRÃO (SEM IMAGEM) ---------- */
+/* ---------- RODAPÉ ---------- */
 .footer { 
   background: var(--vinho); 
   color: var(--creme); 
@@ -282,7 +280,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   margin-right: auto;
 }
 .footer-block { min-width: 220px; text-align: left; }
-.footer-logo { display: none; } /* ← remove selo */
+.footer-logo { display: none; }
 .footer-block-title { 
   font-family: 'Montserrat', sans-serif; color: #f3a600; 
   font-weight: bold; font-size: 1.09em; margin-bottom: 13px; letter-spacing: .16em; 
@@ -320,23 +318,8 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   color: var(--vinho);
   transform: translateX(-5px);
 }
-.footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 86px;
-  align-items: flex-start;
-  margin-bottom: 12px;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.footer-block {
-  min-width: 220px;
-  text-align: left;
-}
 
-/* ---------- MOBILE FIXES – MESMO DO INDEX ---------- */
+/* ---------- MOBILE ---------- */
 @media (max-width: 768px) {
   .topbar {
     grid-template-columns: 1fr auto;
@@ -395,7 +378,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   <i class="fas fa-arrow-left"></i> Voltar aos Profissionais
 </a>
 
-<!-- Cabeçalho fixo – mesmo do index -->
+<!-- Cabeçalho fixo -->
 <div class="header-fixed">
   <div class="topbar">
     <div class="topbar-filler"></div>
@@ -413,16 +396,15 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
       </div>
     </div>
   </div>
- <nav>
+<nav>
     <a href="../index.html">Home</a>
     <a href="../escritorio.html">Escritório</a>
     <a href="../profissionais.html">Profissionais</a>
-       <a href="../publicacoes.html">Publicações</a>
+    <a href="../publicacoes.html">Publicações</a>
     <a href="#">Contato</a>
-</nav>
-</div>
+</nav></div>
 
-<!-- BANNER PERFIL (MODELO ADVOGADOS) -->
+<!-- BANNER PERFIL -->
 <section class="profile-banner">
   <div class="profile-photo-wrapper">
     <img src="fernanda.jpg" alt="Fernanda Dalla Valle Martino" class="profile-photo-large">
@@ -448,15 +430,15 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
 <!-- CARD ELEGANTE -->
 <div class="elegant-card">
   <div class="card-content-elegant">
-    <p><span class="highlight-text">Mestre (LL.M.) em Direito Concorrencial</span> pela King's College London (2016). <span class="highlight-text">Pós-Graduada em Direito Internacional</span> pela Escola Paulista de Direito (2013). <span class="highlight-text">Pós-Graduada em Direito Econômico</span> pela Fundação Getúlio Vargas – GVLaw (2010). Bacharel pela <span class="highlight-text">Pontifícia Universidade Católica de São Paulo – PUC-SP</span> (2007).</p>
-
-    <p>Participante do <span class="highlight-text">Programa de Formação em Comércio Internacional da Missão do Brasil junto à Organização Mundial do Comércio em Genebra</span> (2016). Membro Efetivo da <span class="highlight-text">Comissão de Estudos da Concorrência e Regulação Econômica da OAB/SP (CECORE)</span>.</p>
-
-    <p>Com sólida formação acadêmica internacional e nacional, <span class="highlight-text">Dra. Fernanda Dalla Valle Martino</span> é especialista em Direito da Concorrência, combinando expertise técnica com visão estratégica.</p>
+    <p><span class="highlight-text">Mestre em Direito dos Negócios pela Escola de Direito de São Paulo da Fundação Getúlio Vargas (FGV Direito SP) (2024).</span></p>
+    <p><span class="highlight-text">Mestre (LL.M.) em Direito Concorrencial pela King's College London (2016). Pós-Graduada em Direito Internacional pela Escola Paulista de Direito (2013).</span></p>
+    <p><span class="highlight-text">Pós-Graduada em Direito Econômico pela Fundação Getúlio Vargas – GVLaw (2010).  Bacharel pela Pontifícia Universidade Católica de São Paulo – PUC-SP (2007).</span></p>
+    <p>Participante do Programa de Formação em Comércio Internacional da Missão do Brasil junto à Organização Mundial do Comércio em Genebra (2016). Membro Efetivo da Comissão de Estudos da Concorrência e Regulação Econômica da OAB/SP (CECORE).</p>
+    <p>Com sólida formação acadêmica internacional e nacional, Dra. Fernanda Dalla Valle Martino é especialista em Direito da Concorrência, combinando expertise técnica com visão estratégica.</p>
   </div>
 </div>
 
-<!-- RODAPÉ PADRÃO (SEM IMAGEM, 2 COLUNAS) -->
+<!-- RODAPÉ -->
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-block">
@@ -465,7 +447,6 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
     <li><a href="../index.html">Home</a></li>
     <li><a href="../escritorio.html">Escritório</a></li>
     <li><a href="../profissionais.html">Profissionais</a></li>
-    
     <li><a href="../publicacoes.html">Publicações</a></li>
     <li><a href="#">Contato</a></li>
 </ul>

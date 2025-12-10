@@ -1,0 +1,3 @@
+Options -Indexes
+ErrorDocument 403 "Acesso restrito - Página de preview"
+ErrorDocument 404 "Página não encontrada - Esta é uma versão preview"

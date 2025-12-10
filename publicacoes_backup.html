@@ -1,0 +1,956 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicações - Franceschini e Miranda Advogados</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@600;700&display=swap');
+        :root {
+            --vinho: #7b0606;
+            --dourado: #f3a600;
+            --creme: #fdf6ee;
+        }
+        
+        body { 
+            font-family: 'Inter', Arial, sans-serif; 
+            background: var(--creme); 
+            color: #232231; 
+            margin: 0; 
+        }
+        
+        .site-bg {
+            min-height: 100vh;
+        }
+        
+        /* ---------- MARCA D'ÁGUA ---------- */
+        .marca-dagua {
+            position: fixed;
+            right: 30%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45vw;
+            max-width: 400px;
+            height: 45vw;
+            max-height: 400px;
+            opacity: .03;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 22vw;
+            line-height: 1;
+            color: var(--vinho);
+            pointer-events: none;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            white-space: nowrap;
+        }
+        
+        .marca-dagua::before { 
+            content: "F M"; 
+            letter-spacing: -0.03em; 
+        }
+        
+        /* ---------- CABEÇALHO ---------- */
+        .header-fixed { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            width: 100vw; 
+            z-index: 50; 
+            background: var(--vinho); 
+            box-shadow: 0 2px 18px #4b060677;
+        }
+        
+        .topbar { 
+            width: 100%; 
+            display: grid; 
+            grid-template-columns: 1fr auto 1fr; 
+            align-items: center; 
+            padding: 3px 5vw 1px 5vw; 
+            min-height: 78px; 
+            box-sizing: border-box;
+        }
+        
+        .topbar-filler { 
+            min-width: 280px; 
+            visibility: hidden; 
+        }
+        
+        .logo-center-projection { 
+            grid-column: 2 / 3; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 76px;
+        }
+        
+        .logo-img-fm { 
+            max-width: 96%; 
+            width: 350px; 
+            min-width: 180px; 
+            height: auto; 
+            display: block; 
+            margin: 0 auto;
+        }
+        
+        .contact-top { 
+            grid-column: 3 / 4; 
+            justify-self: end; 
+            text-align: right; 
+            min-width: 280px; 
+            font-size: 1.1em; 
+            align-self: center;
+        }
+        
+        .contact-top span {
+            vertical-align: middle;
+            margin-right: 3px;
+            font-size: 1.13em;
+            color: #ffe0e0;
+        }
+        
+        .contact-title, .contact-detail { 
+            color: var(--creme); 
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        
+        .social-links { 
+            margin: 9px 0 2px; 
+            text-align: right; 
+        }
+        
+        .social-links a { 
+            color: #fff; 
+            background: #630303; 
+            border-radius: 50%; 
+            padding: 7px 0; 
+            margin-left: 7px; 
+            width: 38px; 
+            display: inline-block; 
+            text-align: center; 
+            transition: background 0.2s, color 0.2s; 
+            font-size: 1.18em; 
+            box-shadow: 0 2px 10px #20020222; 
+            vertical-align: middle;
+        }
+        
+        .social-links a:hover { 
+            background: #f3a600; 
+            color: #7b0606; 
+        }
+        
+        .header-spacer { 
+            height: 190px;
+        }
+        
+        nav { 
+            background: var(--vinho); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 70px; 
+            padding: 16px 0; 
+            font-size: 1.22em; 
+            font-weight: 600; 
+            letter-spacing: 0.12em; 
+            box-shadow: 0 7px 16px #551a1a23; 
+            width: 100%; 
+            margin: 0 auto; 
+            position: relative; 
+            z-index: 4;
+        }
+        
+        nav a { 
+            text-decoration: none; 
+            color: var(--creme); 
+            transition: 0.2s; 
+            padding-bottom: 3px; 
+            font-size: 1em; 
+            font-family: 'Inter', Arial, sans-serif; 
+            font-weight: 600; 
+            letter-spacing: 0.05em; 
+            display: inline-block;
+        }
+        
+        nav a:hover, nav a.active { 
+            color: #f3a600; 
+            border-bottom: 2px solid #fdeede;
+        }
+
+ 
+        /* ---------- BANNER NOVO ---------- */
+.banner-bg {
+    background: url('https://images.pexels.com/photos/5539854/pexels-photo-5539854.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center/cover no-repeat;
+    min-height: 250px;
+    width: 100vw;
+    border-bottom: 4px solid var(--dourado);
+    filter: grayscale(100%);
+}
+
+        /* ---------- TÍTULO COM SETINHA À ESQUERDA ---------- */
+        .page__title {
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+        }
+        
+        .page__title h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--vinho);
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 0;
+            font-style: italic;
+            letter-spacing: 0.03em;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .page__title h1::before {
+            content: "➞";
+            color: var(--dourado);
+            font-size: 2.5rem;
+            margin-right: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        /* ---------- CONTEÚDO PRINCIPAL ---------- */
+        .publicacoes-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* ---------- SIDEBAR ---------- */
+        .sidebar-publicacoes {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(123, 6, 6, 0.08);
+            height: fit-content;
+            border: 1px solid #e8d9c9;
+        }
+        
+        .sidebar-publicacoes h3 {
+            color: var(--vinho);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-style: italic;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--dourado);
+        }
+        
+        .categoria-lista, .autor-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .categoria-lista li, .autor-lista li {
+            margin-bottom: 10px;
+        }
+        
+        .categoria-lista a, .autor-lista a {
+            color: #444;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: block;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .categoria-lista a:hover, .autor-lista a:hover,
+        .categoria-lista a.filtro-ativo, .autor-lista a.filtro-ativo {
+            background: var(--vinho);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .autor-lista {
+            margin-top: 40px;
+        }
+        
+        /* ---------- LISTA DE ARTIGOS ---------- */
+        .lista-artigos {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .artigo-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            border: 1px solid #e8d9c9;
+            transition: all 0.3s ease;
+        }
+        
+        .artigo-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .artigo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+        
+        .artigo-titulo {
+            color: var(--vinho);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0;
+            flex: 1;
+            line-height: 1.3;
+        }
+        
+        .artigo-categoria {
+            background: var(--dourado);
+            color: var(--vinho);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .artigo-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .artigo-resumo {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .btn-ler-artigo {
+            background: transparent;
+            border: 2px solid var(--vinho);
+            color: var(--vinho);
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-ler-artigo:hover {
+            background: var(--vinho);
+            color: white;
+        }
+        
+        /* ---------- MODAL ---------- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+        
+        .modal-conteudo {
+            background: white;
+            margin: 2% auto;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .modal-header {
+            background: var(--vinho);
+            color: white;
+            padding: 25px 30px;
+            position: relative;
+        }
+        
+        .modal-titulo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            margin: 0 0 10px 0;
+            padding-right: 40px;
+            font-weight: 700;
+        }
+        
+        .modal-meta {
+            color: #ffe0e0;
+            font-size: 0.95rem;
+        }
+        
+        .modal-autor {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .modal-data {
+            display: block;
+        }
+        
+        .fechar-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+        
+        .modal-body {
+            padding: 30px;
+            max-height: calc(90vh - 180px);
+            overflow-y: auto;
+            line-height: 1.7;
+        }
+        
+        .compartilhar-botoes {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e8d9c9;
+        }
+        
+        .btn-compartilhar {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #444;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-compartilhar:hover {
+            background: var(--vinho);
+            color: white;
+            border-color: var(--vinho);
+        }
+        
+        /* ---------- RODAPÉ PADRÃO ---------- */
+        .footer { 
+            background: var(--vinho); 
+            color: var(--creme); 
+            width: 100vw; 
+            margin-left: -50vw; 
+            left: 50%; 
+            padding: 48px 0 32px 0; 
+            text-align: center; 
+            position: relative; 
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 86px;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .footer-block {
+            min-width: 220px;
+            text-align: left;
+        }
+        
+        .footer-block-title {
+            font-family: 'Montserrat', sans-serif;
+            color: #f3a600;
+            font-weight: bold;
+            font-size: 1.09em;
+            margin-bottom: 13px;
+            letter-spacing: .16em;
+        }
+        
+        .footer-menu {
+            padding: 0;
+            margin: 0 0 10px 0;
+            list-style: none;
+        }
+        
+        .footer-menu li {
+            margin-bottom: 6px;
+            display: inline-block;
+            margin-right: 11px;
+        }
+        
+        .footer-menu a {
+            color: var(--creme);
+            text-decoration: none;
+            font-size: 1.05em;
+            letter-spacing: .015em;
+            border-bottom: 1px dotted #f3a60033;
+            padding: 0 4px;
+            transition: color .2s;
+        }
+        
+        .footer-menu a:hover {
+            color: #f3a600;
+        }
+        
+        .footer-contact {
+            font-size: 1em;
+            margin-top: 6px;
+        }
+        
+        .footer-contact i {
+            margin-right: 3px;
+            color: #f3a600;
+            font-size: 1.18em;
+            vertical-align: middle;
+        }
+        
+        .footer-contact a {
+            color: var(--creme) !important;
+            text-decoration: underline;
+        }
+
+        /* ---------- MOBILE ---------- */
+        @media (max-width: 768px) {
+            .topbar { 
+                grid-template-columns: 1fr; 
+                padding: 8px 4vw 6px; 
+                min-height: auto; 
+                gap: 8px; 
+            }
+            
+            .topbar-filler { 
+                display: none; 
+            }
+            
+            .logo-center-projection { 
+                grid-column: 1 / 2; 
+                justify-self: center; 
+                margin: 6px 0 4px; 
+            }
+            
+            .contact-top { 
+                grid-column: 1 / 2; 
+                justify-self: center; 
+                text-align: center; 
+                min-width: 100%; 
+                margin-top: 6px; 
+            }
+            
+            .contact-detail { 
+                display: inline-block; 
+                margin: 0 8px; 
+            }
+            
+            .social-links { 
+                margin-top: 6px; 
+            }
+            
+            nav { 
+                gap: 3vw; 
+                font-size: 1.05em; 
+                padding: 12px 2vw; 
+                flex-wrap: wrap; 
+            }
+            
+            .publicacoes-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+            
+            .sidebar-publicacoes {
+                order: 2;
+            }
+            
+            .artigo-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .artigo-categoria {
+                align-self: flex-start;
+            }
+            
+            .artigo-meta {
+                flex-direction: column;
+                gap: 5px;
+                align-items: flex-start;
+            }
+            
+            .page__title h1 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- MARCA D'ÁGUA -->
+    <div class="marca-dagua"></div>
+
+    <div class="site-bg">
+        <!-- CABEÇALHO -->
+        <div class="header-fixed">
+            <div class="topbar">
+                <div class="topbar-filler"></div>
+                <div class="logo-center-projection">
+                    <img src="logofm2.png" class="logo-img-fm" alt="Franceschini e Miranda Advogados"/>
+                </div>
+                <div class="contact-top">
+                    <div class="contact-title">CONTATO</div>
+                    <div class="contact-detail"><span>📞</span> +55 (011) 3095-2566</div>
+                    <div class="contact-detail"><span>✉️</span> adv-fm@fm-advogados.com.br</div>
+                    <div class="social-links">
+                        <a href="https://instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/" target="_blank" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <nav>
+    <a href="javascript:void(0)" onclick="window.location.href='index.html'">Home</a>
+    <a href="javascript:void(0)" onclick="window.location.href='escritorio.html'">Escritório</a>
+    <a href="javascript:void(0)" onclick="window.location.href='profissionais.html'">Profissionais</a>
+    <a href="javascript:void(0)" onclick="window.location.href='publicacoes.html'" class="active">Publicações</a>
+    <a href="contato.html">Contato</a>
+</nav>
+        </div>
+        <div class="header-spacer"></div>
+
+        <!-- BANNER NOVO -->
+        <section class="banner-bg"></section>
+
+        <!-- TÍTULO COM SETINHA À ESQUERDA -->
+        <section class="page__title">
+            <div class="container">
+                <h1>Publicações</h1>
+            </div>
+        </section>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <div class="publicacoes-container">
+            
+            <!-- SIDEBAR -->
+            <aside class="sidebar-publicacoes">
+                <h3>Categorias</h3>
+                <ul class="categoria-lista">
+                    <li><a href="#" data-categoria="todos" class="filtro-ativo">Todos os Artigos</a></li>
+                    <li><a href="#" data-categoria="concorrencia">Direito da Concorrência</a></li>
+                    <li><a href="#" data-categoria="trabalhista">Direito Trabalhista</a></li>
+                    <li><a href="#" data-categoria="penal">Direito Penal Empresarial</a></li>
+                    <li><a href="#" data-categoria="administrativo">Direito Administrativo</a></li>
+                </ul>
+                
+                <h3>Autores</h3>
+                <ul class="autor-lista">
+                    <li><a href="#" data-autor="todos" class="filtro-ativo">Todos os Autores</a></li>
+                    <li><a href="#" data-autor="franceschini">Dr. José Inácio Franceschini</a></li>
+                    <li><a href="#" data-autor="faleiros">Dr. Fernando Eduardo Faleiros</a></li>
+                    <li><a href="#" data-autor="escritorio">Franceschini e Miranda Advogados</a></li>
+                </ul>
+            </aside>
+
+            <!-- LISTA DE ARTIGOS -->
+            <main class="lista-artigos" id="lista-artigos">
+                <!-- ARTIGOS CARREGADOS VIA JAVASCRIPT -->
+            </main>
+        </div>
+
+        <!-- RODAPÉ PADRÃO -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-block">
+                    <div class="footer-block-title">ACESSO RÁPIDO</div>
+                    <ul class="footer-menu">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="escritorio.html">Escritório</a></li>
+  <li><a href="profissionais.html">Profissionais</a></li>
+  <li><a href="publicacoes.html" class="active">Publicações</a></li>
+  <li><a href="contato.html">Contato</a></li>
+</ul>
+                </div>
+                <div class="footer-block">
+                    <div class="footer-block-title">SÃO PAULO</div>
+                    <div class="footer-contact">
+                        <i class="fas fa-phone-alt"></i>
+                        <a href="tel:+551130952566">+55 (011) 3095-2566</a>
+                    </div>
+                    <div class="footer-contact">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:adv-fm@fm-advogados.com.br">adv-fm@fm-advogados.com.br</a>
+                    </div>
+                </div>
+            </div>
+                <!-- Desenvolvimento WLTI -->
+    <div style="margin: 25px 0 15px 0; padding-top: 20px; border-top: 1px solid rgba(243, 166, 0, 0.2); text-align: center; font-size: 0.85em; opacity: 0.8;">
+        <div style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 6px; background: rgba(123, 6, 6, 0.3);">
+            <span style="color: #f3a600;">Desenvolvido por</span>
+            <img src="wlti.png" alt="WLTI" style="height: 24px; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(300deg); opacity: 0.9;">
+            <span style="color: #fdf6ee;">WLTI Soluções em TI</span>
+        </div>
+    </div>
+
+
+
+
+            <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2026 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- MODAL PARA LEITURA -->
+    <div id="modal-artigo" class="modal">
+        <div class="modal-conteudo">
+            <div class="modal-header">
+                <h2 class="modal-titulo" id="modal-titulo"></h2>
+                <div class="modal-meta">
+                    <span class="modal-autor" id="modal-autor"></span>
+                    <span class="modal-data" id="modal-data"></span>
+                </div>
+                <button class="fechar-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- CONTEÚDO CARREGADO VIA JAVASCRIPT -->
+            </div>
+            <div class="compartilhar-botoes">
+                <a href="#" class="btn-compartilhar" onclick="compartilharFacebook()">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a href="#" class="btn-compartilhar" onclick="compartilharTwitter()">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
+                <a href="#" class="btn-compartilhar" onclick="compartilharLinkedIn()">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn
+                </a>
+                <a href="#" class="btn-compartilhar" onclick="compartilharWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DADOS DAS PUBLICAÇÕES
+        const publicacoes = [
+            {
+                id: 1,
+                titulo: "MOMENTOS DIFÍCEIS PARA O CULTOR DO DIREITO",
+                data: "14 de Outubro de 2022",
+                autor: "Dr. José Inácio Franceschini",
+                categoria: "concorrencia",
+                resumo: "Por meio do OFÍCIO 8333/GAB-PRES/CADE, de 13.10.22, o Presidente do Cade, ALEXANDRE CORDEIRO MACEDO, pelo qual 'determinou' à Superintendência-Geral que promovesse a abertura de Inquérito Administrativo para apuração de responsabilidade dos institutos de pesquisa eleitoral...",
+                conteudo: `
+                    <p><strong>José Inácio Gonzaga Franceschini</strong></p>
+                    <p>Por meio do OFÍCIO 8333/GAB-PRES/CADE, de 13.10.22, o Presidente do Cade, ALEXANDRE CORDEIRO MACEDO, pelo qual "determinou" à Superintendência-Geral que promovesse a abertura de Inquérito Administrativo para apuração de responsabilidade dos institutos de pesquisa eleitoral, IPEC, DATAFOLHA e IPESPE, por ação coordenada e "regulação de mercado e dos consumidores".</p>
+                `
+            },
+            {
+                id: 2,
+                titulo: "CADE VERSUS JUSTIÇA DO TRABALHO - USURPAÇÃO DE COMPETÊNCIA - SINDICATOS EM XEQUE",
+                data: "15 de Novembro de 2023", 
+                autor: "Dr. Fernando Eduardo Faleiros",
+                categoria: "trabalhista",
+                resumo: "Tendo em vista a notícia de abertura de investigação e processo administrativo para a apuração de infração à ordem econômica, tendo por lastro a troca de informações tidas como 'comercialmente sensíveis', por setores de RH, nos termos da Nota Técnica 36/2021 – CADE...",
+                conteudo: `
+                    <p>Tendo em vista a notícia de abertura de investigação e processo administrativo para a apuração de infração à ordem econômica, tendo por lastro a troca de informações tidas como "comercialmente sensíveis", por setores de RH, nos termos da Nota Técnica 36/2021 – CADE, algumas reflexões fazem-se necessárias.</p>
+                `
+            }
+        ];
+
+        // FUNCIONALIDADES
+        document.addEventListener('DOMContentLoaded', function() {
+            const listaArtigos = document.getElementById('lista-artigos');
+            const modal = document.getElementById('modal-artigo');
+            const modalTitulo = document.getElementById('modal-titulo');
+            const modalAutor = document.getElementById('modal-autor');
+            const modalData = document.getElementById('modal-data');
+            const modalBody = document.getElementById('modal-body');
+            const fecharModal = document.querySelector('.fechar-modal');
+            
+            let filtroCategoriaAtual = 'todos';
+            let filtroAutorAtual = 'todos';
+            let artigoAtual = null;
+
+            // CARREGAR ARTIGOS
+            function carregarArtigos() {
+                listaArtigos.innerHTML = '';
+                
+                const artigosFiltrados = publicacoes.filter(artigo => {
+                    const categoriaMatch = filtroCategoriaAtual === 'todos' || artigo.categoria === filtroCategoriaAtual;
+                    const autorMatch = filtroAutorAtual === 'todos' || 
+                                     (filtroAutorAtual === 'franceschini' && artigo.autor.includes('Franceschini')) ||
+                                     (filtroAutorAtual === 'faleiros' && artigo.autor.includes('Faleiros')) ||
+                                     (filtroAutorAtual === 'escritorio' && artigo.autor.includes('Franceschini e Miranda'));
+                    
+                    return categoriaMatch && autorMatch;
+                });
+
+                if (artigosFiltrados.length === 0) {
+                    listaArtigos.innerHTML = '<p style="text-align: center; color: #666; font-style: italic;">Nenhuma publicação encontrada para os filtros selecionados.</p>';
+                    return;
+                }
+
+                artigosFiltrados.forEach(artigo => {
+                    const artigoElement = document.createElement('article');
+                    artigoElement.className = 'artigo-card';
+                    artigoElement.setAttribute('data-categoria', artigo.categoria);
+                    artigoElement.setAttribute('data-autor', artigo.autor.toLowerCase().includes('faleiros') ? 'faleiros' : 
+                                              artigo.autor.toLowerCase().includes('franceschini') ? 'franceschini' : 'escritorio');
+                    
+                    artigoElement.innerHTML = `
+                        <div class="artigo-header">
+                            <h2 class="artigo-titulo">${artigo.titulo}</h2>
+                            <span class="artigo-categoria">${obterNomeCategoria(artigo.categoria)}</span>
+                        </div>
+                        
+                        <div class="artigo-meta">
+                            <span class="artigo-data">${artigo.data}</span>
+                            <span class="artigo-autor">${artigo.autor}</span>
+                        </div>
+                        
+                        <p class="artigo-resumo">${artigo.resumo}</p>
+                        
+                        <button class="btn-ler-artigo" data-artigo="${artigo.id}">
+                            Ler Artigo Completo
+                        </button>
+                    `;
+                    
+                    listaArtigos.appendChild(artigoElement);
+                });
+
+                // Re-atachar eventos
+                document.querySelectorAll('.btn-ler-artigo').forEach(botao => {
+                    botao.addEventListener('click', function() {
+                        const artigoId = parseInt(this.getAttribute('data-artigo'));
+                        artigoAtual = publicacoes.find(p => p.id === artigoId);
+                        
+                        modalTitulo.textContent = artigoAtual.titulo;
+                        modalAutor.textContent = artigoAtual.autor;
+                        modalData.textContent = artigoAtual.data;
+                        modalBody.innerHTML = artigoAtual.conteudo;
+                        modal.style.display = 'block';
+                        document.body.style.overflow = 'hidden';
+                    });
+                });
+            }
+
+            function obterNomeCategoria(categoria) {
+                const categorias = {
+                    'concorrencia': 'Direito da Concorrência',
+                    'trabalhista': 'Direito Trabalhista',
+                    'penal': 'Direito Penal Empresarial',
+                    'administrativo': 'Direito Administrativo'
+                };
+                return categorias[categoria] || categoria;
+            }
+
+            // FILTROS
+            document.querySelectorAll('.categoria-lista a, .autor-lista a').forEach(filtro => {
+                filtro.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const grupo = this.parentElement.parentElement;
+                    grupo.querySelectorAll('a').forEach(f => f.classList.remove('filtro-ativo'));
+                    this.classList.add('filtro-ativo');
+                    
+                    if (this.parentElement.parentElement.classList.contains('categoria-lista')) {
+                        filtroCategoriaAtual = this.getAttribute('data-categoria');
+                    } else {
+                        filtroAutorAtual = this.getAttribute('data-autor');
+                    }
+                    
+                    carregarArtigos();
+                });
+            });
+
+            // MODAL
+            fecharModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // COMPARTILHAMENTO
+            window.compartilharFacebook = function() {
+                const url = encodeURIComponent(window.location.href);
+                const titulo = encodeURIComponent(artigoAtual.titulo);
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${titulo}`, '_blank');
+                return false;
+            };
+
+            window.compartilharTwitter = function() {
+                const url = encodeURIComponent(window.location.href);
+                const texto = encodeURIComponent(artigoAtual.titulo);
+                window.open(`https://twitter.com/intent/tweet?url=${url}&text=${texto}`, '_blank');
+                return false;
+            };
+
+            window.compartilharLinkedIn = function() {
+                const url = encodeURIComponent(window.location.href);
+                window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+                return false;
+            };
+
+            window.compartilharWhatsApp = function() {
+                const texto = encodeURIComponent(`${artigoAtual.titulo} - ${window.location.href}`);
+                window.open(`https://wa.me/?text=${texto}`, '_blank');
+                return false;
+            };
+
+            // INICIALIZAR
+            carregarArtigos();
+        });
+    </script>
+</body>
+</html>
+
+
+
+

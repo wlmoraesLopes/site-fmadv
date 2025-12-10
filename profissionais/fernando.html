@@ -64,7 +64,7 @@ nav a {
 }
 nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
 
-/* ---------- BANNER PERFIL (MODELO ADVOGADOS) ---------- */
+/* ---------- BANNER PERFIL ---------- */
 .profile-banner {
   margin-top: 190px;
   height: 220px;
@@ -176,9 +176,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   background: linear-gradient(90deg, transparent, rgba(243, 166, 0, 0.3), transparent);
   transition: left 0.5s ease;
 }
-.info-chip:hover::before {
-  left: 100%;
-}
+.info-chip:hover::before { left: 100%; }
 .info-chip:hover {
   background: var(--ouro);
   color: var(--vinho);
@@ -260,7 +258,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   font-style: normal;
 }
 
-/* ---------- RODAPÉ (SEM IMAGEM) ---------- */
+/* ---------- RODAPÉ ---------- */
 .footer { 
   background: var(--vinho); 
   color: var(--creme); 
@@ -282,7 +280,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   margin-right: auto;
 }
 .footer-block { min-width: 220px; text-align: left; }
-.footer-logo { display: none; } /* ← remove o selo */
+.footer-logo { display: none; }
 .footer-block-title { 
   font-family: 'Montserrat', sans-serif; color: #f3a600; 
   font-weight: bold; font-size: 1.09em; margin-bottom: 13px; letter-spacing: .16em; 
@@ -320,23 +318,8 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   color: var(--vinho);
   transform: translateX(-5px);
 }
-.footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 86px;
-  align-items: flex-start;
-  margin-bottom: 12px;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.footer-block {
-  min-width: 220px;
-  text-align: left;
-}
 
-/* ---------- MOBILE FIXES – MESMO DO INDEX ---------- */
+/* ---------- MOBILE ---------- */
 @media (max-width: 768px) {
   .topbar {
     grid-template-columns: 1fr auto;
@@ -395,7 +378,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   <i class="fas fa-arrow-left"></i> Voltar aos Profissionais
 </a>
 
-<!-- Cabeçalho fixo – mesmo do index -->
+<!-- Cabeçalho fixo -->
 <div class="header-fixed">
   <div class="topbar">
     <div class="topbar-filler"></div>
@@ -417,12 +400,11 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
     <a href="../index.html">Home</a>
     <a href="../escritorio.html">Escritório</a>
     <a href="../profissionais.html">Profissionais</a>
-       <a href="../publicacoes.html">Publicações</a>
+    <a href="../publicacoes.html">Publicações</a>
     <a href="#">Contato</a>
-</nav>
-</div>
+</nav></div>
 
-<!-- BANNER PERFIL (MODELO ADVOGADOS) -->
+<!-- BANNER PERFIL -->
 <section class="profile-banner">
   <div class="profile-photo-wrapper">
     <img src="fernando.jpg" alt="Fernando Eduardo Faleiros Ferreira" class="profile-photo-large">
@@ -448,19 +430,22 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
 <!-- CARD ELEGANTE -->
 <div class="elegant-card">
   <div class="card-content-elegant">
-    <p>Graduado pelas <span class="highlight-text">Faculdades Metropolitanas Unidas em São Paulo</span>, em 1989. Membro da Associação dos Advogados de São Paulo e da Associação dos Advogados Trabalhistas. Inscrito na OAB-SP em 1989.</p>
-
-    <p>Integrou o Programa de Educação Continuada junto à Fundação Getúlio Vargas-SP, onde cursou Direito do Trabalho Empresarial. <span class="highlight-text">Dr. Fernando Eduardo Faleiros Ferreira</span> é especialista em Direito Trabalhista, atuando na assessoria completa de empresas nos mais variados setores da economia.</p>
+    <p>Graduado pelas Faculdades Metropolitanas Unidas em São Paulo, em 1988.</p>
+    <p><span class="highlight-text">Membro da Associação dos Advogados de São Paulo e da Associação dos Advogados Trabalhistas. Inscrito na OAB-SP em 1989.</span></p>
+    <p><span class="highlight-text">Integrou o Programa de Educação Continuada junto à Fundação Getúlio Vargas-SP, onde cursou Direito do Trabalho Empresarial.</span></p>
+    <p>Dr. Fernando Eduardo Faleiros Ferreira é especialista em Direito Trabalhista, atuando na assessoria completa de empresas nos mais variados setores da economia.</p>
   </div>
 </div>
 
-<!-- RODAPÉ PADRÃO (SEM IMAGEM, 2 COLUNAS) -->
+<!-- RODAPÉ -->
 <footer class="footer">
-  <ul class="footer-menu">
+  <div class="footer-content">
+    <div class="footer-block">
+      <div class="footer-block-title">ACESSO RÁPIDO</div>
+      <ul class="footer-menu">
     <li><a href="../index.html">Home</a></li>
     <li><a href="../escritorio.html">Escritório</a></li>
     <li><a href="../profissionais.html">Profissionais</a></li>
-    
     <li><a href="../publicacoes.html">Publicações</a></li>
     <li><a href="#">Contato</a></li>
 </ul>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Franceschini e Miranda Advogados</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* VARIÁVEIS DE COR */
+:root {
+  --vinho: #7b0606;
+  --dourado: #c59a3c;
+  --bg-claro: #f9f9f9;
+  --bg-cinza: #f5f5f5;
+  --bg-rodape: #f0f0f0;
+  --texto-escuro: #333333;
+  --texto-medio: #555555;
+  --texto-claro: #777777;
+  --borda-suave: #e0e0e0;
+}
+
+/* RESET E BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--bg-claro);
+  color: var(--texto-escuro);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* CABEÇALHO */
+.header {
+  background: white;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+/* MENU - FONTE OPEN SANS */
+.nav-menu {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-menu a {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--texto-escuro);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: var(--vinho);
+}
+
+.nav-menu a.active {
+  color: var(--vinho);
+}
+
+.nav-menu a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--dourado);
+}
+
+.header-contact {
+  font-family: 'Open Sans', sans-serif;
+  text-align: right;
+}
+
+.header-contact .phone {
+  font-weight: 700;
+  color: var(--vinho);
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.header-contact .email {
+  font-size: 14px;
+  color: var(--texto-medio);
+}
+
+/* BANNER CLARO */
+.hero-banner {
+  background: linear-gradient(135deg, #ffffff 0%, var(--bg-cinza) 100%);
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(123, 6, 6, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(195, 154, 60, 0.03) 0%, transparent 50%);
+}
+
+.hero-content {
+  max-width: 800px;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--vinho);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  color: var(--texto-medio);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* SEÇÃO DE SERVIÇOS */
+.services-section {
+  padding: 80px 0;
+  background: white;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  color: var(--vinho);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--dourado);
+}
+
+.section-title p {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--texto-medio);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* GRID DE SERVIÇOS MODERNO */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.service-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid var(--borda-suave);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  border-color: var(--dourado);
+}
+
+/* ENFEITE MODERNO NO LUGAR DA IMAGEM */
+.service-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.service-icon::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--vinho) 0%, var(--dourado) 100%);
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.service-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--vinho) 0%, var(--dourado) 100%);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+/* LISTA DE SERVIÇOS ESTILIZADA */
+.service-list {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.service-list li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  color: var(--texto-medio);
+  line-height: 1.6;
+}
+
+.service-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--dourado);
+  font-weight: bold;
+}
+
+.service-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  color: var(--vinho);
+  margin-bottom: 15px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.service-card h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--vinho) 0%, var(--dourado) 100%);
+}
+
+/* BANNER DE DIFERENCIAIS */
+.differentials-banner {
+  background: linear-gradient(135deg, var(--bg-cinza) 0%, #ffffff 100%);
+  padding: 60px 0;
+  margin: 80px 0;
+}
+
+.differentials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.differential-item {
+  text-align: center;
+  padding: 30px;
+}
+
+.differential-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--vinho) 0%, var(--dourado) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+}
+
+.differential-item h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  color: var(--vinho);
+  margin-bottom: 10px;
+}
+
+.differential-item p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--texto-medio);
+}
+
+/* RODAPÉ CLARO */
+.footer {
+  background: var(--bg-rodape);
+  color: var(--texto-escuro);
+  padding: 60px 0 30px;
+  margin-top: 80px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 50px;
+  margin-bottom: 40px;
+}
+
+.footer-logo img {
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.footer-logo p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--texto-medio);
+  line-height: 1.8;
+}
+
+.footer-column h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: var(--vinho);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  color: var(--texto-medio);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--vinho);
+}
+
+.footer-contact {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.footer-contact p {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--texto-medio);
+}
+
+.footer-contact i {
+  color: var(--dourado);
+  width: 20px;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--borda-suave);
+  padding-top: 30px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--texto-claro);
+  margin-bottom: 10px;
+}
+
+.developer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: rgba(123, 6, 6, 0.1);
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+.developer-badge span {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--vinho);
+}
+
+.developer-badge img {
+  height: 20px;
+  opacity: 0.8;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 36px;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  .nav-menu {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .hero-banner {
+    min-height: 300px;
+    margin-top: 140px;
+  }
+  
+  .hero-content h1 {
+    font-size: 28px;
+  }
+  
+  .section-title h2 {
+    font-size: 28px;
+  }
+  
+  .service-card {
+    padding: 30px 20px;
+  }
+  
+  .footer-content {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-content h1 {
+    font-size: 24px;
+  }
+  
+  .service-card {
+    padding: 25px 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- CABEÇALHO -->
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <img src="logofm2.png" alt="Franceschini e Miranda Advogados">
+      </div>
+      
+      <nav class="nav-menu">
+        <a href="index.html" class="active">Home</a>
+        <a href="escritorio.html">Escritório</a>
+        <a href="profissionais.html">Profissionais</a>
+        <a href="publicacoes.html">Publicações</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+      
+      <div class="header-contact">
+        <div class="phone">+55 (011) 3095-2566</div>
+        <div class="email">adv-fm@fm-advogados.com.br</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- BANNER CLARO -->
+<section class="hero-banner">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Excelência Jurídica com Tradição e Inovação</h1>
+      <p>Atuamos com compromisso e expertise nas mais diversas áreas do Direito, oferecendo soluções jurídicas personalizadas para cada cliente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="services-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Áreas de Atuação</h2>
+      <p>Nossa equipe de advogados especializados está preparada para atender às mais complexas demandas jurídicas</p>
+    </div>
+    
+    <div class="services-grid">
+      
+      <!-- SERVIÇO 1 -->
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Direito da Concorrência</h3>
+        <ul class="service-list">
+          <li>Notificação de atos de concentração</li>
+          <li>Defesa em processos administrativos e judiciais</li>
+          <li>Programas de compliance e treinamento</li>
+          <li>Negociação de acordos de leniência</li>
+          <li>Avaliação de risco de práticas comerciais</li>
+          <li>Defesa em processos antidumping</li>
+          <li>Ações judiciais de reparação de dano concorrencial</li>
+        </ul>
+      </div>
+      
+      <!-- SERVIÇO 2 -->
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Direito Societário</h3>
+        <ul class="service-list">
+          <li>Constituição de sociedades e Joint Ventures</li>
+          <li>Negociação e elaboração de acordos de acionistas</li>
+          <li>Reestruturações societárias</li>
+          <li>Representação legal de sócios estrangeiros</li>
+          <li>Participação em assembleias e reuniões</li>
+          <li>Realização de auditoria legal (due diligence)</li>
+        </ul>
+      </div>
+      
+      <!-- SERVIÇO 3 -->
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Direito Civil e Comercial</h3>
+        <ul class="service-list">
+          <li>Litígios empresariais e cíveis</li>
+          <li>Consultoria LGPD e proteção de dados</li>
+          <li>Ações de responsabilidade civil</li>
+          <li>Disputas societárias</li>
+          <li>Ações perante PROCON e órgãos de defesa</li>
+          <li>Elaboração de pareceres legais</li>
+          <li>Contratos nacionais e internacionais</li>
+        </ul>
+      </div>
+      
+      <!-- SERVIÇO 4 -->
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Direito Trabalhista</h3>
+        <ul class="service-list">
+          <li>Aconselhamento para Empresas</li>
+          <li>Soluções preventivas e políticas internas</li>
+          <li>Consultoria em plataformas digitais</li>
+          <li>Contratações e demissões</li>
+          <li>Auditoria trabalhista e compliance</li>
+          <li>Defesa em procedimentos administrativos</li>
+        </ul>
+      </div>
+      
+      <!-- SERVIÇO 5 -->
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Direito Penal Empresarial</h3>
+        <ul class="service-list">
+          <li>Assessoria consultiva e preventiva</li>
+          <li>Assistência em Inquéritos policiais</li>
+          <li>Processos criminais e administrativos</li>
+          <li>Defesa e representação de empresas</li>
+          <li>Assistência legal em crimes corporativos</li>
+        </ul>
+      </div>
+      
+      <!-- SERVIÇO 6 -->
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Direito Administrativo</h3>
+        <ul class="service-list">
+          <li>Assessoria consultiva e jurídica</li>
+          <li>Atuação em processos administrativos</li>
+          <li>Atendimento em órgãos públicos</li>
+          <li>Agências Reguladoras e Tribunais de Contas</li>
+          <li>Licitações e concorrências públicas</li>
+          <li>Contratos administrativos</li>
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="differentials-banner">
+  <div class="container">
+    <div class="differentials-grid">
+      <div class="differential-item">
+        <div class="differential-icon">
+          <i class="fas fa-award"></i>
+        </div>
+        <h4>Excelência</h4>
+        <p>Compromisso com a mais alta qualidade jurídica</p>
+      </div>
+      
+      <div class="differential-item">
+        <div class="differential-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h4>Equipe Especializada</h4>
+        <p>Profissionais com vasta experiência em suas áreas</p>
+      </div>
+      
+      <div class="differential-item">
+        <div class="differential-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h4>Confiança</h4>
+        <p>Relacionamento baseado em transparência e ética</p>
+      </div>
+      
+      <div class="differential-item">
+        <div class="differential-icon">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <h4>Inovação</h4>
+        <p>Soluções jurídicas modernas e eficientes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RODAPÉ CLARO -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="logofm2.png" alt="Franceschini e Miranda">
+        <p>Excelência jurídica com tradição e inovação. Atuamos com compromisso e expertise nas mais diversas áreas do Direito.</p>
+      </div>
+      
+      <div class="footer-column">
+        <h4>Navegação</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="escritorio.html">Escritório</a></li>
+          <li><a href="profissionais.html">Profissionais</a></li>
+          <li><a href="publicacoes.html">Publicações</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h4>Contato</h4>
+        <div class="footer-contact">
+          <p><i class="fas fa-phone"></i> +55 (011) 3095-2566</p>
+          <p><i class="fas fa-envelope"></i> adv-fm@fm-advogados.com.br</p>
+          <p><i class="fas fa-map-marker-alt"></i> São Paulo - SP</p>
+        </div>
+        
+        <div class="social-links" style="margin-top: 20px;">
+          <a href="#" style="margin-right: 15px; color: var(--vinho);"><i class="fab fa-linkedin"></i></a>
+          <a href="#" style="margin-right: 15px; color: var(--vinho);"><i class="fab fa-instagram"></i></a>
+          <a href="#" style="color: var(--vinho);"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
+      
+      <div class="developer-badge">
+        <span>Desenvolvido por</span>
+        <img src="wlti.png" alt="WLTI">
+        <span>WLTI Soluções em TI</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Efeito de hover nos cards
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('mouseenter', function() {
+    this.style.transform = 'translateY(-10px)';
+  });
+  
+  card.addEventListener('mouseleave', function() {
+    this.style.transform = 'translateY(0)';
+  });
+});
+
+// Menu ativo
+document.querySelectorAll('.nav-menu a').forEach(link => {
+  link.addEventListener('click', function() {
+    document.querySelectorAll('.nav-menu a').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
