@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Navega para o diretório raiz do projeto (para garantir que estamos no lugar certo)
+# Navega para o diretório raiz do projeto
 cd "$(dirname "$0")"
 
 # Define a mensagem de commit
@@ -25,8 +25,15 @@ echo ""
 
 # 3. Envia as alterações para o GitHub e aciona o Vercel
 echo "🚀 Enviando para o GitHub e publicando no Vercel..."
-git push
 
-echo ""
-echo "🎉 Publicação completa! O Vercel já está atualizando o site."
+# MUDANÇA AQUI: especifica origin e main
+git push origin main
 
+# Verifica se o push foi bem-sucedido
+if [ $? -eq 0 ]; then
+    echo ""
+    echo "🎉 Publicação completa! O Vercel já está atualizando o site."
+else
+    echo ""
+    echo "❌ Erro ao fazer push. Verifique suas credenciais."
+fi
