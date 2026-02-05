@@ -321,7 +321,7 @@ const noticias=[{titulo:"Informe de publicação IEL Competition Law in Brazil -
 const listaNoticias=document.getElementById('listaNoticias');
 listaNoticias.innerHTML='';
 noticias.forEach((n,i)=>{const li=document.createElement('li');if(i===0)li.classList.add('noticia-active');li.innerHTML=`<a href="noticia${n.numero}.html">${n.titulo}</a><span class="noticia-autor">${n.autor}</span>`;listaNoticias.appendChild(li)});
-let atual=0,duracao=4000,intervaloId;
+let atual=0,duracao=2500,intervaloId;
 const itens=listaNoticias.querySelectorAll('li');
 function mostrarNoticia(indice){itens.forEach((item,i)=>item.classList.toggle('noticia-active',i===indice))}
 function proximaNoticia(){atual=(atual+1)%itens.length;mostrarNoticia(atual)}
