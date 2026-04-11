@@ -12,9 +12,11 @@
 <meta charset="UTF-8">
 <title>Franceschini e Miranda Advogados</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@600;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@600;700&display=swap');
 :root{--vinho:#7b0606;--dourado:#f3a600;--creme:#fdf6ee;--banner-min:330px}
 body{font-family:'Inter',Arial,sans-serif;background:var(--creme);color:#232231;margin:0}
 .marca-dagua{position:fixed;right:30%;top:50%;transform:translateY(-50%);width:45vw;max-width:400px;height:45vw;max-height:400px;opacity:.03;font-family:'Montserrat',sans-serif;font-weight:900;font-size:22vw;line-height:1;color:var(--vinho);pointer-events:none;z-index:9999;display:flex;align-items:center;justify-content:flex-start;white-space:nowrap}
@@ -146,7 +148,7 @@ nav a:hover,nav a.active{color:#f3a600;border-bottom:2px solid #fdeede}
 <div class="centralizador-galeria">
 <section class="galeria-pares">
 <div class="linha-par">
-<div class="galeria-img-card"><img src="imagens-fmadv/amb15.png" alt="ambiente 5"></div>
+<div class="galeria-img-card"><img src="imagens-fmadv/amb15.png" alt="Sala do escritório Franceschini e Miranda Advogados" loading="lazy"></div>
 <div class="separator-vertical"></div>
 <div class="galeria-text">
 <div class="galeria-titulo">Direito da Concorrência</div>
@@ -162,7 +164,7 @@ nav a:hover,nav a.active{color:#f3a600;border-bottom:2px solid #fdeede}
 </div>
 </div>
 <div class="linha-par">
-<div class="galeria-img-card"><img src="imagens-fmadv/amb16.png" alt="ambiente 3"></div>
+<div class="galeria-img-card"><img src="imagens-fmadv/amb16.png" alt="Área de trabalho do escritório Franceschini e Miranda" loading="lazy"></div>
 <div class="separator-vertical"></div>
 <div class="galeria-text">
 <div class="galeria-titulo">Direito Societário</div>
@@ -178,7 +180,7 @@ nav a:hover,nav a.active{color:#f3a600;border-bottom:2px solid #fdeede}
 </div>
 </div>
 <div class="linha-par">
-<div class="galeria-img-card"><img src="imagens-fmadv/amb12.png" alt="ambiente 7"></div>
+<div class="galeria-img-card"><img src="imagens-fmadv/amb12.png" alt="Recepção do escritório Franceschini e Miranda" loading="lazy"></div>
 <div class="separator-vertical"></div>
 <div class="galeria-text">
 <div class="galeria-titulo">Direitos Civil, Comercial e do Consumidor</div>
@@ -196,7 +198,7 @@ nav a:hover,nav a.active{color:#f3a600;border-bottom:2px solid #fdeede}
 </div>
 </div>
 <div class="linha-par">
-<div class="galeria-img-card"><img src="imagens-fmadv/livro.png" alt="ambiente 5"></div>
+<div class="galeria-img-card"><img src="imagens-fmadv/livro.png" alt="Legislação trabalhista e livros jurídicos" loading="lazy"></div>
 <div class="separator-vertical"></div>
 <div class="galeria-text">
 <div class="galeria-titulo">Direito Trabalhista</div>
@@ -208,7 +210,7 @@ nav a:hover,nav a.active{color:#f3a600;border-bottom:2px solid #fdeede}
 </div>
 </div>
 <div class="linha-par">
-<div class="galeria-img-card"><img src="imagens-fmadv/amb17.png" alt="ambiente 3"></div>
+<div class="galeria-img-card"><img src="imagens-fmadv/amb17.png" alt="Sala de reuniões do escritório Franceschini e Miranda" loading="lazy"></div>
 <div class="separator-vertical"></div>
 <div class="galeria-text">
 <div class="galeria-titulo">Direito Penal Empresarial</div>
@@ -221,7 +223,7 @@ nav a:hover,nav a.active{color:#f3a600;border-bottom:2px solid #fdeede}
 </div>
 </div>
 <div class="linha-par">
-<div class="galeria-img-card"><img src="imagens-fmadv/amb14.png" alt="ambiente 7"></div>
+<div class="galeria-img-card"><img src="imagens-fmadv/amb14.png" alt="Corredor do escritório Franceschini e Miranda Advogados" loading="lazy"></div>
 <div class="separator-vertical"></div>
 <div class="galeria-text">
 <div class="galeria-titulo">Direito Administrativo</div>
@@ -339,7 +341,7 @@ function closeCookieSettings(){document.getElementById('cookieModal').classList.
 function saveCustomCookies(){const preferences={essential:true,analytics:document.getElementById('analyticsCookies').checked,marketing:document.getElementById('marketingCookies').checked,preferences:document.getElementById('preferencesCookies').checked,timestamp:new Date().toISOString()};localStorage.setItem('cookieConsent',JSON.stringify(preferences));closeCookieSettings();hideCookieBanner();console.log('Preferências de cookies salvas:',preferences)}
 function hideCookieBanner(){const banner=document.getElementById('cookieBanner');banner.classList.remove('show');banner.classList.add('hide')}
 document.getElementById('cookieModal').addEventListener('click',function(e){if(e.target===this){closeCookieSettings()}});
-if(window.addEventListener){window.addEventListener('DOMContentLoaded',initCookies)}else{window.attachEvent('onload',initCookies)}
+window.addEventListener('DOMContentLoaded',initCookies)
 </script>
 </body>
 </html>
