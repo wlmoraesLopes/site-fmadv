@@ -631,30 +631,64 @@
             }
             .publicacoes-container {
                 grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 20px;
+                gap: 16px;
+                padding: 12px;
+                overflow-x: hidden;
             }
             .sidebar-publicacoes {
-                order: 2;
+                order: -1;
+                padding: 16px;
+            }
+            .sidebar-publicacoes h3 {
+                font-size: 0.95em;
+                margin-bottom: 8px;
+            }
+            .categoria-lista li, .autor-lista li {
+                margin-bottom: 4px;
+            }
+            .artigo-card {
+                padding: 16px;
+            }
+            .artigo-titulo {
+                font-size: 1.1rem;
             }
             .artigo-header {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 10px;
+                gap: 8px;
             }
             .artigo-categoria {
                 align-self: flex-start;
+                font-size: 0.75rem;
             }
             .artigo-meta {
                 flex-direction: column;
-                gap: 5px;
+                gap: 4px;
                 align-items: flex-start;
+                font-size: 0.85em;
+            }
+            .pagetitle {
+                padding: 30px 0;
             }
             .pagetitle h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             .footer-content {
                 gap: 40px;
+            }
+            .modal-conteudo {
+                margin: 4% auto;
+                width: 95%;
+            }
+            .modal-header {
+                padding: 16px 20px;
+            }
+            .modal-titulo {
+                font-size: 1.15rem;
+                padding-right: 35px;
+            }
+            .modal-body {
+                padding: 16px;
             }
         }
 .nav-toggle{display:none;background:transparent;border:2px solid rgba(253,246,238,0.5);border-radius:6px;cursor:pointer;padding:6px 14px;flex-direction:column;gap:4px;align-items:center;justify-content:center}
