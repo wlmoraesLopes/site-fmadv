@@ -657,6 +657,9 @@
                 gap: 40px;
             }
         }
+.nav-toggle{display:none;background:transparent;border:2px solid rgba(253,246,238,0.5);border-radius:6px;cursor:pointer;padding:7px 10px;flex-direction:column;gap:5px;align-items:center;justify-content:center;margin-left:auto}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--creme);border-radius:2px;transition:all 0.3s}
+@media(max-width:768px){nav{flex-wrap:nowrap!important;justify-content:flex-end!important;padding:10px 4vw!important;gap:0!important;position:relative;min-height:44px}.nav-toggle{display:flex}nav a{display:none!important}nav.open{flex-direction:column!important;align-items:stretch!important;padding:10px 0 6px 0!important}nav.open a{display:block!important;padding:12px 5vw;border-bottom:1px solid rgba(253,246,238,0.1)}nav.open .nav-toggle{position:absolute;top:10px;right:4vw}}
     </style>
 </head>
 <body>
@@ -677,12 +680,13 @@
                     <span><i class="fas fa-envelope"></i></span><span>adv-fm@fm-advogados.com.br</span>
                 </div>
                 <div class="social-links">
-                    <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                                        <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/franceschinimiranda/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/franceschini-miranda-advogados/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
         <nav>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
             <a href="index.html">Home</a>
             <a href="escritorio.html">Escritório</a>
             <a href="profissionais.html">Profissionais</a>
@@ -1057,6 +1061,7 @@
             '_blank'
         );
     }
+    (function(){var btn=document.getElementById('navToggle');if(btn){btn.addEventListener('click',function(){var nav=this.closest('nav');var open=nav.classList.toggle('open');this.setAttribute('aria-expanded',String(open))});document.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('nav').classList.remove('open')})})}}());
 </script>
 </body>
 </html>
