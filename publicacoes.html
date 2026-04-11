@@ -657,9 +657,10 @@
                 gap: 40px;
             }
         }
-.nav-toggle{display:none;background:transparent;border:2px solid rgba(253,246,238,0.5);border-radius:6px;cursor:pointer;padding:7px 10px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
-.nav-toggle span{display:block;width:22px;height:2px;background:var(--creme);border-radius:2px;transition:all 0.3s}
-@media(max-width:768px){nav{flex-wrap:nowrap!important;justify-content:center!important;padding:10px 4vw!important;gap:0!important;position:relative;min-height:44px}.nav-toggle{display:flex}nav a{display:none!important}nav.open{flex-direction:column!important;align-items:stretch!important;padding:10px 0 6px 0!important}nav.open a{display:block!important;padding:12px 5vw;border-bottom:1px solid rgba(253,246,238,0.1);text-align:center}nav.open .nav-toggle{display:none}}
+.nav-toggle{display:none;background:transparent;border:2px solid rgba(253,246,238,0.5);border-radius:6px;cursor:pointer;padding:6px 16px;flex-direction:column;gap:4px;align-items:center;justify-content:center}
+.nav-toggle span:not(.nav-toggle-txt){display:block;width:22px;height:2px;background:var(--creme);border-radius:2px;transition:all 0.3s}
+.nav-toggle-txt{font-size:0.62em;letter-spacing:0.12em;color:var(--creme);font-family:'Montserrat',sans-serif;font-weight:700;margin-top:1px}
+@media(max-width:768px){.contact-top{display:none!important}.header-spacer{height:125px!important}nav{flex-wrap:nowrap!important;justify-content:center!important;padding:8px 4vw!important;gap:0!important;position:relative;min-height:44px}.nav-toggle{display:flex}nav a{display:none!important}nav.open{flex-direction:column!important;align-items:stretch!important;padding:10px 0 6px 0!important}nav.open a{display:block!important;padding:13px 5vw;border-bottom:1px solid rgba(253,246,238,0.1);text-align:center;font-size:1.05em}nav.open .nav-toggle{display:none}}
     </style>
 </head>
 <body>
@@ -686,7 +687,7 @@
             </div>
         </div>
         <nav>
-            <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span><span class="nav-toggle-txt">MENU</span></button>
             <a href="index.html">Home</a>
             <a href="escritorio.html">Escritório</a>
             <a href="profissionais.html">Profissionais</a>
