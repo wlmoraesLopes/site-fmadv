@@ -791,7 +791,7 @@ function fecharPopup() {
   // location.reload();
 }
 
-<script>(function(){var btn=document.getElementById('navToggle');if(btn){btn.addEventListener('click',function(){var nav=this.closest('nav');var open=nav.classList.toggle('open');this.setAttribute('aria-expanded',String(open))});document.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('nav').classList.remove('open')})})}}());</script>
+<script>(function(){var btn=document.getElementById('navToggle');if(btn){btn.addEventListener('click',function(){var nav=document.querySelector('nav');var open=nav.classList.toggle('open');this.setAttribute('aria-expanded',String(open))});document.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('nav').classList.remove('open')})})}}());</script>
 
 </body>
 </html>

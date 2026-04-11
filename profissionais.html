@@ -371,7 +371,7 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
   <p style="margin-top: 20px; font-size: 0.9em;">&copy; 2026 Franceschini e Miranda Advogados. Todos os direitos reservados.</p>
 </footer>
 </div>
-<script>(function(){var btn=document.getElementById('navToggle');if(btn){btn.addEventListener('click',function(){var nav=this.closest('nav');var open=nav.classList.toggle('open');this.setAttribute('aria-expanded',String(open))});document.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('nav').classList.remove('open')})})}}());</script>
+<script>(function(){var btn=document.getElementById('navToggle');if(btn){btn.addEventListener('click',function(){var nav=document.querySelector('nav');var open=nav.classList.toggle('open');this.setAttribute('aria-expanded',String(open))});document.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('nav').classList.remove('open')})})}}());</script>
 </body>
 </html>
 

@@ -379,7 +379,7 @@ function saveCustomCookies(){const preferences={essential:true,analytics:documen
 function hideCookieBanner(){const banner=document.getElementById('cookieBanner');banner.classList.remove('show');banner.classList.add('hide')}
 document.getElementById('cookieModal').addEventListener('click',function(e){if(e.target===this){closeCookieSettings()}});
 window.addEventListener('DOMContentLoaded',initCookies);
-(function(){var btn=document.getElementById('navToggle');if(btn){btn.addEventListener('click',function(){var nav=this.closest('nav');var open=nav.classList.toggle('open');this.setAttribute('aria-expanded',String(open))});document.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('nav').classList.remove('open')})})}}());
+(function(){var btn=document.getElementById('navToggle');if(btn){btn.addEventListener('click',function(){var nav=document.querySelector('nav');var open=nav.classList.toggle('open');this.setAttribute('aria-expanded',String(open))});document.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('nav').classList.remove('open')})})}}());
 </script>
 </body>
 </html>
