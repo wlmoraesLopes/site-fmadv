@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Layout 3 · Em abas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body[data-tema="marrom"]{--brand:#4a3426;--brand-2:#2f2119;--accent:#a27b4f;--bg:#f6f1ea;--bg-2:#ede4d8;--surface:#fffdf9;--ink:#2a211b;--muted:#6e6259;--line:#e2d7c8;--on-brand:#f6efe5}
+  body[data-tema="caramelo"]{--brand:#7a5a3e;--brand-2:#4f3a29;--accent:#b88c55;--bg:#ffffff;--bg-2:#f5efe7;--surface:#ffffff;--ink:#26211d;--muted:#6c645d;--line:#e9e2d9;--on-brand:#fbf7f1}
+  body[data-tema="vinho"]{--brand:#6e0f12;--brand-2:#4a0a0c;--accent:#b08a4a;--bg:#faf6f0;--bg-2:#f2eadf;--surface:#fffdfa;--ink:#2a1f1e;--muted:#6b5f5c;--line:#e8ddd0;--on-brand:#fbf3ea}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--surface);color:var(--ink);font-family:Inter,Arial,sans-serif;font-size:16px;line-height:1.65}
+  a{color:inherit;text-decoration:none}
+  .serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .logo{display:block;-webkit-mask:url(/modelos/logo-mask.png) left center/contain no-repeat;mask:url(/modelos/logo-mask.png) left center/contain no-repeat;aspect-ratio:844/269}
+  .more{font-size:14.5px;font-weight:600;color:var(--brand);border-bottom:1px solid var(--accent);padding-bottom:2px;white-space:nowrap}
+  .btn{display:inline-block;padding:14px 28px;font-size:14.5px;font-weight:600;border-radius:2px;background:var(--brand);color:var(--on-brand)}
+
+  .switch{position:sticky;top:0;z-index:50;background:#1f1f1f;color:#eee;font-size:13px;display:flex;gap:8px;align-items:center;justify-content:center;padding:8px 16px;flex-wrap:wrap}
+  .switch b{font-weight:600;margin:0 4px 0 14px}
+  .switch a,.switch button{font:inherit;border:1px solid #555;background:#2c2c2c;color:#eee;padding:5px 13px;border-radius:20px;cursor:pointer}
+  .switch .on{background:#fff;color:#111;border-color:#fff}
+
+  /* faixa superior de contato + cabeçalho */
+  .util{background:var(--brand-2);color:var(--on-brand);font-size:12.5px}
+  .util .wrap{display:flex;justify-content:flex-end;gap:28px;height:36px;align-items:center;opacity:.85}
+  header{background:var(--surface);border-bottom:1px solid var(--line)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:96px}
+  header .logo{width:186px;background:var(--brand)}
+  nav{display:flex;gap:34px;font-size:14.5px;font-weight:500;align-items:center}
+  nav a.cur{color:var(--brand);box-shadow:inset 0 -2px 0 var(--accent);padding-bottom:4px}
+  nav .lang{font-size:12.5px;color:var(--muted)}
+
+  /* abertura com lista de notícias */
+  .hero{background:var(--bg)}
+  .hero .wrap{display:grid;grid-template-columns:1.35fr 1fr;gap:0;min-height:520px}
+  .hero .txt{padding:96px 64px 96px 0;display:flex;flex-direction:column;justify-content:center}
+  .hero h1{font-size:60px;line-height:1.06;margin:18px 0 24px;color:var(--brand-2)}
+  .hero p{font-size:18px;color:var(--muted);margin:0 0 34px;max-width:600px}
+  .feed{background:var(--brand);color:var(--on-brand);padding:44px 40px;display:flex;flex-direction:column}
+  .feed .eyebrow{color:var(--on-brand);opacity:.75;margin-bottom:18px;display:flex;justify-content:space-between}
+  .feed a.item{display:block;padding:18px 0 18px 18px;border-left:2px solid rgba(255,255,255,.15);transition:all .5s;opacity:.55;position:relative}
+  .feed a.item.on{opacity:1;border-left-color:var(--accent);background:rgba(255,255,255,.05)}
+  .feed a.item small{display:block;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;color:var(--accent)}
+  .feed a.item b{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:20px;line-height:1.25;display:block}
+  .feed a.item .pg{position:absolute;left:-2px;top:0;width:2px;height:0;background:var(--on-brand)}
+  .feed .all{margin-top:auto;padding-top:22px;font-size:14px;font-weight:600}
+
+  /* números */
+  .nums{border-bottom:1px solid var(--line)}
+  .nums .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+  .nums .wrap>div{padding:36px 28px 36px 0}
+  .nums .wrap>div+div{padding-left:28px;border-left:1px solid var(--line)}
+  .nums b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:44px;line-height:1;color:var(--brand);font-weight:600;margin-bottom:6px}
+  .nums span{font-size:14px;color:var(--muted)}
+
+  section{padding:100px 0}
+  .head{display:flex;justify-content:space-between;align-items:end;margin-bottom:44px;gap:24px}
+  .head h2{font-size:46px;line-height:1.08;margin:12px 0 0;color:var(--brand-2)}
+
+  /* áreas em abas */
+  .tabs{display:grid;grid-template-columns:330px 1fr;border:1px solid var(--line);background:var(--surface)}
+  .tablist{border-right:1px solid var(--line);background:var(--bg)}
+  .tablist button{all:unset;cursor:pointer;display:grid;grid-template-columns:34px 1fr;gap:6px;padding:22px 26px;border-bottom:1px solid var(--line);font-weight:500;font-size:15.5px;width:100%;box-sizing:border-box}
+  .tablist button span{color:var(--accent);font-size:12.5px;font-weight:600;padding-top:2px}
+  .tablist button.on{background:var(--surface);color:var(--brand);box-shadow:inset 3px 0 0 var(--brand);font-weight:600}
+  .panel{display:none;padding:48px 56px}
+  .panel.on{display:block;animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .panel h3{font-size:38px;line-height:1.1;margin:0 0 14px;color:var(--brand-2)}
+  .panel>p{color:var(--muted);font-size:17px;margin:0 0 28px;max-width:640px}
+  .panel ul{list-style:none;margin:0 0 30px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 32px}
+  .panel li{padding-left:22px;position:relative;font-size:15px}
+  .panel li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1px;background:var(--accent)}
+  .panel .who{display:flex;align-items:center;gap:12px;padding-top:24px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+  .panel .who img{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 30%}
+
+  /* equipe: fundadores em destaque */
+  .team-bg{background:var(--bg)}
+  .founders{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:28px}
+  .founder{display:grid;grid-template-columns:200px 1fr;background:var(--surface);border:1px solid var(--line)}
+  .founder img{width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 32%;display:block}
+  .founder div{padding:28px 30px;display:flex;flex-direction:column;justify-content:center}
+  .founder small{color:var(--accent);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+  .founder h3{font-size:28px;line-height:1.15;margin:8px 0 10px;color:var(--brand-2)}
+  .founder p{margin:0 0 16px;color:var(--muted);font-size:14.5px}
+  .others{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+  .others img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 32%;display:block;margin-bottom:12px}
+  .others b{display:block;font-size:14.5px;font-weight:600;line-height:1.35}
+  .others span{font-size:13px;color:var(--muted)}
+
+  /* contato com formulário */
+  .contact .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:72px}
+  .contact h2{font-size:46px;line-height:1.08;margin:12px 0 20px;color:var(--brand-2)}
+  .contact dl{margin:28px 0 0}
+  .contact dt{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-top:18px}
+  .contact dd{margin:2px 0 0}
+  form{background:var(--bg);padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  form label{font-size:12.5px;font-weight:600;display:block;margin-bottom:6px}
+  form input,form textarea{width:100%;border:1px solid var(--line);background:var(--surface);padding:12px 14px;font:inherit;font-size:14.5px}
+  form .full{grid-column:1/-1}
+  form textarea{height:110px;resize:none}
+  footer{background:var(--brand-2);color:var(--on-brand);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;padding:34px 32px;flex-wrap:wrap;gap:16px}
+  footer .logo{width:150px;background:var(--on-brand)}
+  footer span{opacity:.7}
+  @media(max-width:900px){nav a{display:none}.hero .wrap,.tabs,.founders,.contact .wrap{grid-template-columns:1fr}.hero .txt{padding:56px 0}.hero h1{font-size:40px}.nums .wrap{grid-template-columns:1fr 1fr}.others{grid-template-columns:1fr 1fr}.panel ul{grid-template-columns:1fr}.founder{grid-template-columns:130px 1fr}}
+
+  /* hierarquia da equipe: fundadores > sócios > advogados */
+  .tiers{display:flex;flex-direction:column;gap:44px}
+  .tier-t{display:flex;align-items:center;gap:18px;margin:0 0 22px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .tier-t::before,.tier-t::after{content:"";flex:1;height:1px;background:var(--line)}
+  .tier-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+  .tier-row>div{width:var(--w,230px)}
+  .tier.t0 .tier-row>div{--w:var(--w0,270px)}
+  .tier-row img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 32%;display:block;margin-bottom:12px}
+  .tier-row b{display:block;font-size:15px;font-weight:600;line-height:1.35}
+  .tier-row span{font-size:13.5px;color:var(--muted)}
+  .tier-row>div{--w:260px}
+</style>
+</head>
+<body data-tema="marrom">
+
+<div class="switch">
+  <b>Layout:</b>
+  <a href="/modelos">1 · Clássico</a>
+  <a href="/modelos/layout-2">2 · Editorial</a>
+  <a href="/modelos/layout-3" class="on">3 · Em abas</a>
+  <b>Cores:</b>
+  <button data-t="marrom" class="on">Marrom e bege</button>
+  <button data-t="caramelo">Caramelo e branco</button>
+  <button data-t="vinho">Vinho e creme</button>
+</div>
+
+<div class="util"><div class="wrap"><span>+55 (11) 3095-2566</span><span>adv-fm@fm-advogados.com.br</span><span>LinkedIn · Instagram</span></div></div>
+<header>
+  <div class="wrap">
+    <span class="logo" aria-label="Franceschini e Miranda Advogados"></span>
+    <nav><a href="#" class="cur">Home</a><a href="#">Escritório</a><a href="#areas">Áreas de atuação</a><a href="#equipe">Profissionais</a><a href="#">Publicações</a><a href="#contato">Contato</a><span class="lang">PT | EN</span></nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="txt">
+      <div class="eyebrow">Advocacia empresarial · Desde 1992</div>
+      <h1 class="serif">Assessoria jurídica consultiva e contenciosa para empresas</h1>
+      <p>Atuação em Direito da Concorrência, Societário, Civil e Comercial, Trabalhista, Penal Empresarial e Administrativo, perante o Poder Judiciário, o CADE e demais órgãos administrativos.</p>
+      <div><a class="btn" href="#areas">Conheça as áreas de atuação</a></div>
+    </div>
+    <aside class="feed">
+      <div class="eyebrow"><span>Últimas publicações</span><span id="fc">1 / 4</span></div>
+      <div id="feed"></div>
+      <a class="all" href="#">Ver todas as publicações →</a>
+    </aside>
+  </div>
+</div>
+
+<div class="nums"><div class="wrap">
+  <div><b>1992</b><span>Ano de fundação, em São Paulo</span></div>
+  <div><b>6</b><span>Áreas de atuação empresarial</span></div>
+  <div><b>7</b><span>Profissionais, entre sócios e advogados</span></div>
+  <div><b>3</b><span>Regiões com correspondentes: EUA, Europa e Índia</span></div>
+</div></div>
+
+<section id="areas">
+  <div class="wrap">
+    <div class="head"><div><div class="eyebrow">Áreas de atuação</div><h2 class="serif">Como podemos ajudar a sua empresa</h2></div><a class="more" href="#">Página de áreas de atuação →</a></div>
+    <div class="tabs">
+      <div class="tablist" id="tl"></div>
+      <div id="panels">
+        <div class="panel"><h3 class="serif">Direito da Concorrência</h3><p>Defesa e representação de clientes perante o CADE e o Poder Judiciário, com foco em conformidade e proteção contra práticas anticompetitivas.</p><ul><li>Notificação de atos de concentração</li><li>Defesa em processos por práticas anticompetitivas</li><li>Programas de compliance e treinamentos</li><li>Acordos de leniência e TCCs</li><li>Avaliação de risco de práticas comerciais</li><li>Defesa em processos antidumping</li><li>Ações de reparação de dano concorrencial</li></ul><div class="who"><img src="/modelos/franceschini.jpg" alt=""><img src="/modelos/cristhiane.jpg" alt="">Profissionais da área: José Inácio G. Franceschini, Cristhiane H. L. F. Taliberti</div></div>
+        <div class="panel"><h3 class="serif">Direito Societário</h3><p>Suporte completo, da constituição de sociedades a reestruturações complexas e auditorias legais.</p><ul><li>Constituição de sociedades e joint ventures</li><li>Acordos de acionistas</li><li>Fusões, incorporações e cisões</li><li>Representação de sócios estrangeiros</li><li>Assembleias e reuniões de conselhos</li><li>Auditoria legal (due diligence)</li></ul><div class="who"><img src="/modelos/thays.jpg" alt="">Profissional da área: Thays R. M. F. Moreira</div></div>
+        <div class="panel"><h3 class="serif">Civil, Comercial e Consumidor</h3><p>Litígios empresariais complexos e consultoria preventiva, com foco em contratos, responsabilidade civil e LGPD.</p><ul><li>Litígios nos tribunais superiores</li><li>Contratos nacionais e internacionais</li><li>Responsabilidade civil e ações coletivas</li><li>Consultoria em LGPD</li><li>Defesa perante PROCON e Juizados</li><li>Pareceres legais</li></ul></div>
+        <div class="panel"><h3 class="serif">Direito Trabalhista</h3><p>Prevenção de litígios e otimização das relações de trabalho, incluindo políticas internas e compliance.</p><ul><li>Soluções preventivas para empresas</li><li>Políticas internas e LGPD</li><li>Plataformas digitais de serviços</li><li>Auditoria trabalhista e compliance</li><li>Defesa em processos administrativos e judiciais</li></ul></div>
+        <div class="panel"><h3 class="serif">Penal Empresarial</h3><p>Defesa de empresas e de seus administradores em investigações e processos criminais ligados à atividade empresarial.</p><ul><li>Assessoria consultiva e preventiva</li><li>Inquéritos policiais e processos criminais</li><li>Defesa de empresas e pessoas a elas ligadas</li><li>Casos de crimes empresariais</li></ul></div>
+        <div class="panel"><h3 class="serif">Direito Administrativo</h3><p>Atuação perante órgãos públicos municipais, estaduais e federais, agências reguladoras e tribunais de contas.</p><ul><li>Inquéritos e processos administrativos</li><li>Agências reguladoras e tribunais de contas</li><li>Licitações e concorrências públicas</li><li>Contratos administrativos</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team-bg" id="equipe">
+  <div class="wrap">
+    <div class="head"><div><div class="eyebrow">Profissionais</div><h2 class="serif">Nossa equipe</h2></div><a class="more" href="#">Ver todos os perfis →</a></div>
+    <h4 class="tier-t"><span>Sócios Fundadores</span></h4>
+    <div class="founders">
+      <div class="founder"><img src="/modelos/franceschini.jpg" alt=""><div><small>Sócio fundador</small><h3 class="serif">José Inácio Gonzaga Franceschini</h3><p>Fundador do escritório em 1992 · Direito da Concorrência</p><a class="more" href="#">Ver perfil →</a></div></div>
+      <div class="founder"><img src="/modelos/custodio.jpg" alt=""><div><small>Sócio fundador</small><h3 class="serif">Custódio da Piedade Ubaldino Miranda</h3><p>Fundador do escritório em 1992</p><a class="more" href="#">Ver perfil →</a></div></div>
+    </div>
+    <div class="tiers" style="margin-top:44px"><div class="tier t1"><h4 class="tier-t"><span>Sócios</span></h4><div class="tier-row"><div><img src="/modelos/thays.jpg" alt=""><b>Thays Regina Martins Fontes Moreira</b><span>Sócia</span></div><div><img src="/modelos/fernando.jpg" alt=""><b>Fernando Eduardo Faleiros Ferreira</b><span>Sócio</span></div><div><img src="/modelos/sandra.jpg" alt=""><b>Sandra Gomes Esteves</b><span>Sócia</span></div><div><img src="/modelos/flavia.jpg" alt=""><b>Flávia Maria Pelliciari Salum</b><span>Sócia</span></div></div></div><div class="tier t2"><h4 class="tier-t"><span>Advogados</span></h4><div class="tier-row"><div><img src="/modelos/cristhiane.jpg" alt=""><b>Cristhiane Helena Lopes Ferrero Taliberti</b><span>Advogada e Economista</span></div></div></div></div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Contato</div>
+      <h2 class="serif">Fale com o escritório</h2>
+      <p style="color:var(--muted);margin:0">Envie sua mensagem e retornaremos o contato.</p>
+      <dl><dt>Endereço</dt><dd>Rua Henri Dunant, 792, 8º andar, cj. 805<br>Santo Amaro · São Paulo · SP · 04709-110</dd><dt>Telefone</dt><dd>+55 (11) 3095-2566</dd><dt>E-mail</dt><dd>adv-fm@fm-advogados.com.br</dd></dl>
+    </div>
+    <form onsubmit="return false">
+      <div><label>Nome</label><input></div>
+      <div><label>Empresa</label><input></div>
+      <div><label>E-mail</label><input></div>
+      <div><label>Telefone</label><input></div>
+      <div class="full"><label>Mensagem</label><textarea></textarea></div>
+      <div class="full"><button class="btn" style="border:0;cursor:pointer;font:inherit;font-weight:600">Enviar mensagem</button></div>
+    </form>
+  </div>
+</section>
+<footer><div class="wrap"><span class="logo" aria-label="Franceschini e Miranda Advogados"></span><span>© 2026 Franceschini e Miranda Advogados · Política de privacidade</span></div></footer>
+
+<script>
+var posts=[
+  {d:"29 abr 2026",c:"Concorrência",t:"4ª edição da obra “Competition Law in Brazil”"},
+  {d:"06 mar 2026",c:"Reconhecimento",t:"Advogadas mais admiradas: Análise Advocacia 2026"},
+  {d:"08 dez 2025",c:"Evento",t:"Webinar IBRAC: a experiência dos precursores na concorrência"},
+  {d:"28 mai 2024",c:"Podcast",t:"Vantagem Auferida #34: a jurisprudência do CADE"}
+];
+(function(){
+  var f=document.getElementById('feed'),fc=document.getElementById('fc');
+  f.innerHTML=posts.map(function(p){return '<a class="item" href="#"><span class="pg"></span><small>'+p.d+' · '+p.c+'</small><b>'+p.t+'</b></a>'}).join('');
+  var it=f.children,i=0,DUR=5000,t0=performance.now(),hold=false;
+  function show(n){it[i].classList.remove('on');it[i].querySelector('.pg').style.height=0;i=(n+it.length)%it.length;it[i].classList.add('on');fc.textContent=(i+1)+' / '+it.length;t0=performance.now()}
+  for(var k=0;k<it.length;k++)(function(k){it[k].onmouseenter=function(){hold=true;show(k)};it[k].onmouseleave=function(){hold=false;t0=performance.now()}})(k);
+  show(0);
+  (function tick(now){if(!hold){var p=(now-t0)/DUR;if(p>=1){show(i+1);p=0}it[i].querySelector('.pg').style.height=(p*100)+'%'}requestAnimationFrame(tick)})(performance.now());
+})();
+(function(){
+  var tl=document.getElementById('tl'),ps=document.querySelectorAll('.panel');
+  ps.forEach(function(p,k){var b=document.createElement('button');b.innerHTML='<span>0'+(k+1)+'</span>'+p.querySelector('h3').textContent;b.onclick=function(){sel(k)};tl.appendChild(b)});
+  function sel(k){tl.querySelectorAll('button').forEach(function(b,j){b.classList.toggle('on',j===k)});ps.forEach(function(p,j){p.classList.toggle('on',j===k)})}
+  sel(0);
+})();
+(function(){
+  var saved;try{saved=localStorage.getItem('fm-tema')}catch(e){}
+  function set(t){document.body.dataset.tema=t;document.querySelectorAll('.switch button').forEach(function(x){x.classList.toggle('on',x.dataset.t===t)});try{localStorage.setItem('fm-tema',t)}catch(e){}}
+  if(saved)set(saved);
+  document.querySelectorAll('.switch button').forEach(function(b){b.onclick=function(){set(b.dataset.t)}});
+})();
+</script>
+</body>
+</html>

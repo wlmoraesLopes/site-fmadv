@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Layout 2 · Editorial</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body[data-tema="marrom"]{--brand:#4a3426;--brand-2:#2f2119;--accent:#a27b4f;--bg:#f6f1ea;--bg-2:#ede4d8;--surface:#fffdf9;--ink:#2a211b;--muted:#6e6259;--line:#e2d7c8;--on-brand:#f6efe5}
+  body[data-tema="caramelo"]{--brand:#7a5a3e;--brand-2:#4f3a29;--accent:#b88c55;--bg:#ffffff;--bg-2:#f5efe7;--surface:#ffffff;--ink:#26211d;--muted:#6c645d;--line:#e9e2d9;--on-brand:#fbf7f1}
+  body[data-tema="vinho"]{--brand:#6e0f12;--brand-2:#4a0a0c;--accent:#b08a4a;--bg:#faf6f0;--bg-2:#f2eadf;--surface:#fffdfa;--ink:#2a1f1e;--muted:#6b5f5c;--line:#e8ddd0;--on-brand:#fbf3ea}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif;font-size:16px;line-height:1.65}
+  a{color:inherit;text-decoration:none}
+  .serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .logo{display:block;-webkit-mask:url(/modelos/logo-mask.png) left center/contain no-repeat;mask:url(/modelos/logo-mask.png) left center/contain no-repeat;aspect-ratio:844/269}
+
+  /* barra de teste (não faz parte do site) */
+  .switch{position:sticky;top:0;z-index:50;background:#1f1f1f;color:#eee;font-size:13px;display:flex;gap:8px;align-items:center;justify-content:center;padding:8px 16px;flex-wrap:wrap}
+  .switch b{font-weight:600;margin:0 4px 0 14px}
+  .switch a,.switch button{font:inherit;border:1px solid #555;background:#2c2c2c;color:#eee;padding:5px 13px;border-radius:20px;cursor:pointer}
+  .switch .on{background:#fff;color:#111;border-color:#fff}
+
+  /* cabeçalho sobre a abertura escura */
+  header{background:var(--brand-2);color:var(--on-brand)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:92px;border-bottom:1px solid rgba(255,255,255,.12)}
+  header .logo{width:180px;background:var(--on-brand)}
+  nav{display:flex;gap:32px;align-items:center;font-size:14.5px;font-weight:500}
+  nav a{opacity:.88}
+  nav a:hover{opacity:1}
+  nav .lang{font-size:12.5px;opacity:.6}
+
+  /* abertura editorial centralizada */
+  .hero{background:var(--brand-2);color:var(--on-brand);text-align:center}
+  .hero .wrap{padding-top:110px;padding-bottom:96px}
+  .hero .eyebrow{color:var(--accent)}
+  .hero h1{font-size:68px;line-height:1.05;margin:22px auto 26px;max-width:920px;font-weight:500}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero p{font-size:18.5px;opacity:.82;max-width:700px;margin:0 auto 38px}
+  .btn{display:inline-block;padding:14px 28px;font-size:14.5px;font-weight:600;border-radius:2px}
+  .hero .btn.p{background:var(--on-brand);color:var(--brand-2)}
+  .hero .btn.s{border:1px solid rgba(255,255,255,.4);color:var(--on-brand);margin-left:12px}
+
+  /* faixa de notícias rotativa */
+  .ticker{background:var(--brand);color:var(--on-brand)}
+  .ticker .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;height:76px}
+  .ticker .lbl{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:10px;padding-right:28px;border-right:1px solid rgba(255,255,255,.2);height:36px}
+  .ticker .lbl i{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .tk-stage{position:relative;height:44px;overflow:hidden}
+  .tk-item{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(100%);transition:all .6s ease}
+  .tk-item.on{opacity:1;transform:none}
+  .tk-item.out{opacity:0;transform:translateY(-100%)}
+  .tk-item b{font-family:'Cormorant Garamond',Georgia,serif;font-size:21px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+  .tk-item small{font-size:12px;opacity:.7;letter-spacing:.04em}
+  .tk-ctrl{display:flex;gap:8px;align-items:center;font-size:12.5px;opacity:.9}
+  .tk-ctrl button{width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:transparent;color:inherit;cursor:pointer;font-size:17px;line-height:1}
+
+  section{padding:104px 0}
+
+  /* escritório: declaração grande + fatos */
+  .about{text-align:center}
+  .about blockquote{margin:22px auto 56px;max-width:900px;font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;line-height:1.3;font-weight:500;color:var(--brand-2)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats div{padding:30px 12px}
+  .stats div+div{border-left:1px solid var(--line)}
+  .stats b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;font-weight:600;color:var(--brand);line-height:1.1}
+  .stats span{font-size:13.5px;color:var(--muted)}
+  .about .more{display:inline-block;margin-top:36px}
+  .more{font-size:14.5px;font-weight:600;color:var(--brand);border-bottom:1px solid var(--accent);padding-bottom:2px}
+
+  /* áreas em lista expansível */
+  .areas{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .areas .wrap{display:grid;grid-template-columns:1fr 1.7fr;gap:72px}
+  .areas .intro{position:sticky;top:120px;align-self:start}
+  .areas h2{font-size:46px;line-height:1.08;margin:12px 0 18px;color:var(--brand-2)}
+  .areas .intro p{color:var(--muted);margin:0 0 26px}
+  .acc{border-top:1px solid var(--line)}
+  .acc details{border-bottom:1px solid var(--line)}
+  .acc summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:44px 1fr 28px;align-items:center;padding:26px 0}
+  .acc summary::-webkit-details-marker{display:none}
+  .acc .n{color:var(--accent);font-weight:600;font-size:13px}
+  .acc h3{margin:0;font-size:28px;color:var(--brand-2);line-height:1.15}
+  .acc .pm{width:28px;height:28px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--brand);font-size:18px;transition:transform .3s}
+  .acc details[open] .pm{transform:rotate(45deg)}
+  .acc .body{padding:0 0 28px 44px;color:var(--muted)}
+  .acc .body p{margin:0 0 12px;color:var(--ink)}
+  .acc ul{margin:0;padding-left:18px;columns:2;column-gap:32px;font-size:14.5px}
+  .acc li{margin-bottom:6px;break-inside:avoid}
+
+  /* equipe */
+  .team-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:44px}
+  .team-head h2{font-size:46px;margin:12px 0 0;color:var(--brand-2);line-height:1.08}
+  .team{display:grid;grid-template-columns:repeat(7,1fr);gap:16px}
+  .team img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 32%;display:block;filter:grayscale(1);transition:filter .4s}
+  .team div:hover img{filter:none}
+  .team b{display:block;font-size:13.5px;font-weight:600;line-height:1.3;margin-top:12px}
+  .team span{font-size:12.5px;color:var(--muted)}
+
+  /* contato escuro */
+  .contact{background:var(--brand-2);color:var(--on-brand)}
+  .contact .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;align-items:start}
+  .contact h2{font-size:44px;line-height:1.08;margin:12px 0 0}
+  .contact small{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px}
+  .contact p{margin:0;opacity:.88;font-size:15px}
+  footer{background:var(--brand-2);color:var(--on-brand);font-size:13px;opacity:.97}
+  footer .wrap{display:flex;justify-content:space-between;padding:22px 32px;border-top:1px solid rgba(255,255,255,.12);opacity:.7;flex-wrap:wrap;gap:12px}
+  @media(max-width:900px){nav a{display:none}.hero h1{font-size:42px}.areas .wrap,.contact .wrap{grid-template-columns:1fr}.areas .intro{position:static}.stats{grid-template-columns:1fr 1fr}.team{grid-template-columns:repeat(2,1fr)}.acc ul{columns:1}.ticker .wrap{grid-template-columns:1fr}.ticker .lbl,.tk-ctrl{display:none}}
+
+  /* hierarquia da equipe: fundadores > sócios > advogados */
+  .tiers{display:flex;flex-direction:column;gap:44px}
+  .tier-t{display:flex;align-items:center;gap:18px;margin:0 0 22px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .tier-t::before,.tier-t::after{content:"";flex:1;height:1px;background:var(--line)}
+  .tier-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+  .tier-row>div{width:var(--w,230px)}
+  .tier.t0 .tier-row>div{--w:var(--w0,270px)}
+  .tier-row img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 32%;display:block;margin-bottom:12px}
+  .tier-row b{display:block;font-size:15px;font-weight:600;line-height:1.35}
+  .tier-row span{font-size:13.5px;color:var(--muted)}
+  .tier-row>div{--w:190px}.tier.t0{--w0:220px}
+  .tier-row img{filter:grayscale(1);transition:filter .4s}
+  .tier-row>div:hover img{filter:none}
+</style>
+</head>
+<body data-tema="marrom">
+
+<div class="switch">
+  <b>Layout:</b>
+  <a href="/modelos">1 · Clássico</a>
+  <a href="/modelos/layout-2" class="on">2 · Editorial</a>
+  <a href="/modelos/layout-3">3 · Em abas</a>
+  <b>Cores:</b>
+  <button data-t="marrom" class="on">Marrom e bege</button>
+  <button data-t="caramelo">Caramelo e branco</button>
+  <button data-t="vinho">Vinho e creme</button>
+</div>
+
+<header>
+  <div class="wrap">
+    <span class="logo" aria-label="Franceschini e Miranda Advogados"></span>
+    <nav><a href="#escritorio">Escritório</a><a href="#areas">Áreas de atuação</a><a href="#profissionais">Profissionais</a><a href="#">Publicações</a><a href="#contato">Contato</a><span class="lang">PT | EN</span></nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Advocacia empresarial · São Paulo · Desde 1992</div>
+    <h1 class="serif">Assessoria jurídica <em>consultiva e contenciosa</em> para empresas</h1>
+    <p>Direito da Concorrência, Societário, Civil e Comercial, Trabalhista, Penal Empresarial e Administrativo, perante o Poder Judiciário, o CADE e demais órgãos administrativos.</p>
+    <a class="btn p" href="#areas">Conheça as áreas de atuação</a><a class="btn s" href="#contato">Fale com o escritório</a>
+  </div>
+</div>
+
+<div class="ticker">
+  <div class="wrap">
+    <span class="lbl"><i></i>Últimas publicações</span>
+    <div class="tk-stage" id="tk"></div>
+    <span class="tk-ctrl"><button id="tkP" aria-label="Anterior">‹</button><span id="tkC">1 / 5</span><button id="tkN" aria-label="Próxima">›</button></span>
+  </div>
+</div>
+
+<section class="about" id="escritorio">
+  <div class="wrap">
+    <div class="eyebrow">O escritório</div>
+    <blockquote>“Fundado em 1992, o escritório é voltado ao direito empresarial e tem por filosofia a dedicação personalizada ao cliente, com uma equipe enxuta e especializada que trabalha junta há mais de quinze anos.”</blockquote>
+    <div class="stats">
+      <div><b>1992</b><span>Ano de fundação</span></div>
+      <div><b>6 áreas</b><span>de atuação empresarial</span></div>
+      <div><b>Judiciário e CADE</b><span>e demais órgãos administrativos</span></div>
+      <div><b>EUA · Europa · Índia</b><span>correspondentes no exterior</span></div>
+    </div>
+    <a class="more" href="#">Conheça o escritório →</a>
+  </div>
+</section>
+
+<section class="areas" id="areas">
+  <div class="wrap">
+    <div class="intro">
+      <div class="eyebrow">Áreas de atuação</div>
+      <h2 class="serif">Como podemos ajudar a sua empresa</h2>
+      <p>Atuação consultiva e contenciosa. Clique em cada área para ver os serviços.</p>
+      <a class="more" href="#">Página de áreas de atuação →</a>
+    </div>
+    <div class="acc">
+      <details open><summary><span class="n">01</span><h3 class="serif">Direito da Concorrência</h3><span class="pm">+</span></summary><div class="body"><p>Defesa e representação de clientes perante o CADE e o Poder Judiciário.</p><ul><li>Notificação de atos de concentração</li><li>Defesa em processos por práticas anticompetitivas</li><li>Programas de compliance e treinamentos</li><li>Acordos de leniência e termos de compromisso de cessação</li><li>Avaliação de risco de práticas comerciais</li><li>Defesa em processos antidumping</li><li>Ações de reparação de dano concorrencial</li></ul></div></details>
+      <details><summary><span class="n">02</span><h3 class="serif">Direito Societário</h3><span class="pm">+</span></summary><div class="body"><p>Estruturação de negócios, da constituição de sociedades a reestruturações e auditorias legais.</p><ul><li>Constituição de sociedades e joint ventures</li><li>Acordos de acionistas</li><li>Fusões, incorporações e cisões</li><li>Representação de sócios estrangeiros</li><li>Assembleias e reuniões de conselhos</li><li>Auditoria legal (due diligence)</li></ul></div></details>
+      <details><summary><span class="n">03</span><h3 class="serif">Civil, Comercial e Consumidor</h3><span class="pm">+</span></summary><div class="body"><p>Litígios empresariais complexos e consultoria preventiva.</p><ul><li>Litígios nos tribunais superiores</li><li>Contratos nacionais e internacionais</li><li>Responsabilidade civil, ações civis públicas e coletivas</li><li>Consultoria em LGPD</li><li>Defesa perante PROCON e Juizados</li><li>Pareceres legais</li></ul></div></details>
+      <details><summary><span class="n">04</span><h3 class="serif">Direito Trabalhista</h3><span class="pm">+</span></summary><div class="body"><p>Prevenção de litígios e otimização das relações de trabalho.</p><ul><li>Soluções preventivas para empresas</li><li>Políticas internas e LGPD</li><li>Plataformas digitais de serviços</li><li>Auditoria trabalhista e compliance</li><li>Defesa em processos administrativos e judiciais</li></ul></div></details>
+      <details><summary><span class="n">05</span><h3 class="serif">Penal Empresarial</h3><span class="pm">+</span></summary><div class="body"><p>Defesa de empresas e administradores em investigações e processos.</p><ul><li>Assessoria consultiva e preventiva</li><li>Inquéritos policiais e processos criminais</li><li>Defesa de empresas e pessoas a elas ligadas</li><li>Casos de crimes empresariais</li></ul></div></details>
+      <details><summary><span class="n">06</span><h3 class="serif">Direito Administrativo</h3><span class="pm">+</span></summary><div class="body"><p>Atuação perante órgãos públicos em todas as esferas.</p><ul><li>Inquéritos e processos administrativos</li><li>Agências reguladoras e tribunais de contas</li><li>Licitações e concorrências públicas</li><li>Contratos administrativos</li></ul></div></details>
+    </div>
+  </div>
+</section>
+
+<section id="profissionais">
+  <div class="wrap">
+    <div class="team-head"><div><div class="eyebrow">Profissionais</div><h2 class="serif">Nossa equipe</h2></div><a class="more" href="#">Ver todos os perfis →</a></div>
+    <div class="tiers"><div class="tier t0"><h4 class="tier-t"><span>Sócios Fundadores</span></h4><div class="tier-row"><div><img src="/modelos/franceschini.jpg" alt=""><b>José Inácio Gonzaga Franceschini</b><span>Sócio fundador</span></div><div><img src="/modelos/custodio.jpg" alt=""><b>Custódio da Piedade Ubaldino Miranda</b><span>Sócio fundador</span></div></div></div><div class="tier t1"><h4 class="tier-t"><span>Sócios</span></h4><div class="tier-row"><div><img src="/modelos/thays.jpg" alt=""><b>Thays Regina Martins Fontes Moreira</b><span>Sócia</span></div><div><img src="/modelos/fernando.jpg" alt=""><b>Fernando Eduardo Faleiros Ferreira</b><span>Sócio</span></div><div><img src="/modelos/sandra.jpg" alt=""><b>Sandra Gomes Esteves</b><span>Sócia</span></div><div><img src="/modelos/flavia.jpg" alt=""><b>Flávia Maria Pelliciari Salum</b><span>Sócia</span></div></div></div><div class="tier t2"><h4 class="tier-t"><span>Advogados</span></h4><div class="tier-row"><div><img src="/modelos/cristhiane.jpg" alt=""><b>Cristhiane Helena Lopes Ferrero Taliberti</b><span>Advogada e Economista</span></div></div></div></div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap">
+    <div><div class="eyebrow">Contato</div><h2 class="serif">Fale com o escritório</h2></div>
+    <div><small>Endereço</small><p>Rua Henri Dunant, 792, 8º andar, cj. 805<br>Santo Amaro · São Paulo · SP</p></div>
+    <div><small>Telefone</small><p>+55 (11) 3095-2566</p></div>
+    <div><small>E-mail</small><p>adv-fm@fm-advogados.com.br</p></div>
+  </div>
+</section>
+<footer><div class="wrap"><span>© 2026 Franceschini e Miranda Advogados</span><span>Política de privacidade · LinkedIn · Instagram</span></div></footer>
+
+<script>
+var posts=[
+  {d:"29 abr 2026",c:"Direito da Concorrência",t:"4ª edição da obra “Competition Law in Brazil”",a:"José Inácio Gonzaga Franceschini"},
+  {d:"06 mar 2026",c:"Reconhecimento",t:"Advogadas mais admiradas: Análise Advocacia 2026",a:"Cristhiane Helena Lopes Ferrero Taliberti"},
+  {d:"05 fev 2026",c:"Direito da Concorrência",t:"Nova obra: “Competition Law in Brazil, Fourth Edition”",a:"José Inácio Gonzaga Franceschini"},
+  {d:"08 dez 2025",c:"Evento",t:"Webinar IBRAC: a experiência dos precursores na concorrência, consumo e compliance",a:"José Inácio Gonzaga Franceschini"},
+  {d:"28 mai 2024",c:"Podcast",t:"Vantagem Auferida #34: a jurisprudência do CADE",a:"José Inácio Gonzaga Franceschini"}
+];
+(function(){
+  var st=document.getElementById('tk'),c=document.getElementById('tkC');
+  st.innerHTML=posts.map(function(p){return '<a class="tk-item" href="#"><b>'+p.t+'</b><small>'+p.d+' · '+p.c+' · '+p.a+'</small></a>'}).join('');
+  var it=st.children,i=0,timer;
+  it[0].classList.add('on');
+  function go(n){var old=it[i];old.classList.remove('on');old.classList.add('out');setTimeout(function(){old.classList.remove('out')},650);i=(n+it.length)%it.length;it[i].classList.add('on');c.textContent=(i+1)+' / '+it.length;reset()}
+  function reset(){clearInterval(timer);timer=setInterval(function(){go(i+1)},5000)}
+  document.getElementById('tkP').onclick=function(){go(i-1)};
+  document.getElementById('tkN').onclick=function(){go(i+1)};
+  var t=document.querySelector('.ticker');t.onmouseenter=function(){clearInterval(timer)};t.onmouseleave=reset;
+  reset();
+})();
+</script>
+<script>
+(function(){
+  var saved;try{saved=localStorage.getItem('fm-tema')}catch(e){}
+  function set(t){document.body.dataset.tema=t;document.querySelectorAll('.switch button').forEach(function(x){x.classList.toggle('on',x.dataset.t===t)});try{localStorage.setItem('fm-tema',t)}catch(e){}}
+  if(saved)set(saved);
+  document.querySelectorAll('.switch button').forEach(function(b){b.onclick=function(){set(b.dataset.t)}});
+})();
+</script>
+</body>
+</html>
