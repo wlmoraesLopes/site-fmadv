@@ -303,13 +303,6 @@ nav a:hover, nav a.active { color: #f3a600; border-bottom: 2px solid #fdeede; }
             <div class="profissional-cargo">Advogada</div>
           </div>
         </a>
-        <a href="profissionais/fernanda.html" class="profissional-link">
-          <div class="profissional-box">
-            <img src="imagens_profissionais/fernanda.jpg" class="profissional-foto" alt="Fernanda Dalla Valle Martino">
-            <div class="profissional-nome">Fernanda Dalla Valle Martino</div>
-            <div class="profissional-cargo">Advogada</div>
-          </div>
-        </a>
       </div>
     </section>
   </div>
