@@ -1,0 +1,54 @@
+{
+  "nome": "Franceschini e Miranda Advogados",
+  "dominio": "https://www.fm-advogados.com.br",
+  "telefone": "+55 (11) 3095-2566",
+  "telefoneLink": "+551130952566",
+  "email": "adv-fm@fm-advogados.com.br",
+  "endereco": {
+    "rua": "Rua Henri Dunant, nº 792, 8º andar, Conjunto 805",
+    "bairro": "Santo Amaro",
+    "cidade": "São Paulo",
+    "uf": "SP",
+    "cep": "04709-110"
+  },
+  "geo": { "lat": -23.6274191, "lng": -46.6975563 },
+  "cnpj": "68.314.343/0001-64",
+  "fundacao": "1992",
+  "redes": [
+    { "rotulo": "Instagram", "url": "https://www.instagram.com/franceschinimiranda/" },
+    { "rotulo": "LinkedIn", "url": "https://www.linkedin.com/company/franceschini-miranda-advogados/" }
+  ],
+  "googleForm": {
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSc7V0xSHL4Jc-AGJoNagsipb3FSIpvCEIglEtDGKd-_rogKVw/formResponse",
+    "campos": {
+      "nome": "entry.1282271088",
+      "email": "entry.1066741631",
+      "telefone": "entry.58920916",
+      "empresa": "entry.1394236050",
+      "assunto": "entry.1966855385",
+      "mensagem": "entry.1008846380"
+    },
+    "assuntos": ["Direito da Concorrência", "Direito Societário", "Direitos Civil, Comercial e do Consumidor", "Direito Trabalhista", "Direito Penal Empresarial", "Direito Administrativo", "Outro assunto"]
+  },
+  "adsId": "AW-17916394466",
+  "adsConversion": { "contato": null, "whatsapp": null },
+  "credito": { "texto": "WLTI Soluções em TI", "url": "https://wa.me/5513991744137", "logo": "/assets/img/wlti.png" },
+  "posicionamento": {
+    "selo": "Advocacia empresarial · São Paulo · Desde 1992",
+    "titulo": "Assessoria jurídica consultiva e contenciosa para empresas",
+    "texto": "Atuação perante o Poder Judiciário, o CADE e demais órgãos administrativos, com dedicação personalizada a cada cliente."
+  },
+  "fatos": [
+    { "titulo": "Desde 1992", "texto": "Fundado em São Paulo" },
+    { "titulo": "Consultivo e contencioso", "texto": "Assessoria preventiva e atuação em litígios" },
+    { "titulo": "Judiciário e CADE", "texto": "Tribunais superiores e órgãos administrativos" },
+    { "titulo": "EUA · Europa", "texto": "Correspondentes no Brasil e no exterior" }
+  ],
+  "citacao": "Fundado em 1992, o escritório é voltado ao direito empresarial e tem por filosofia a <em>dedicação personalizada ao cliente</em>, com uma equipe enxuta que trabalha junta há mais de quinze anos.",
+  "escritorio": [
+    "Fundado em 1992 por José Inácio Gonzaga Franceschini e Custódio da Piedade Ubaldino Miranda, o escritório Franceschini e Miranda Advogados tem por filosofia a dedicação personalizada ao cliente.",
+    "Voltado ao direito empresarial, assiste uma clientela de peso na economia nacional, cujos casos, de bastante expressividade econômica, são cuidadosamente acompanhados por uma equipe enxuta de advogados que trabalham juntos há mais de quinze anos.",
+    "O escritório presta assessoria jurídica na área consultiva e contenciosa. Sua experiência abarca, além da atuação no Judiciário, a atuação perante órgãos administrativos.",
+    "Com sede em São Paulo, dispõe de correspondentes em diversos Estados e no exterior (EUA e Europa)."
+  ]
+}

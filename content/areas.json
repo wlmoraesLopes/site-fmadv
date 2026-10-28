@@ -1,0 +1,80 @@
+{
+  "areas": [
+    {
+      "slug": "concorrencia",
+      "nome": "Direito da Concorrência",
+      "abertura": "Defesa e representação de clientes perante o CADE (Conselho Administrativo de Defesa Econômica) e o Poder Judiciário, com atuação preventiva e contenciosa.",
+      "itens": [
+        "Notificação de atos de concentração (M&A)",
+        "Defesa em processos administrativos e judiciais por práticas anticompetitivas",
+        "Elaboração de programas de compliance e treinamentos em matéria concorrencial",
+        "Negociação de acordos de leniência e termos de compromisso de cessação",
+        "Avaliação de risco de práticas comerciais",
+        "Defesa em processos antidumping",
+        "Ações judiciais de reparação de dano concorrencial e ações oriundas de atos de concentração e processos administrativos nos órgãos de defesa da concorrência"
+      ]
+    },
+    {
+      "slug": "societario",
+      "nome": "Direito Societário",
+      "abertura": "Assessoria na estruturação de negócios, da constituição de sociedades às reestruturações societárias e auditorias legais (due diligence).",
+      "itens": [
+        "Constituição de sociedades e joint ventures",
+        "Negociação e elaboração de acordos de acionistas",
+        "Reestruturações societárias (fusões, incorporações e cisões)",
+        "Representação legal de sócios estrangeiros e participação em assembleias e reuniões de conselhos",
+        "Realização de auditoria legal (due diligence)",
+        "Disputas societárias"
+      ]
+    },
+    {
+      "slug": "civil",
+      "nome": "Direitos Civil, Comercial e do Consumidor",
+      "abertura": "Atuação em litígios empresariais e na consultoria preventiva, com foco em contratos, responsabilidade civil e adequação à Lei Geral de Proteção de Dados (LGPD).",
+      "itens": [
+        "Litígios empresariais e cíveis com atuação nos Tribunais Superiores",
+        "Consultoria sobre incidência e implantação da LGPD",
+        "Ações de responsabilidade civil, ações civis públicas e coletivas",
+        "Contratos nacionais e internacionais",
+        "Defesas e recursos perante PROCON, Delegacias do Consumidor, Ministério Público, Juizados Especiais Cíveis e Justiça Comum",
+        "Elaboração de pareceres legais"
+      ]
+    },
+    {
+      "slug": "trabalhista",
+      "nome": "Direito Trabalhista",
+      "abertura": "Consultoria trabalhista voltada à prevenção de litígios e à organização das relações de trabalho, incluindo políticas internas e compliance.",
+      "itens": [
+        "Aconselhamento e soluções preventivas para empresas",
+        "Pareceres sobre a LGPD na esfera trabalhista e políticas internas",
+        "Consultoria sobre plataformas digitais de prestação de serviços",
+        "Contratações, desligamentos e auditoria trabalhista",
+        "Defesa e condução de negociações em procedimentos administrativos e judiciais",
+        "Compliance trabalhista, incluindo treinamentos sobre temas específicos"
+      ]
+    },
+    {
+      "slug": "penal",
+      "nome": "Direito Penal Empresarial",
+      "abertura": "Defesa de empresas e de seus administradores em investigações e processos criminais relacionados à atividade empresarial, de forma consultiva e contenciosa.",
+      "itens": [
+        "Assessoria consultiva e preventiva a empresas",
+        "Assistência em inquéritos policiais, processos criminais e administrativos",
+        "Defesa e representação de empresas e das pessoas físicas a elas ligadas",
+        "Assistência legal em casos que investiguem crimes de empresas"
+      ]
+    },
+    {
+      "slug": "administrativo",
+      "nome": "Direito Administrativo",
+      "abertura": "Assessoria em questões de direito público, em licitações, contratos administrativos e na defesa perante Agências Reguladoras e Tribunais de Contas.",
+      "itens": [
+        "Assessoria consultiva e atuação em inquéritos, averiguações e processos administrativos nas esferas municipal, estadual e federal",
+        "Atuação perante Agências Reguladoras e Tribunais de Contas",
+        "Assessoria jurídica em licitações, concorrências públicas e contratos administrativos",
+        "Defesa em processos administrativos sancionadores"
+      ]
+    }
+  ],
+  "nota": "Em todas as áreas, o escritório atua de forma consultiva e contenciosa. Para necessidades específicas não compreendidas em sua atuação direta, dispõe de parcerias sob sua supervisão."
+}
