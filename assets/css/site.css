@@ -263,3 +263,9 @@ section{padding:104px 0}
   .page-head h1,.perfil h1{font-size:34px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* Ajustes: miniatura de vídeo sem sublinhado; resumos dos cartões limitados */
+.prose a.video{border:0}
+.prose a.video img{margin:0}
+.pubc p{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.pubc h3{overflow-wrap:anywhere}

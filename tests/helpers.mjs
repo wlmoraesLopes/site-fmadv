@@ -23,4 +23,6 @@ export async function site(env = 'teste') {
 }
 
 export const textoPuro = (html) => html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ');
-export const descricao = (html) => (html.match(/<meta name="description" content="([^"]*)">/) || [])[1];
+const ENT = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'" };
+export const descricao = (html) => (html.match(/<meta name="description" content="([^"]*)">/) || [])[1]
+  ?.replace(/&(amp|lt|gt|quot|#39);/g, (e) => ENT[e]);

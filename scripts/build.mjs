@@ -15,6 +15,27 @@ function grava(outDir, path, html) {
   writeFileSync(destino, html);
 }
 
+function geraSitemap(dominio, paginas) {
+  const urls = paginas.map(({ path, lastmod }) =>
+    `  <url><loc>${dominio}${path}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`;
+}
+
+function geraRobots(dominio, bloqueado) {
+  if (bloqueado) return 'User-agent: *\nDisallow: /\n';
+  return `User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+
+Sitemap: ${dominio}/sitemap.xml
+`;
+}
+
 export async function build({ outDir = join(RAIZ, 'public'), env = process.env } = {}) {
   const content = loadContent(pathToFileURL(join(RAIZ, 'content') + '/'));
   const ctx = { ...content, noindex: env.SITE_ENV !== 'producao', env: env.SITE_ENV || 'teste' };
@@ -31,13 +52,15 @@ export async function build({ outDir = join(RAIZ, 'public'), env = process.env }
 
   const geradas = [];
   for (const render of paginas) {
-    for (const { path, html, arquivo, sitemap = true } of [].concat(render(ctx))) {
+    for (const { path, html, arquivo, lastmod, sitemap = true } of [].concat(render(ctx))) {
       if (arquivo) writeFileSync(join(outDir, arquivo), html);
       else grava(outDir, path, html);
-      if (path && sitemap) geradas.push(path);
+      if (path && sitemap) geradas.push({ path, lastmod });
     }
   }
-  return { paginas: geradas };
+  writeFileSync(join(outDir, 'sitemap.xml'), geraSitemap(content.site.dominio, geradas));
+  writeFileSync(join(outDir, 'robots.txt'), geraRobots(content.site.dominio, ctx.noindex));
+  return { paginas: geradas.map((g) => g.path) };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
