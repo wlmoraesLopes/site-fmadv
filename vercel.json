@@ -4,17 +4,77 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/index", "destination": "/", "permanent": true },
-    { "source": "/profissionais/fernanda", "destination": "/profissionais", "permanent": true },
-    { "source": "/profissionais/flavia", "destination": "/profissionais", "permanent": true }
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/profissionais/fernanda",
+      "destination": "/profissionais",
+      "permanent": true
+    },
+    {
+      "source": "/profissionais/flavia",
+      "destination": "/profissionais",
+      "permanent": true
+    },
+    {
+      "source": "/noticia1",
+      "destination": "/publicacoes/nova-obra-competition-law-in-brazil-fourth-edition-da-international",
+      "permanent": true
+    },
+    {
+      "source": "/noticia2",
+      "destination": "/publicacoes/consolidacao-de-entendimento-no-trf-1-regiao",
+      "permanent": true
+    },
+    {
+      "source": "/noticia3",
+      "destination": "/publicacoes/trf-1-anula-sentenca-e-reabre-instrucao-em-caso-contra-o-cade",
+      "permanent": true
+    }
   ],
   "headers": [
-    { "source": "/(.*)", "headers": [
-      { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-      { "key": "Cache-Control", "value": "public, max-age=3600" }
-    ] },
-    { "source": "/admin/(.*)", "headers": [{ "key": "Cache-Control", "value": "no-store" }] },
-    { "source": "/admin", "headers": [{ "key": "Cache-Control", "value": "no-store" }] },
-    { "source": "/api/(.*)", "headers": [{ "key": "Cache-Control", "value": "no-store" }] }
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    },
+    {
+      "source": "/admin/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/admin",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
   ]
 }
