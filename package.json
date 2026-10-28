@@ -1,0 +1,12 @@
+{
+  "name": "site-fmadv",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test \"tests/**/*.test.mjs\""
+  },
+  "dependencies": {
+    "sanitize-html": "2.13.0"
+  }
+}
