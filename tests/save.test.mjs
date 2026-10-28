@@ -11,7 +11,7 @@ const content = loadContent();
 const b64 = (n) => Buffer.alloc(n, 1).toString('base64');
 
 test('validateSave aceita profissional e foto válidos', () => {
-  const r = validateSave({ mensagem: 'x', json: { profissionais: content.profissionais },
+  const r = validateSave({ mensagem: 'x', json: { profissionais: content.profissionais }, base: { profissionais: 'sha' },
     arquivos: [{ path: 'uploads/profissionais/novo.webp', base64: b64(100) }] });
   assert.equal(r.ok, true);
   assert.deepEqual(r.files.map((f) => f.path), ['content/profissionais.json', 'uploads/profissionais/novo.webp']);
@@ -32,7 +32,7 @@ test('validateSave recusa caminhos, tipos e tamanhos inválidos', () => {
 test('validateSave recusa dados inválidos citando o campo', () => {
   const p = structuredClone(content.profissionais);
   p[0].categoria = 'advogado';
-  const r = validateSave({ mensagem: 'x', json: { profissionais: p }, arquivos: [] });
+  const r = validateSave({ mensagem: 'x', json: { profissionais: p }, base: { profissionais: 'sha' }, arquivos: [] });
   assert.equal(r.status, 400);
   assert.match(r.error, /categoria/);
   assert.equal(validateSave({ mensagem: 'x', json: {}, arquivos: [] }).status, 400, 'nada para salvar');
@@ -118,4 +118,26 @@ test('api/login com corpo vazio responde 400', async () => {
   const res = resFalso();
   await loginHandler({ method: 'POST', headers: { 'x-fm-admin': '1' }, body: {} }, res);
   assert.equal(res.statusCode, 400);
+});
+
+test('api/save responde 409 quando o arquivo mudou no ramo desde o carregamento', async () => {
+  process.env.SESSION_SECRET = 's3gredo';
+  Object.assign(process.env, { GITHUB_TOKEN: 't', GITHUB_REPO: 'o/r', GITHUB_BRANCH: 'b' });
+  const fetchOriginal = globalThis.fetch;
+  globalThis.fetch = githubFalso().fetch; // contents devolve sha "s1"
+  try {
+    const req = { method: 'POST', headers: { cookie: `fm_admin=${signSession('s3gredo')}`, 'x-fm-admin': '1' },
+      body: { json: { publicacoes: content.publicacoes }, base: { publicacoes: 'outro-sha' }, arquivos: [] } };
+    const res = resFalso();
+    await saveHandler(req, res);
+    assert.equal(res.statusCode, 409);
+    assert.match(res.body.error, /recarregue/i);
+    const req2 = { ...req, body: { ...req.body, base: { publicacoes: 's1' } } };
+    const res2 = resFalso();
+    await saveHandler(req2, res2);
+    assert.equal(res2.statusCode, 200);
+    assert.match(res2.body.shas['content/publicacoes.json'], /^[0-9a-f]{40}$/);
+  } finally {
+    globalThis.fetch = fetchOriginal;
+  }
 });

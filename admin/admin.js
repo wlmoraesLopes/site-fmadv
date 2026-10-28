@@ -8,7 +8,8 @@ const IMAGENS = ['image/jpeg', 'image/png', 'image/webp'];
 
 const $ = (s, el = document) => el.querySelector(s);
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const textoDe = (html) => { const d = document.createElement('div'); d.innerHTML = html; return d.textContent.replace(/\s+/g, ' ').trim(); };
+// DOMParser não executa nada do HTML (ao contrário de innerHTML num elemento da página).
+const textoDe = (html) => new DOMParser().parseFromString(html, 'text/html').body.textContent.replace(/\s+/g, ' ').trim();
 const resumir = (t, max) => (t.length <= max ? t : `${t.slice(0, max - 1).replace(/\s+\S*$/, '')}…`);
 const hoje = () => new Date().toISOString().slice(0, 10);
 
@@ -18,7 +19,8 @@ const estado = {
   atual: null,              // slug selecionado ou '__novo'
   rascunho: null,           // cópia em edição
   arquivos: new Map(),      // caminho → base64 ainda não enviado
-  alterados: new Set(),     // 'profissionais' | 'publicacoes' com mudanças a publicar
+  alterados: new Set(),     // 'profissionais' | 'publicacoes' já alterados na lista, a publicar
+  rascunhoSujo: false,      // o rascunho aberto tem edições ainda não juntadas à lista
   sujo: false,
   busca: '',
 };
@@ -88,7 +90,7 @@ window.addEventListener('beforeunload', (ev) => { if (estado.sujo) { ev.preventD
 
 // ---------- Lista ----------
 document.querySelectorAll('[data-aba]').forEach((b) => b.addEventListener('click', () => {
-  if (estado.sujo && estado.rascunho && !confirm('Descartar as alterações não publicadas deste item?')) return;
+  if (estado.rascunhoSujo && !confirm('Descartar as alterações não publicadas deste item?')) return;
   descarta();
   estado.aba = b.dataset.aba;
   document.querySelectorAll('[data-aba]').forEach((x) => x.setAttribute('aria-selected', String(x === b)));
@@ -98,7 +100,8 @@ document.querySelectorAll('[data-aba]').forEach((b) => b.addEventListener('click
 function descarta() {
   estado.atual = null;
   estado.rascunho = null;
-  if (!estado.alterados.size) { estado.sujo = false; estado.arquivos.clear(); }
+  estado.rascunhoSujo = false;
+  estado.sujo = estado.alterados.size > 0;
 }
 
 function desenha() { desenhaLista(); desenhaEditor(); desenhaRodape(); }
@@ -150,7 +153,9 @@ function move(slug, delta) {
 }
 
 function abre(slug) {
-  if (estado.rascunho && estado.sujo && !estado.alterados.size && !confirm('Descartar as alterações não publicadas deste item?')) return;
+  if (estado.rascunhoSujo && !confirm('Descartar as alterações não publicadas deste item?')) return;
+  estado.rascunhoSujo = false;
+  estado.sujo = estado.alterados.size > 0;
   estado.atual = slug;
   const lista = estado.dados[estado.aba];
   if (slug === '__novo') {
@@ -165,7 +170,7 @@ function abre(slug) {
 }
 
 // ---------- Editor ----------
-function marcaSujo() { estado.sujo = true; desenhaRodape(); }
+function marcaSujo() { estado.sujo = true; estado.rascunhoSujo = true; desenhaRodape(); }
 
 function campo(rotulo, nome, valor, { tipo = 'text', ajuda = '', extra = '' } = {}) {
   return `<label>${rotulo}${ajuda ? ` <span class="ajuda">${ajuda}</span>` : ''}<input type="${tipo}" data-campo="${nome}" value="${esc(valor)}" ${extra}></label>`;
@@ -247,11 +252,14 @@ function ligaCampos(el, r) {
     const erro = checkFile(arq, { tipos: IMAGENS, maxBytes: 20 * 1024 * 1024 });
     if (erro) { aviso(erro, 'erro'); foto.value = ''; return; }
     const { blob, ext } = await resizeImage(arq, estado.aba === 'profissionais' ? { maxW: 900 } : {});
+    const grande = checkFile(blob, { tipos: IMAGENS });
+    if (grande) { aviso(grande, 'erro'); foto.value = ''; return; }
     const pasta = estado.aba === 'profissionais' ? 'profissionais' : 'publicacoes';
     const caminho = `uploads/${pasta}/${nomeArquivo(r.nome || r.titulo || arq.name, ext)}`;
     estado.arquivos.set(caminho, await paraBase64(blob));
     previasLocais.set(`/${caminho}`, URL.createObjectURL(blob));
     if (estado.aba === 'profissionais') r.foto = `/${caminho}`; else r.capa = `/${caminho}`;
+    estado.rascunhoSujo = true;
     $('[data-previa-foto]', el).src = previa(`/${caminho}`);
     marcaSujo();
   });
@@ -351,6 +359,8 @@ async function anexa(tipo, rich) {
   const erro = checkFile(arq, { tipos: IMAGENS, maxBytes: 20 * 1024 * 1024 });
   if (erro) return aviso(erro, 'erro');
   const { blob, ext } = await resizeImage(arq);
+  const grande = checkFile(blob, { tipos: IMAGENS });
+  if (grande) return aviso(grande, 'erro');
   const caminho = `uploads/publicacoes/${nomeArquivo(arq.name, ext)}`;
   estado.arquivos.set(caminho, await paraBase64(blob));
   const local = URL.createObjectURL(blob);
@@ -394,7 +404,7 @@ function confere(r) {
 // Junta o rascunho à lista (idempotente: pode rodar de novo depois de um novo login).
 function aplicaRascunho() {
   const r = estado.rascunho;
-  if (!r || !estado.sujo || estado.alterados.has(`rascunho:${estado.aba}`)) return null;
+  if (!r || !estado.rascunhoSujo) return null;
   const erro = confere(r);
   if (erro) return erro;
   const lista = estado.dados[estado.aba];
@@ -409,9 +419,12 @@ function aplicaRascunho() {
   }
   const texto = textoDe(estado.aba === 'profissionais' ? r.curriculo : r.conteudo);
   if (!r.resumo.trim()) r.resumo = resumir(texto, estado.aba === 'profissionais' ? 160 : 220);
-  if (estado.aba === 'profissionais') r.links = r.links.filter((l) => l.url.trim());
+  if (estado.aba === 'profissionais') {
+    r.links = r.links.filter((l) => l.url.trim())
+      .map((l) => ({ ...l, url: /^https?:\/\//i.test(l.url.trim()) ? l.url.trim() : `https://${l.url.trim()}` }));
+  }
   estado.alterados.add(estado.aba);
-  estado.alterados.add(`rascunho:${estado.aba}`);
+  estado.rascunhoSujo = false;
   estado.atual = r.slug;
   return null;
 }
@@ -426,7 +439,9 @@ async function enviaTudo() {
   for (const k of ['profissionais', 'publicacoes']) if (estado.alterados.has(k)) json[k] = estado.dados[k];
   if (Object.keys(json).length) {
     const nome = estado.rascunho ? (estado.rascunho.nome || estado.rascunho.titulo) : 'ordem da equipe';
-    await api('save', { metodo: 'POST', corpo: { mensagem: `atualiza ${nome}`, json, arquivos: [] } });
+    const base = Object.fromEntries(Object.keys(json).map((k) => [k, estado.dados.shas[k]]));
+    const r = await api('save', { metodo: 'POST', corpo: { mensagem: `atualiza ${nome}`, json, base, arquivos: [] } });
+    for (const k of Object.keys(json)) estado.dados.shas[k] = r.shas[`content/${k}.json`];
   }
 }
 
@@ -465,9 +480,9 @@ async function remover() {
   const lista = estado.dados[estado.aba];
   lista.splice(lista.findIndex((x) => x.slug === estado.atual), 1);
   estado.alterados.add(estado.aba);
-  estado.alterados.add(`rascunho:${estado.aba}`);
   estado.atual = null;
   estado.rascunho = null;
+  estado.rascunhoSujo = false;
   estado.sujo = true;
   await publicar();
 }
