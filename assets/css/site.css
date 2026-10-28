@@ -31,7 +31,7 @@ img{max-width:100%;height:auto}
 .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-10px) rotate(-45deg)}
 
 /* ---------- Abertura da Home ---------- */
-.hero .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:72px;align-items:center;padding-top:92px;padding-bottom:92px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:72px;align-items:center;padding-top:92px;padding-bottom:92px}
 .hero h1{font-size:56px;line-height:1.07;margin:16px 0 22px;color:var(--brand-2)}
 .hero p{font-size:18px;color:var(--muted);margin:0 0 32px;max-width:560px}
 .btns{display:flex;gap:14px;flex-wrap:wrap}
@@ -230,7 +230,7 @@ section{padding:104px 0}
   .site-header nav.aberto{display:flex}
   .site-header nav a{padding:13px 0;border-bottom:1px solid var(--line)}
   .site-header nav .cta{margin-top:14px;text-align:center;border-bottom:1px solid var(--brand)}
-  .hero .wrap{grid-template-columns:1fr;gap:48px;padding-top:64px;padding-bottom:72px}
+  .hero .wrap{grid-template-columns:minmax(0,1fr);gap:48px;padding-top:64px;padding-bottom:72px}
   .site-footer .top{grid-template-columns:1fr 1fr}
   .hero h1{font-size:40px}
   .facts .wrap{grid-template-columns:1fr 1fr}
