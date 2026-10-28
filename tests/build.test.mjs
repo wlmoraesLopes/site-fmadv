@@ -14,3 +14,13 @@ test('build copia assets, uploads e o arquivo de verificação do Google', async
   }
   assert.match(readFileSync(join(out, 'assets/js/fm-config.js'), 'utf8'), /AW-17916394466/);
 });
+
+test('build publica o admin com a cópia real de lib/text.mjs', async () => {
+  const out = mkdtempSync(join(tmpdir(), 'fm-build-'));
+  await build({ outDir: out, env: { SITE_ENV: 'teste' } });
+  assert.ok(existsSync(join(out, 'admin/index.html')));
+  const t = readFileSync(join(out, 'admin/text.mjs'), 'utf8');
+  assert.ok(!t.includes("export * from"), 'não pode reexportar ../lib no site publicado');
+  assert.match(t, /export function slugify/);
+  assert.match(readFileSync(join(out, 'admin/index.html'), 'utf8'), /noindex/);
+});

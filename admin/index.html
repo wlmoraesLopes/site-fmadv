@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel · Franceschini e Miranda</title>
+<link rel="icon" href="/assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+
+<!-- Entrada -->
+<div class="login" id="tela-login" hidden>
+  <form class="caixa" id="form-login">
+    <span class="logo" role="img" aria-label="Franceschini e Miranda Advogados"></span>
+    <h1>Painel do site</h1>
+    <label>Senha<input type="password" name="senha" autocomplete="current-password" required></label>
+    <button class="btn p" type="submit">Entrar</button>
+    <p class="msg" role="alert"></p>
+  </form>
+</div>
+
+<!-- Painel -->
+<div id="tela-painel" hidden>
+  <header class="topo">
+    <span class="logo" role="img" aria-label="Franceschini e Miranda Advogados"></span>
+    <nav class="abas" role="tablist">
+      <button type="button" role="tab" data-aba="profissionais" aria-selected="true">Profissionais</button>
+      <button type="button" role="tab" data-aba="publicacoes" aria-selected="false">Publicações</button>
+    </nav>
+    <div class="acoes-topo"><a href="/" target="_blank" rel="noopener">Ver o site ↗</a><button type="button" id="sair">Sair</button></div>
+  </header>
+  <div class="aviso" id="aviso" role="status" hidden></div>
+  <main class="grade">
+    <aside class="lista" id="lista"></aside>
+    <section class="editor" id="editor"></section>
+  </main>
+</div>
+
+<!-- Login quando a sessão expira no meio da edição -->
+<dialog id="relogin">
+  <form method="dialog" id="form-relogin" class="caixa">
+    <h2>Sua sessão expirou</h2>
+    <p>Entre de novo para publicar. O que você digitou foi mantido.</p>
+    <label>Senha<input type="password" name="senha" autocomplete="current-password" required></label>
+    <button class="btn p" type="submit">Entrar e publicar</button>
+    <p class="msg" role="alert"></p>
+  </form>
+</dialog>
+
+<script type="module" src="/admin/admin.js"></script>
+</body>
+</html>

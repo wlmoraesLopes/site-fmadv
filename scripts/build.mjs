@@ -45,6 +45,7 @@ export async function build({ outDir = join(RAIZ, 'public'), env = process.env }
   for (const pasta of ['assets', 'uploads', 'admin']) {
     if (existsSync(join(RAIZ, pasta))) cpSync(join(RAIZ, pasta), join(outDir, pasta), { recursive: true });
   }
+  cpSync(join(RAIZ, 'lib/text.mjs'), join(outDir, 'admin/text.mjs'));
   cpSync(join(RAIZ, 'google2ad6f5776b26239e.html'), join(outDir, 'google2ad6f5776b26239e.html'));
 
   const cfg = { id: content.site.adsId, conversoes: content.site.adsConversion };
