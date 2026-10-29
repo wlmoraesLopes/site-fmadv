@@ -156,11 +156,20 @@ section{padding:104px 0}
 .perfil .dados a{display:block;color:var(--brand);margin-bottom:6px;word-break:break-word}
 .perfil h1{font-size:46px;line-height:1.1;margin:10px 0 6px;color:var(--brand-2)}
 .perfil .cargo{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 30px}
-.trilha ol{list-style:none;margin:0 0 26px;padding:0;display:flex;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--muted)}
-.trilha li{min-width:0}
-.trilha li+li::before{content:"›";margin:0 10px;color:var(--accent)}
-.trilha a:hover{color:var(--brand)}
-.trilha li[aria-current]{color:var(--ink);max-width:48ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Trilha: rótulo em versalete espaçado; "Início" com seta fina dourada que recua e fio que se desenha no hover */
+.trilha ol{list-style:none;margin:0 0 30px;padding:0;display:flex;flex-wrap:wrap;align-items:center;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.trilha li{display:flex;align-items:center;min-width:0}
+.trilha li+li::before{content:"·";margin:0 14px;font-size:16px;line-height:1;color:var(--accent)}
+.trilha a{display:inline-flex;align-items:center;gap:12px;padding:8px 0;transition:color .3s}
+.trilha a span{position:relative}
+.trilha a span::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .4s}
+.trilha a:hover,.trilha a:focus-visible{color:var(--brand)}
+.trilha a:hover span::after,.trilha a:focus-visible span::after{transform:scaleX(1);transform-origin:left}
+.trilha .inicio{color:var(--brand)}
+.trilha .inicio svg{width:26px;height:10px;color:var(--accent);transition:transform .4s}
+.trilha .inicio:hover svg,.trilha .inicio:focus-visible svg{transform:translateX(-6px)}
+.trilha li[aria-current]{color:var(--ink);opacity:.7;max-width:48ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:600px){.trilha li[aria-current]{max-width:100%}}
 
 /* Obras publicadas — capas tipográficas: claras, escurecem para "capa dura" no hover */
 .obras{margin-top:64px;padding-top:44px;border-top:1px solid var(--line)}

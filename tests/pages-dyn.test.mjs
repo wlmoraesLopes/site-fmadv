@@ -105,7 +105,7 @@ test('Trilha "Início › Seção › Página" nas páginas internas, com Breadc
   const f = content.profissionais.find((p) => p.slug === 'franceschini');
   const html = ler('profissionais/franceschini.html');
   const trilha = html.match(/<nav class="trilha"[^>]*>([\s\S]*?)<\/nav>/)[1];
-  assert.match(trilha, /<a href="\/">Início<\/a>.*<a href="\/profissionais">Profissionais<\/a>.*<li aria-current="page">/);
+  assert.match(trilha, /<a class="inicio" href="\/"><svg[\s\S]*?<span>Início<\/span><\/a>.*<a href="\/profissionais"><span>Profissionais<\/span><\/a>.*<li aria-current="page">/);
   const bc = ld(html).find((x) => x['@type'] === 'BreadcrumbList');
   assert.deepEqual(bc.itemListElement.map((i) => i.name), ['Início', 'Profissionais', f.nome]);
   assert.equal(bc.itemListElement[2].item, `${D}/profissionais/franceschini`);
