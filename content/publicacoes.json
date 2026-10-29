@@ -246,17 +246,6 @@
       "legado": {
         "noticia": 3
       }
-    },
-    {
-      "slug": "teste-do-painel-apagar",
-      "titulo": "Teste do painel - apagar",
-      "data": "2026-10-29",
-      "autor": "José Inácio Gonzaga Franceschini",
-      "tipo": "artigo",
-      "resumo": "teste",
-      "conteudo": "teste",
-      "capa": null,
-      "legado": null
     }
   ]
 }
