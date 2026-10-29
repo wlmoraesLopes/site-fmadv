@@ -1,7 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { site, content, textoPuro, descricao } from './helpers.mjs';
-import { sortPublicacoes } from '../lib/content.mjs';
+import { sortPublicacoes, validateProfissionais } from '../lib/content.mjs';
+import { perfis } from '../lib/pages/profissionais.mjs';
 
 const D = 'https://www.fm-advogados.com.br';
 const ld = (html) => [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
@@ -97,4 +98,29 @@ test('toda página gerada tem título, descrição de 50–160 caracteres, canon
     assert.match(html, new RegExp(`<link rel="canonical" href="${D}${p === '/' ? '/' : p}">`), p);
     assert.equal((html.match(/<h1[\s>]/g) || []).length, 1, p);
   }
+});
+
+test('Trilha "Início › Seção › Página" nas páginas internas, com BreadcrumbList', async () => {
+  const { ler } = await site();
+  const f = content.profissionais.find((p) => p.slug === 'franceschini');
+  const html = ler('profissionais/franceschini.html');
+  const trilha = html.match(/<nav class="trilha"[^>]*>([\s\S]*?)<\/nav>/)[1];
+  assert.match(trilha, /<a href="\/">Início<\/a>.*<a href="\/profissionais">Profissionais<\/a>.*<li aria-current="page">/);
+  const bc = ld(html).find((x) => x['@type'] === 'BreadcrumbList');
+  assert.deepEqual(bc.itemListElement.map((i) => i.name), ['Início', 'Profissionais', f.nome]);
+  assert.equal(bc.itemListElement[2].item, `${D}/profissionais/franceschini`);
+  for (const p of ['escritorio', 'areas-de-atuacao', 'profissionais', 'publicacoes', 'contato']) {
+    assert.match(ler(`${p}.html`), /<nav class="trilha"/, p);
+  }
+  assert.ok(!ler('index.html').includes('class="trilha"'), 'Home sem trilha');
+  assert.ok(!html.includes('class="voltar"'));
+});
+
+test('Obra com link: capa inteira leva à editora em nova aba; link inválido é recusado', () => {
+  const base = content.profissionais.find((p) => p.slug === 'franceschini');
+  const p = { ...base, obras: [{ titulo: 'Com link', detalhe: '', ano: '2025', url: 'https://editora.example/livro' }, { titulo: 'Sem link', detalhe: '', ano: '' }] };
+  const html = perfis({ site: content.site, profissionais: [p], noindex: true })[0].html;
+  assert.match(html, /<li class="obra"><a class="cobre" href="https:\/\/editora\.example\/livro" target="_blank" rel="noopener noreferrer">[\s\S]*?Com link/);
+  assert.match(html, /<li class="obra" tabindex="0">[\s\S]*?Sem link/);
+  assert.throws(() => validateProfissionais([{ ...p, obras: [{ titulo: 'X', url: 'javascript:alert(1)' }] }]), /obras\.url/);
 });

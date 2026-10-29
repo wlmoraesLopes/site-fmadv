@@ -29,9 +29,12 @@ test('Home: JSON-LD LegalService', async () => {
   assert.ok(ld.sameAs.some((u) => u.includes('instagram')) && ld.sameAs.some((u) => u.includes('linkedin')));
 });
 
-test('Áreas de atuação: 6 itens abríveis, sem nomes de profissionais', async () => {
+test('Áreas de atuação: índice das 6 áreas + 6 seções abertas, sem nomes de profissionais', async () => {
   const html = (await site()).ler('areas-de-atuacao.html');
-  assert.deepEqual([...html.matchAll(/<details class="area" id="([a-z]+)"/g)].map((m) => m[1]), SLUGS);
+  assert.deepEqual([...html.matchAll(/<section class="area" id="([a-z]+)"/g)].map((m) => m[1]), SLUGS);
+  const indice = html.split('class="index areas-nav"')[1].split('</nav>')[0];
+  assert.deepEqual([...indice.matchAll(/href="#([a-z]+)"/g)].map((m) => m[1]), SLUGS);
+  assert.ok(!html.includes('<details'));
   const texto = textoPuro(html);
   for (const p of content.profissionais) assert.ok(!texto.includes(p.nome), p.nome);
   assert.match(texto, /parcerias/);
@@ -50,6 +53,7 @@ test('Contato: formulário para o Google Forms e mapa', async () => {
   for (const [campo, entry] of Object.entries(content.site.googleForm.campos)) {
     assert.match(html, new RegExp(`name="${campo}"[^>]*data-entry="${entry.replace('.', '\\.')}"`), campo);
   }
+  assert.ok(!/name="assunto"/.test(html), 'sem campo Assunto (o Google Form tem lista fechada)');
   assert.match(html, /<iframe[^>]*loading="lazy"/);
   assert.match(html, /tel:\+551130952566/);
 });

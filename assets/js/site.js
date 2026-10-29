@@ -40,13 +40,32 @@
     el.addEventListener('click', function () { window.fmConversao(el.getAttribute('data-conversao')); });
   });
 
-  // Áreas de atuação: abre a área indicada no endereço (#societario)
-  function abreArea() {
-    var id = decodeURIComponent(location.hash.slice(1));
-    var alvo = id && document.getElementById(id);
-    if (alvo && alvo.tagName === 'DETAILS') { alvo.open = true; alvo.scrollIntoView(); }
+  // Áreas de atuação: destaca no índice a área em leitura e revela cada área ao entrar na tela
+  var indiceAreas = document.querySelector('.areas-nav');
+  if (indiceAreas && 'IntersectionObserver' in window) {
+    var faixa = indiceAreas.querySelector('ol');
+    var linksAreas = indiceAreas.querySelectorAll('a');
+    var marca = function (id) {
+      linksAreas.forEach(function (a) {
+        if (a.getAttribute('href') !== '#' + id) { a.removeAttribute('aria-current'); return; }
+        a.setAttribute('aria-current', 'true');
+        // No celular o índice é uma faixa horizontal: mantém a área atual à vista
+        if (faixa.scrollWidth > faixa.clientWidth) faixa.scrollTo({ left: a.parentNode.offsetLeft - 16, behavior: 'smooth' });
+      });
+    };
+    var leitura = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) { if (e.isIntersecting) marca(e.target.id); });
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    var revela = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visivel'); revela.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    document.querySelectorAll('section.area').forEach(function (sec) {
+      sec.classList.add('revela');
+      leitura.observe(sec);
+      revela.observe(sec);
+    });
+    if (location.hash) marca(decodeURIComponent(location.hash.slice(1)));
   }
-  if (document.querySelector('details.area')) { abreArea(); window.addEventListener('hashchange', abreArea); }
 
   // Publicações: filtros por tipo e autor, com estado no endereço (?tipo=livro&autor=...)
   var lista = document.querySelector('[data-pubs]');

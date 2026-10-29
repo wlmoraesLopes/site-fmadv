@@ -205,6 +205,7 @@ function formProfissional(r) {
       <input placeholder="Título da obra" data-obra="titulo" value="${esc(o.titulo)}">
       <input placeholder="Editora / edição" data-obra="detalhe" value="${esc(o.detalhe)}">
       <input placeholder="Ano" data-obra="ano" value="${esc(o.ano)}">
+      <input class="url" placeholder="Link da editora (opcional): https://..." data-obra="url" value="${esc(o.url || '')}">
       <span class="mini"><button type="button" data-obra-mover="-1" aria-label="Subir">▲</button><button type="button" data-obra-mover="1" aria-label="Descer">▼</button><button type="button" data-obra-remover aria-label="Remover">✕</button></span></div>`).join('');
   const links = r.links.map((l, i) => `<div class="linha link" data-i="${i}">
       <input placeholder="Rótulo (ex.: LinkedIn)" data-link="rotulo" value="${esc(l.rotulo)}">
@@ -218,7 +219,7 @@ function formProfissional(r) {
     <div><label>Currículo*</label>${barraRich([])}<div class="rich" contenteditable="true" data-rich></div></div>
     <label>Resumo para o Google <span class="ajuda">até 160 caracteres; se ficar vazio, é gerado do currículo</span><textarea data-campo="resumo" maxlength="160" rows="2">${esc(r.resumo)}</textarea></label>
     <div class="linhas"><label>Links <span class="ajuda">opcional (LinkedIn, Lattes…)</span></label>${links}<button type="button" class="add" data-link-add>+ Adicionar link</button></div>
-    <div class="linhas"><label>Obras publicadas <span class="ajuda">aparecem como capas no perfil; deixe vazio se não houver</span></label>${obras}<button type="button" class="add" data-obra-add>+ Adicionar obra</button></div>
+    <div class="linhas"><label>Obras publicadas <span class="ajuda">aparecem como capas no perfil; com link, a capa abre a página da editora</span></label>${obras}<button type="button" class="add" data-obra-add>+ Adicionar obra</button></div>
     ${novo ? '' : '<div><button type="button" class="btn perigo" data-remover>Remover profissional do site</button></div>'}
   </div>`;
 }
@@ -265,7 +266,7 @@ function ligaCampos(el, r) {
   });
 
   const redesenha = () => { desenhaEditor(); marcaSujo(); };
-  el.querySelector('[data-obra-add]')?.addEventListener('click', () => { r.obras.push({ titulo: '', detalhe: '', ano: '' }); redesenha(); });
+  el.querySelector('[data-obra-add]')?.addEventListener('click', () => { r.obras.push({ titulo: '', detalhe: '', ano: '', url: '' }); redesenha(); });
   el.querySelector('[data-link-add]')?.addEventListener('click', () => { r.links.push({ rotulo: '', url: '' }); redesenha(); });
   el.querySelectorAll('[data-obra]').forEach((c) => c.addEventListener('input', () => {
     r.obras[c.closest('.linha').dataset.i][c.dataset.obra] = c.value; marcaSujo();
@@ -392,6 +393,7 @@ function confere(r) {
     if (!r.foto) return 'Envie uma foto.';
     if (!textoDe(r.curriculo)) return 'Preencha o currículo.';
     if (r.obras.some((o) => !o.titulo.trim())) return 'Há uma obra sem título.';
+    if (r.obras.some((o) => o.url && !/^https?:\/\/\S+$/.test(o.url))) return 'Link de obra inválido: comece com https://';
   } else {
     if (!r.titulo.trim()) return 'Preencha o título.';
     if (!/^\d{4}-\d{2}-\d{2}$/.test(r.data)) return 'Escolha a data.';
@@ -438,9 +440,10 @@ async function enviaTudo() {
   const json = {};
   for (const k of ['profissionais', 'publicacoes']) if (estado.alterados.has(k)) json[k] = estado.dados[k];
   if (Object.keys(json).length) {
-    const nome = estado.rascunho ? (estado.rascunho.nome || estado.rascunho.titulo) : 'ordem da equipe';
+    const mensagem = estado.mensagem
+      || `atualiza ${estado.rascunho ? (estado.rascunho.nome || estado.rascunho.titulo) : 'ordem da equipe'}`;
     const base = Object.fromEntries(Object.keys(json).map((k) => [k, estado.dados.shas[k]]));
-    const r = await api('save', { metodo: 'POST', corpo: { mensagem: `atualiza ${nome}`, json, base, arquivos: [] } });
+    const r = await api('save', { metodo: 'POST', corpo: { mensagem, json, base, arquivos: [] } });
     for (const k of Object.keys(json)) estado.dados.shas[k] = r.shas[`content/${k}.json`];
   }
 }
@@ -484,7 +487,8 @@ async function remover() {
   estado.rascunho = null;
   estado.rascunhoSujo = false;
   estado.sujo = true;
-  await publicar();
+  estado.mensagem = `remove ${nome}`;
+  try { await publicar(); } finally { estado.mensagem = null; }
 }
 
 iniciar();

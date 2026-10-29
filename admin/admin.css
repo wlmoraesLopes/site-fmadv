@@ -58,6 +58,7 @@ dialog::backdrop{background:rgba(30,20,10,.45)}
 .linhas{display:grid;gap:8px}
 .linha{display:grid;grid-template-columns:1fr 1fr 90px auto;gap:8px;align-items:center}
 .linha.link{grid-template-columns:1fr 2fr auto}
+.linha input.url{grid-column:1/-1;order:1}
 .linha .mini{display:flex;gap:2px}
 .linha .mini button{border:1px solid var(--line);background:var(--surface);cursor:pointer;padding:6px 8px;border-radius:3px}
 .add{justify-self:start;border:1px dashed var(--accent);background:none;color:var(--brand);padding:7px 14px;cursor:pointer;border-radius:3px}
