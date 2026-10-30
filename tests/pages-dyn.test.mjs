@@ -124,3 +124,18 @@ test('Obra com link: capa inteira leva à editora em nova aba; link inválido é
   assert.match(html, /<li class="obra" tabindex="0">[\s\S]*?Sem link/);
   assert.throws(() => validateProfissionais([{ ...p, obras: [{ titulo: 'X', url: 'javascript:alert(1)' }] }]), /obras\.url/);
 });
+
+test('Redes sociais: nome visível no rodapé de todas as páginas e chamada em Publicações', async () => {
+  const s = await site();
+  const li = 'https://www.linkedin.com/company/franceschini-miranda-advogados/';
+  const ig = 'https://www.instagram.com/franceschinimiranda/';
+  for (const pag of ['index.html', 'escritorio.html', 'contato.html', 'profissionais/franceschini.html']) {
+    const rod = s.ler(pag).split('<footer')[1];
+    assert.match(rod, /<h2 class="fh">Acompanhe<\/h2>/, pag);
+    assert.ok(rod.includes(`href="${li}"`) && rod.includes('<span>LinkedIn</span>'), pag);
+    assert.ok(rod.includes(`href="${ig}"`) && rod.includes('<span>Instagram</span>'), pag);
+  }
+  const pub = s.ler('publicacoes.html').split('<footer')[0];
+  assert.match(pub, /<aside class="siga"[\s\S]*?LinkedIn[\s\S]*?Instagram[\s\S]*?<\/aside>/);
+  assert.ok(pub.includes(`href="${li}"`));
+});

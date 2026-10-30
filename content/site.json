@@ -15,8 +15,8 @@
   "cnpj": "68.314.343/0001-64",
   "fundacao": "1992",
   "redes": [
-    { "rotulo": "Instagram", "url": "https://www.instagram.com/franceschinimiranda/" },
-    { "rotulo": "LinkedIn", "url": "https://www.linkedin.com/company/franceschini-miranda-advogados/" }
+    { "rotulo": "LinkedIn", "url": "https://www.linkedin.com/company/franceschini-miranda-advogados/" },
+    { "rotulo": "Instagram", "url": "https://www.instagram.com/franceschinimiranda/" }
   ],
   "googleForm": {
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSc7V0xSHL4Jc-AGJoNagsipb3FSIpvCEIglEtDGKd-_rogKVw/formResponse",

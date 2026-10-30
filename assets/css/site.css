@@ -111,6 +111,12 @@ section{padding:104px 0}
 .chips button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
 .filtros select{font:inherit;font-size:13.5px;padding:7px 12px;border:1px solid var(--line);background:var(--surface);border-radius:2px;color:var(--ink)}
 .vazio{color:var(--muted);text-align:center;padding:40px 0}
+.siga{display:flex;align-items:center;justify-content:space-between;gap:20px 32px;flex-wrap:wrap;margin-top:56px;padding:26px 30px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent)}
+.siga p{margin:6px 0 0;font-size:15.5px;color:var(--ink)}
+.siga-links{display:flex;gap:10px;flex-wrap:wrap}
+.siga-links a{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--brand);color:var(--brand);padding:9px 18px 9px 14px;border-radius:2px;font-weight:600;font-size:13.5px;transition:background .2s,color .2s}
+.siga-links a:hover{background:var(--brand);color:var(--on-brand)}
+.siga-links svg{width:17px;height:17px;fill:currentColor}
 
 /* ---------- Páginas internas ---------- */
 .page-head{background:var(--surface);border-bottom:1px solid var(--line);padding:72px 0 56px}
@@ -229,10 +235,10 @@ section{padding:104px 0}
 .site-footer p{margin:0 0 20px;opacity:.85;line-height:1.8}
 .site-footer .fbtn{display:inline-block;border:1px solid rgba(255,255,255,.35);padding:10px 20px;font-weight:600;font-size:13.5px;border-radius:2px;transition:border-color .2s}
 .site-footer .fbtn:hover{border-color:var(--accent)}
-.site-footer .redes{display:flex;gap:12px}
-.site-footer .redes a{width:36px;height:36px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);border-radius:50%;transition:border-color .2s}
-.site-footer .redes a:hover{border-color:var(--accent)}
-.site-footer .redes svg{width:16px;height:16px;fill:var(--on-brand)}
+.site-footer .redes{display:flex;gap:10px;flex-wrap:wrap}
+.site-footer .redes a{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.3);padding:8px 15px 8px 12px;border-radius:2px;font-weight:500;font-size:13.5px;transition:border-color .2s,color .2s}
+.site-footer .redes a:hover{border-color:var(--accent);color:var(--accent)}
+.site-footer .redes svg{width:17px;height:17px;fill:currentColor}
 .site-footer .bottom{display:flex;justify-content:space-between;align-items:center;padding-top:22px;font-size:13px;flex-wrap:wrap;gap:12px;opacity:.75}
 .site-footer .credito{display:inline-flex;align-items:center;gap:8px}
 .site-footer .credito img{height:22px;width:auto;filter:brightness(0) invert(1);opacity:.85}
